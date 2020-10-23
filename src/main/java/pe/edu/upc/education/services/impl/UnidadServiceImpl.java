@@ -37,17 +37,17 @@ public class UnidadServiceImpl implements UnidadService, Serializable {
 	public void deleteById(Integer id) throws Exception {
 		unidadRepository.deleteById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Unidad> findById(Integer id) throws Exception {
 		return unidadRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Unidad> findAll() throws Exception {
 		return unidadRepository.findAll();
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Unidad> findByNombre(String nombre) throws Exception {
 		return unidadRepository.findByNombreContaining(nombre);

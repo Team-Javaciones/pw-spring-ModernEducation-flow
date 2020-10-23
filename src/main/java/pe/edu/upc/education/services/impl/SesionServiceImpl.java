@@ -37,17 +37,17 @@ public class SesionServiceImpl implements SesionService, Serializable {
 	public void deleteById(Integer id) throws Exception {
 		sesionRepository.deleteById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Sesion> findById(Integer id) throws Exception {
 		return sesionRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Sesion> findAll() throws Exception {
 		return sesionRepository.findAll();
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Sesion> findByTema(String tema) throws Exception {
 		return sesionRepository.findByTemaContaining(tema);

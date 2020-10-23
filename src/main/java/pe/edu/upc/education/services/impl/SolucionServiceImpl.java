@@ -37,12 +37,12 @@ public class SolucionServiceImpl implements SolucionService, Serializable {
 	public void deleteById(Integer id) throws Exception {
 		solucionRepository.deleteById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Solucion> findById(Integer id) throws Exception {
 		return solucionRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Solucion> findAll() throws Exception {
 		return solucionRepository.findAll();

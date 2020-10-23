@@ -37,17 +37,17 @@ public class CategoriaServiceImpl implements CategoriaService, Serializable {
 	public void deleteById(Integer id) throws Exception {
 		categoriaRepository.deleteById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Categoria> findById(Integer id) throws Exception {
 		return categoriaRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Categoria> findAll() throws Exception {
 		return categoriaRepository.findAll();
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Categoria> findByNombre(String nombre) throws Exception {
 		return categoriaRepository.findByNombre(nombre);

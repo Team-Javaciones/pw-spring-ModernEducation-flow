@@ -37,17 +37,17 @@ public class ForoServiceImpl implements ForoService, Serializable {
 	public void deleteById(Integer id) throws Exception {
 		foroRepository.deleteById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Foro> findById(Integer id) throws Exception {
 		return foroRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Foro> findAll() throws Exception {
 		return foroRepository.findAll();
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Foro> findByTema(String tema) throws Exception {
 		return foroRepository.findByTemaContaining(tema);

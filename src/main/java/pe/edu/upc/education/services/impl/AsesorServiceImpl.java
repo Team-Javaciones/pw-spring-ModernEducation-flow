@@ -35,22 +35,22 @@ public class AsesorServiceImpl implements AsesorService, Serializable {
 	public void deleteById(Integer id) throws Exception {
 		asesorRepository.deleteById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Asesor> findById(Integer id) throws Exception {
 		return asesorRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Asesor> findAll() throws Exception {
 		return asesorRepository.findAll();
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Asesor> findByNombreCompleto(String nombreCompleto) throws Exception {
 		return asesorRepository.findByNombreCompletoContaining(nombreCompleto);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Asesor> findByUsername(String username) throws Exception {
 		return asesorRepository.findByUsername(username);

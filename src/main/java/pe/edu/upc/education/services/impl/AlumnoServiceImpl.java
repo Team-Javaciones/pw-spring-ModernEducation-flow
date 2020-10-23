@@ -37,27 +37,27 @@ public class AlumnoServiceImpl implements AlumnoService, Serializable {
 	public void deleteById(Integer id) throws Exception {
 		alumnoRepository.deleteById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Alumno> findById(Integer id) throws Exception {
 		return alumnoRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Alumno> findAll() throws Exception {
 		return alumnoRepository.findAll();
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Alumno> findByEntidadEducativa(String entidadEducativa) throws Exception {
 		return alumnoRepository.findByEntidadEducativaContaining(entidadEducativa);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Alumno> findByNombreCompleto(String nombreCompleto) throws Exception {		
 		return alumnoRepository.findByNombreCompletoContaining(nombreCompleto);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Alumno> findByUsername(String username) throws Exception {
 		return alumnoRepository.findByUsername(username);

@@ -37,17 +37,17 @@ public class MaterialServiceImpl implements MaterialService, Serializable {
 	public void deleteById(Integer id) throws Exception {
 		materialRepository.deleteById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Material> findById(Integer id) throws Exception {
 		return materialRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Material> findAll() throws Exception {
 		return materialRepository.findAll();
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Material> findByNombre(String nombre) throws Exception {
 		return materialRepository.findByNombreContaining(nombre);

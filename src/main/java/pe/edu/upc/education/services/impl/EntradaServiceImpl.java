@@ -36,12 +36,12 @@ public class EntradaServiceImpl implements EntradaService, Serializable {
 	public void deleteById(Integer id) throws Exception {
 		entradaRepository.deleteById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Entrada> findById(Integer id) throws Exception {
 		return entradaRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Entrada> findAll() throws Exception {
 		return entradaRepository.findAll();

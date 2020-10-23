@@ -37,17 +37,17 @@ public class EjercicioServiceImpl implements EjercicioService, Serializable {
 	public void deleteById(Integer id) throws Exception {
 		ejercicioRepository.deleteById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Ejercicio> findById(Integer id) throws Exception {
 		return ejercicioRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Ejercicio> findAll() throws Exception {
 		return ejercicioRepository.findAll();
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Ejercicio> findByNombre(String nombre) throws Exception {
 		return ejercicioRepository.findByNombreContaining(nombre);

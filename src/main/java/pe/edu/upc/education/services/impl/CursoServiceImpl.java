@@ -37,27 +37,27 @@ public class CursoServiceImpl implements CursoService, Serializable {
 	public void deleteById(Integer id) throws Exception {
 		cursoRepository.deleteById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public Optional<Curso> findById(Integer id) throws Exception {
 		return cursoRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Curso> findAll() throws Exception {
 		return cursoRepository.findAll();
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Curso> findByNombre(String nombre) throws Exception {
 		return cursoRepository.findByNombreContaining(nombre);
 	}
-
+	@Transactional(readOnly = true)
 	@Override
 	public List<Curso> findByPopularidad(Float popularidad) throws Exception {
 		return cursoRepository.findByPopularidadContaining(popularidad);
 	}
-
+	@Transactional(readOnly = true)
 	public List<Curso> findByPrecio(Float precio) throws Exception {
 		return cursoRepository.findByPrecioContaining(precio);
 	}
