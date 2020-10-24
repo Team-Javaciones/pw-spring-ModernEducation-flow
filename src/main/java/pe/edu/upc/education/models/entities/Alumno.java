@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "alumnos")
-public class Alumno {
+public class Alumno { //Edit para test
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -155,6 +155,6 @@ public class Alumno {
 
 	public void setSoluciones(List<Solucion> soluciones) {
 		this.soluciones = soluciones;
-	}	
+	}		
 	
 }
