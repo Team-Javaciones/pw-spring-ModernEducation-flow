@@ -40,9 +40,6 @@ public class Sesion {
 	@OneToMany(mappedBy = "sesion")
 	private List<Ejercicio> ejercicios;
 	
-	@OneToOne(mappedBy = "sesion")
-	private Foro foro;
-	
 	public Sesion() {
 		materiales = new ArrayList<Material>();
 		ejercicios = new ArrayList<Ejercicio>();
@@ -102,14 +99,6 @@ public class Sesion {
 
 	public void setEjercicios(List<Ejercicio> ejercicios) {
 		this.ejercicios = ejercicios;
-	}
-
-	public Foro getForo() {
-		return foro;
-	}
-
-	public void setForo(Foro foro) {
-		this.foro = foro;
 	}
 	
 }

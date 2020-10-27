@@ -52,12 +52,8 @@ public class Asesor {
 	@OneToMany(mappedBy = "asesor")
 	private List<Curso> cursos;
 	
-	@OneToMany(mappedBy = "asesor")
-	private List<Foro> foros;
-	
 	public Asesor() {
 		cursos = new ArrayList<Curso>();
-		foros = new ArrayList<Foro>();
 	}
 
 	public Integer getId() {
@@ -147,12 +143,5 @@ public class Asesor {
 	public void setCursos(List<Curso> cursos) {
 		this.cursos = cursos;
 	}
-
-	public List<Foro> getForos() {
-		return foros;
-	}
-
-	public void setForos(List<Foro> foros) {
-		this.foros = foros;
-	}	
+	
 }
