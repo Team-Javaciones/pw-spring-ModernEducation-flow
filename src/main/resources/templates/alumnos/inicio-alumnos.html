@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/fontawesome.min.css}">
+<link rel="stylesheet" th:href="@{/css/education-styles.css}">
+<link rel="icon" th:href="@{/images/favicon.ico}">
+
+
+<title>Modern Education</title>
+</head>
+
+<body>
+
+	<header id="header" class="alt">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+			<div class="d-flex flex-grow-1">
+				<span class="w-100 d-lg-none d-block"> <!-- hidden spacer to center brand on mobile --></span>
+				<a class="navbar-brand px-3" href="#"><b>Modern</b> Education</a>
+				<div class="w-100 text-right">
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#myNavbar7">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
+			</div>
+			<div class="collapse navbar-collapse flex-grow-1 text-right pr-2" id="myNavbar7">
+				<ul class="navbar-nav ml-auto flex-nowrap">
+					<li class="nav-item"><a href="#" class="nav-link nav">Inicio</a></li>
+					<li class="nav-item"><a href="#beneficios" class="nav-link">Beneficios</a></li>
+					<li class="nav-item"><a href="#about-us" class="nav-link">Acerca de</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">Cursos</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">Enseña</a></li>
+					<li>
+						<div class="btn-nav pl-2">
+							<a class="btn btn-outline-light navbar-btn" href="#">Iniciar sesión</a>
+						</div>
+					</li>
+					<li>
+						<div class="btn-nav pl-2">
+							<a class="btn btn-outline-light navbar-btn" href="#">Registrarse</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<section id="banner">
+		<div id="banner-text" class="container">
+			<div class="row">
+				<div class="col">
+					<h1>Modern Education para Alumnos</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<h2>
+						Si puedes imaginarlo, puedes<br>programarlo
+					</h2>
+					<p>
+						Concéctate y aprende a programar<br>desde donde te encuentres
+					</p>
+					<button type="button" class="btn btn-light btn-lg mr-5">Iniciar
+						sesión</button>
+					<button type="button" class="btn btn-outline-light btn-lg">
+						Registrarse</button>
+				</div>
+				<div class="col">
+					<img th:src="@{/images/studying.png}" height="250">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="beneficios">
+		<div class="container" style="text-align: center;">
+			<div>
+				<h2>Beneficios de estudiar en Modern Education</h2>
+			</div>
+
+			<div class="card-group">
+				<div class="card">
+					<img th:src="@{/images/dollar-symbol.png}" class="card-img-top">
+					<div class="card-body">
+						<h4 class="card-title">Gratuito</h4>
+						<p class="card-text">Modern Education piensa en tí, por ello
+							el servicio es total mente gratuito para que todos puedan
+							aprender a programar cuando quieran.</p>
+					</div>
+				</div>
+				<div class="card">
+					<img th:src="@{/images/python.png}" class="card-img-top">
+					<div class="card-body">
+						<h4 class="card-title">Variedad</h4>
+						<p class="card-text">Modern Education te ofrece variedad, más
+							de 20 lenguajes de programación que puedes aprender. Encuentra el
+							que estás buscando ahora.</p>
+					</div>
+				</div>
+				<div class="w-100"></div>
+				<div class="card">
+					<img th:src="@{/images/united.png}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h4 class="card-title">Amigable</h4>
+						<p class="card-text">Modern Education cuenta con una
+							plataforma amigable que te ayudará a organizarte y a encontrar
+							cada uno de los recursos que estés buscando.</p>
+					</div>
+				</div>
+				<div class="card">
+					<img th:src="@{/images/cooperation.png}" class="card-img-top"
+						alt="...">
+					<div class="card-body">
+						<h4 class="card-title">Confiable</h4>
+						<p class="card-text">Modern Education brinda confianza a todos
+							nuestros usuarios cumpliendo con sus espectativasy sus
+							propuestas.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="about-us">
+		<div class="container">
+			<div style="text-align: center;">
+				<h2>Acerca de Modern Education</h2>
+
+			</div>
+			<div class="row">
+				<div class="col my-auto" style="text-align: center;">
+					<img th:src="@{/images/upc.jpg}" style="width: 80%;">
+				</div>
+				<div class="col" style="text-align: justify; padding-right: 50px;">
+					<p>"Modern Education" es una plataforma de aprendizaje cuya
+						principal característica es conectar a alumnos y profesores de
+						Programación por medio de cursos que serán dictados de forma
+						virtual en su totalidad.</p>
+					<br>
+					<p>Esta aplicación nace de la necesidad de reforzar el curso de
+						Programación en la Universidad Peruana de Ciencias Aplicadas,
+						debido a la cantidad de estudiantes que no culminan este curso de
+						forma satisfactoria o el hecho de que se retiran de este.</p>
+				</div>
+			</div>
+
+		</div>
+
+
+	</section>
+
+
+
+	<nav id="footer"
+		class="navbar sticky-bottom navbar-dark bg-dark justify-content-center">
+		<span class="navbar-text"> <small>©2020 Todos los
+				derechos reservados. Creado por Modern Education</small>
+		</span>
+	</nav>
+
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
