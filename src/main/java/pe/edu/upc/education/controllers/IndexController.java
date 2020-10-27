@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
 	@GetMapping
-	public String index() {		
+	public String indexAlumno() {		
 		return "/alumnos/inicio-alumnos";
+	}
+	
+	@GetMapping("inicio-asesores")
+	public String indexAsesor() {		
+		return "/asesores/inicio-asesores";
 	}
 }

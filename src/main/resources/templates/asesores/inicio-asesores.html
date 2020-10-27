@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/css/fontawesome.min.css}">
 	<link rel="stylesheet" th:href="@{/css/education-styles.css}">
 	<link rel="icon" th:href="@{/images/favicon.ico}">  
@@ -13,7 +14,7 @@
 </head>
 
 <body>
-
+    
     <header id="header" class="alt">
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <div class="d-flex flex-grow-1">
@@ -34,30 +35,30 @@
                     <li class="nav-item ml-2"><a href="#" class="nav-link">Cursos</a></li>
                     <li>
                         <div class="btn-nav">
-                            <a class="btn btn-outline-light navbar-btn ml-3" th:href="@{/inicio-asesores}">Enseña</a>
+                            <a class="btn btn-outline-light navbar-btn ml-3" th:href="@{/}">Aprende</a>
                         </div>
-                    </li>
+                    </li>                    
                 </ul>
             </div>
         </nav>
     </header>
 
-    <section id="banner-student">
+    <section id="banner-teacher">
         <div id="banner-text" class="container">
             <div class="row">
                 <div class="col">
-                    <h1>Modern Education para Alumnos</h1>
+                    <h1>Modern Education para Asesores</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <h2>Si puedes imaginarlo, puedes<br>programarlo</h2>
-                    <p>Concéctate y aprende a programar<br>desde donde te encuentres</p>
-                    <button type="button" class="btn btn-light btn-lg mr-4">Iniciar sesión</button>
-                    <button type="button" class="btn btn-outline-light btn-lg"> Registrarse</button>
+                    <h2>Comparte tus conocimientos y genera ingresos</h2>
+                    <p>Ayuda a otras personas a mejorar en el mundo de la programación desde la comodidad de tu hogar.</p>
+                    <button type="button" class="btn btn-dark btn-lg mr-4">Iniciar sesión</button>
+                    <button type="button" class="btn btn-outline-dark btn-lg"> Registrarse</button>
                 </div>
                 <div class="col my-auto">
-                	<img th:src="@{/images/banner-img-student.png}" height="250">                    
+                	<img th:src="@{/images/banner-img-teacher.png}" height="250"> 
                 </div>
             </div>
         </div>
@@ -66,7 +67,7 @@
     <section id="beneficios">
         <div class="container" style="text-align: center;">
             <div>
-                <h2>Beneficios de estudiar en Modern Education</h2>
+                <h2>Beneficios de enseñar en Modern Education</h2>
             </div>
 
             <div class="card-group">
@@ -74,25 +75,25 @@
                     <img th:src="@{/images/dollar-symbol.png}" class="card-img-top">
                     <div class="card-body">
                         <h4 class="card-title">Gratuito</h4>
-                        <p class="card-text">Modern Education piensa en tí, por ello el servicio es total mente gratuito
-                            para que todos puedan aprender a programar cuando quieran.</p>
+                        <p class="card-text">El servicio es totalmente gratuito para que puedas enseñar a programar a
+                            cualquier persona y ganar dinero haciéndolo.</p>
                     </div>
                 </div>
                 <div class="card">
                     <img th:src="@{/images/python.png}" class="card-img-top">
                     <div class="card-body">
                         <h4 class="card-title">Variedad</h4>
-                        <p class="card-text">Modern Education te ofrece variedad, más de 20 lenguajes de programación
-                            que puedes aprender. Encuentra el que estás buscando ahora.</p>
+                        <p class="card-text">Modern Education ofrece a los estudiantes una gran variedad en lenguajes de
+                            programación, por lo cual tu podrás crear tu cursos en base a tus conocimientos.</p>
                     </div>
                 </div>
                 <div class="w-100"></div>
                 <div class="card">
-                   <img th:src="@{/images/united.png}" class="card-img-top">
+                    <img th:src="@{/images/united.png}" class="card-img-top">
                     <div class="card-body">
                         <h4 class="card-title">Amigable</h4>
                         <p class="card-text">Modern Education cuenta con una plataforma amigable que te ayudará a
-                            organizarte y a encontrar cada uno de los recursos que estés buscando.</p>
+                            organizarte y a brindar a tus alumnos los recursos necesarios para su aprendizaje.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -100,7 +101,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Confiable</h4>
                         <p class="card-text">Modern Education brinda confianza a todos nuestros usuarios cumpliendo con
-                            sus espectativasy sus propuestas.</p>
+                            sus expectativas y sus propuestas.</p>
                     </div>
                 </div>
             </div>
@@ -110,7 +111,8 @@
     <section id="about-us">
         <div class="container">
             <div style="text-align: center;">
-                <h2>Acerca de Modern Education</h2>                
+                <h2>Acerca de Modern Education</h2>
+
             </div>
             <div class="row">
                 <div class="col my-auto" style="text-align: center;">
@@ -120,7 +122,7 @@
                     <p>"Modern Education" es una plataforma de aprendizaje cuya principal característica es conectar a
                         alumnos y profesores de Programación por medio de cursos que serán dictados de forma virtual en
                         su totalidad.</p>
-                        <br>
+                    <br>
                     <p>Esta aplicación nace de la necesidad de reforzar el curso de Programación en la Universidad
                         Peruana de Ciencias Aplicadas, debido a la cantidad de estudiantes que no culminan este curso de
                         forma satisfactoria o el hecho de que se retiran de este.</p>

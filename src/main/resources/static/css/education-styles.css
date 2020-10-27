@@ -8,27 +8,34 @@ section{
     padding: 100px 0;
 }
 
-#banner {
-    background-image: url("../images/banner.jpg");
+#banner-student {
+    background-image: url("../images/banner-student.png");
     background-size: cover;
     padding-top: 110px;
     min-height: 840px;
     color:white;
+}
+#banner-teacher {
+    background-image: url("../images/banner-teacher.png");
+    background-size: cover;
+    padding-top: 110px;
+    min-height: 840px;
+    color:#414141;
 }
 #banner-text{
     text-align: center;
     max-width: 920px;
     padding-top: 110px;
 }
-#banner h1{
+#banner-text h1{
     font-size: 38pt;
     padding-bottom: 50px;   
 }
-#banner h2{
+#banner-text h2{
     font-size: 24pt;
     padding-bottom: 15px;
 }
-#banner p{
+#banner-text p{
     font-size: 20pt;
     padding-bottom: 20px;
 }
