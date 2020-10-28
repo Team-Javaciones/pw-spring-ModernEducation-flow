@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/fontawesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/solid.min.css}">
+	<link rel="stylesheet" th:href="@{/css/education-styles.css}">
+	<link rel="icon" th:href="@{/images/favicon.ico}">
+
+    <title>Modern Education</title>
+</head>
+
+<body class="blue-body">
+    <header id="header" class="alt">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="d-flex flex-grow-1">
+                <span class="w-100 d-lg-none d-block">
+                    <!-- hidden spacer to center brand on mobile --></span>
+                <a class="navbar-brand px-3" th:href="@{/}"><b>Modern</b> Education</a>
+                <div class="w-100 text-right">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar7">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse flex-grow-1 text-right pr-3" id="myNavbar7">
+                <ul class="navbar-nav ml-auto flex-nowrap">
+                    <li class="nav-item ml-2"><a th:href="@{/}" class="nav-link nav">Inicio</a></li>
+                    <li class="nav-item ml-2"><a th:href="@{/#beneficios}" class="nav-link">Beneficios</a></li>
+                    <li class="nav-item ml-2"><a th:href="@{/#about-us}" class="nav-link">Acerca de</a></li>
+                    <li class="nav-item ml-2"><a href="#" class="nav-link">Cursos</a></li>
+                    <li>
+                        <div class="btn-nav">
+                            <a class="btn btn-outline-light navbar-btn ml-3"
+                               th:href="@{/inicio-asesores}">Enseña</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="container registro">
+        <div class="card mb-3 ">
+            <div class="row no-gutters">
+                <div class="col-md-5">
+                    <img id="img-register" th:src="@{/images/student-register.png}" class="card-img">
+                </div>
+
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Regístrate como alumno</h4>
+
+                        <form>
+                            <h5 class="pb-1 pt-4">Datos personales</h5>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputNombreCompleto">Nombre completo: </label>
+                                    <input type="text" class="form-control form-control-sm" id="inputNombreCompleto"
+                                        placeholder="Mario Alfonso Rodríguez Pérez" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputTelefono">Teléfono:</label>
+                                    <input type="number" class="form-control form-control-sm" id="inputTelefono" placeholder="945876512"
+                                        required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputCorreoElectronico">Correo electrónico: </label>
+                                    <input type="text" class="form-control form-control-sm" id="inputCorreoElectronico"
+                                        placeholder="marioProHD@gmail.com" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputFechaNacimiento">Fecha de nacimiento:</label>
+                                    <input type="date" class="form-control form-control-sm" id="inputFechaNacimiento" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEntidadEducativa">Entidad Educativa:</label>
+                                    <input type="text" class="form-control form-control-sm" id="inputEntidadEducativa"
+                                        placeholder="Universidad Peruana de Ciencias Aplicadas" required>
+                                </div>
+                            </div>
+
+                            <h5 class="pb-1 pt-3">Datos para la cuenta</h5>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputUsuario">Usuario: </label>
+                                    <input type="text" class="form-control form-control-sm" id="inputUsuario" placeholder="MarioProHD"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword1">Contraseña: </label>
+                                    <input type="password" class="form-control form-control-sm" id="inputPassword1" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword2">Confirmar Contraseña: </label>
+                                    <input type="password" class="form-control form-control-sm" id="inputPassword2" required>
+                                </div>
+                            </div>
+
+                            <div class="text-center pt-3">
+                                <button type="submit" class="btn btn-dark mr-4">Registrarme</button>
+                                <a class="btn btn btn-outline-dark" th:href="@{/}">Cancelar</a>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <nav id="footer" class="navbar sticky-bottom navbar-dark bg-dark justify-content-center">
+        <span class="navbar-text">
+            <small>©2020 Todos los derechos reservados. Creado por Modern Education</small>
+        </span>
+    </nav>
+
+    <script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

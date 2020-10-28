@@ -1,68 +1,181 @@
-html{
-    position: relative;
-    min-height: 100%;
-    scroll-behavior: smooth;
+html {
+  position: relative;
+  min-height: 100%;
+  scroll-behavior: smooth;
 }
 
-section{
-    padding: 100px 0;
+body {
+  background-color: ghostwhite;
+}
+
+section {
+  padding: 100px 0;
+}
+
+.blue-body {
+  /*  CSS PARA BACKGROND PARECIDO AL BANNER     
+    background: rgb(79,98,126);
+    background: linear-gradient(0deg, rgba(79,98,126,1) 6%, rgba(125,155,195,1) 88%);*/
+
+  background: rgb(176, 211, 244);
+  background: linear-gradient(
+    180deg,
+    rgba(176, 211, 244, 1) 13%,
+    rgba(101, 128, 166, 1) 90%
+  );
+}
+
+.gold-body {
+  background: rgb(238, 222, 206);
+  background: linear-gradient(
+    180deg,
+    rgba(238, 222, 206, 1) 13%,
+    rgba(194, 176, 158, 1) 90%
+  );
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 #banner-student {
-    background-image: url("../images/banner-student.png");
-    background-size: cover;
-    padding-top: 110px;
-    min-height: 840px;
-    color:white;
+  background-image: url("../images/banner-student.png");
+  background-size: cover;
+  padding-top: 110px;
+  min-height: 840px;
+  color: white;
 }
 #banner-teacher {
-    background-image: url("../images/banner-teacher.png");
-    background-size: cover;
-    padding-top: 110px;
-    min-height: 840px;
-    color:#414141;
+  background-image: url("../images/banner-teacher.png");
+  background-size: cover;
+  padding-top: 110px;
+  min-height: 840px;
+  color: #414141;
 }
-#banner-text{
-    text-align: center;
-    max-width: 920px;
-    padding-top: 110px;
+#banner-text {
+  text-align: center;
+  max-width: 920px;
+  padding-top: 110px;
 }
-#banner-text h1{
-    font-size: 38pt;
-    padding-bottom: 50px;   
+#banner-text h1 {
+  font-size: 38pt;
+  padding-bottom: 50px;
 }
-#banner-text h2{
-    font-size: 24pt;
-    padding-bottom: 15px;
+#banner-text h2 {
+  font-size: 24pt;
+  padding-bottom: 15px;
 }
-#banner-text p{
-    font-size: 20pt;
-    padding-bottom: 20px;
-}
-
-#beneficios .card-img-top{
-    width: 100%;
-    max-height: 10vw;
-    object-fit: contain;
-}
-#beneficios img{
-    padding-top: 40px;
-    padding-bottom: 10px;
-}
-#beneficios h2{
-    padding-bottom: 30px;   
-}
-#beneficios p{
-    font-size: 13pt;
+#banner-text p {
+  font-size: 20pt;
+  padding-bottom: 20px;
 }
 
-#about-us{
-    padding-bottom: 300px;
+#beneficios .card-img-top {
+  width: 100%;
+  max-height: 10vw;
+  object-fit: contain;
 }
-#about-us h2{
-    padding-bottom: 60px;
+#beneficios img {
+  padding-top: 40px;
+  padding-bottom: 10px;
 }
-#about-us p{
-    font-size: 15pt;
+#beneficios h2 {
+  padding-bottom: 30px;
+}
+#beneficios p {
+  font-size: 13pt;
 }
 
+#about-us {
+  padding-top: 200px;
+  padding-bottom: 170px;
+}
+#about-us h2 {
+  padding-bottom: 60px;
+}
+#about-us p {
+  font-size: 15pt;
+}
+.jumbotron {
+  background-color: white;
+  border-style: solid;
+  border-width: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.registro {
+  padding-top: 130px;
+}
+.registro h4 {
+  padding-top: 10px;
+  font-size: 23px;
+}
+.registro h5 {
+  font-size: 18px;
+}
+.registro label {
+  font-size: 15px;
+}
+.registro .card-body {
+  padding-top: 30px;
+  padding-bottom: 45px;
+  padding-left: 45px;
+  padding-right: 45px;
+}
+#img-register {
+  height: 100%;
+  object-fit: cover;
+  opacity: 80%;
+}
+
+.input-container {
+  display: flex;
+  width: 100%;
+}
+
+/* Style the form icons */
+.icon {
+  padding-top: 10px;
+  background: #343a40;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.login {
+  padding-top: 170px;
+}
+.login h4 {
+  padding-top: 70px;
+  font-size: 24px;
+}
+.login h5 {
+  font-size: 18px;
+}
+.login label {
+  font-size: 15px;
+}
+.link-login a {
+  font-size: 14px;
+}
+.login .card-body {
+  padding-top: 30px;
+  padding-bottom: 45px;
+}
+.login .form-row {
+  padding-top: 20px;
+}
+#img-login {
+  height: 100%;
+  object-fit: cover;
+  opacity: 80%;
+}
+.login .card-body {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+.button-login {
+  padding-bottom: 70px;
+}

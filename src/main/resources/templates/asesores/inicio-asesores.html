@@ -4,11 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+       
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/css/fontawesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/solid.min.css}">
 	<link rel="stylesheet" th:href="@{/css/education-styles.css}">
 	<link rel="icon" th:href="@{/images/favicon.ico}">  
+    
 
     <title>Modern Education</title>
 </head>
@@ -54,12 +56,11 @@
                 <div class="col">
                     <h2>Comparte tus conocimientos y genera ingresos</h2>
                     <p>Ayuda a otras personas a mejorar en el mundo de la programación desde la comodidad de tu hogar.</p>
-                    <button type="button" class="btn btn-dark btn-lg mr-4">Iniciar sesión</button>
-                    <button type="button" class="btn btn-outline-dark btn-lg"> Registrarse</button>
+                    <a class="btn btn-light btn-lg mr-4" th:href="@{/asesores/login-asesores}">Iniciar sesión</a> 
+					<a class="btn btn-outline-light btn-lg" th:href="@{/asesores/registro-asesores}">Regístrate</a>				
                 </div>
                 <div class="col my-auto">
-                	<img th:src="@{/images/banner-img-teacher.png}" height="250"> 
-                </div>
+					<img th:src="@{/images/banner-img-teacher.png}" height="250">                 </div>
             </div>
         </div>
     </section>
@@ -109,10 +110,9 @@
     </section>
 
     <section id="about-us">
-        <div class="container">
+        <div class="container jumbotron">
             <div style="text-align: center;">
                 <h2>Acerca de Modern Education</h2>
-
             </div>
             <div class="row">
                 <div class="col my-auto" style="text-align: center;">
@@ -137,7 +137,7 @@
         </span>
     </nav>
 
-    <script th:src="@{/js/popper.min.js}"></script>
+   	<script th:src="@{/js/popper.min.js}"></script>
 	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
