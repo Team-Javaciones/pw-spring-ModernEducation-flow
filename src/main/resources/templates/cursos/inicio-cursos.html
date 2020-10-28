@@ -1,10 +1,84 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/fontawesome.min.css}">
+<link rel="stylesheet" th:href="@{/css/education-styles.css}">
+<link rel="icon" th:href="@{/images/favicon.ico}">
+<title>Cursos Disponibles</title>
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="d-flex flex-grow-1">
+			<span class="w-100 d-lg-none d-block"> <!-- hidden spacer to center brand on mobile --></span>
+			<a class="navbar-brand px-3" th:href="@{/}"><b>Modern</b>
+				Education</a>
+			<div class="w-100 text-right">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#myNavbar7">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+		</div>
+		<div class="collapse navbar-collapse flex-grow-1 text-right pr-3"
+			id="myNavbar7">
+			<ul class="navbar-nav ml-auto flex-nowrap">
+				<li class="nav-item ml-2"><a th:href="@{/}" class="nav-link">Inicio</a></li>
+				<li class="nav-item ml-2"><a th:href="@{/}" class="nav-link">Beneficios</a></li>
+				<li class="nav-item ml-2"><a th:href="@{/}" class="nav-link">Acerca
+						de</a></li>
+				<li class="nav-item ml-2"><a th:href="@{/inicio-cursos}"
+					class="nav-link">Cursos</a></li>
+				<li>
+					<div class="btn-nav">
+						<a class="btn btn-outline-light navbar-btn ml-3"
+							th:href="@{/inicio-asesores}">Enseña</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div id="banner-text" class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Conoce nuestros cursos disponibles</h1>
+			</div>
+		</div>
+	</div>
+	<div class="card" th:each="curso : ${cursos}" style="width: 18rem;">
+		<img src="..." class="card-img-top" alt="...">
+		<div class="card-body">
+			<h5 class="card-title" th:text="${curso.nombre}"></h5>
+			<p class="card-text" th:text="${curso.descripcion}"></p>
+			<a href="#" class="btn btn-primary">Go somewhere</a>
+		</div>
+	</div>
 
+	 <table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Nombre</th>
+	      <th scope="col">Provincia</th>
+	      <th scope="col"></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr th:each="curso : ${cursos}">
+	      <th th:text="${curso.id}" scope="row">.</th>
+	      <td> <a th:href="#" th:text="${curso.nombre}">.</a> </td>
+	      <td th:text="${curso.descripcion}"></td>	      
+	      <td></td>
+	    </tr>
+	  </tbody>
+	</table>
+	
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>
