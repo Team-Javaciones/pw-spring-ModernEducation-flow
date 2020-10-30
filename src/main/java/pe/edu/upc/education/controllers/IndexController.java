@@ -18,8 +18,4 @@ public class IndexController {
 		return "/asesores/inicio-asesores";
 	}
 	
-	@GetMapping("inicio-cursos")
-	public String indexCurso() {		
-		return "/cursos/inicio-cursos";
-	}
 }

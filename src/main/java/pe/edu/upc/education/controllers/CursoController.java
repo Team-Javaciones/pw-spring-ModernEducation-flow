@@ -16,29 +16,30 @@ import pe.edu.upc.education.models.entities.Curso;
 import pe.edu.upc.education.services.CursoService;
 
 @Controller
-@RequestMapping("/inicio-cursos")
+@RequestMapping("/cursos")
 @SessionAttributes("curso")
 public class CursoController {
 
 	@Autowired
 	private CursoService cursoService;
 	
-	@GetMapping("/inicio-cursos")
+	@GetMapping
 	public String inicio(Model model) {
-		
 		Curso curso = new Curso();
+		
 		try {
 			List<Curso> cursos = cursoService.findAll();
 			model.addAttribute("cursos", cursos);
+			// Enviando el objeto distrito para el nuevo elemento
 			model.addAttribute("curso", curso);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-		
-		return "/inicio-cursos";
+		// Devuelve el nombre del archivo HTML
+		return "/cursos/inicio-cursos";
 	}
-	
+	//   /distritos/save
 	@PostMapping("save")
 	public String save(@ModelAttribute("curso") Curso curso, SessionStatus status) {
 		try {
@@ -48,6 +49,7 @@ public class CursoController {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-		return "redirect:/inicio-cursos";
+		// Devuelve la URL mapping 
+		return "redirect:/cursos";
 	}
 }
