@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/fontawesome.min.css}">
+<link rel="stylesheet" th:href="@{/css/education-styles.css}">
+<link rel="icon" th:href="@{/images/favicon.ico}">
+<title>Cursos Disponibles</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="d-flex flex-grow-1">
+			<span class="w-100 d-lg-none d-block"> <!-- hidden spacer to center brand on mobile --></span>
+			<a class="navbar-brand px-3" th:href="@{/}"><img
+				th:src="@{/images/pc.png}" width="30" height="30"
+				class="d-inline-block align-top" alt="" loading="lazy"><b>
+					Modern</b> Education</a>
+			<div class="w-100 text-right">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#myNavbar7">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+		</div>
+		<div class="collapse navbar-collapse flex-grow-1 text-right pr-3"
+			id="myNavbar7">
+			<ul class="navbar-nav ml-auto flex-nowrap">
+				<li class="nav-item ml-2"><a th:href="@{/}"
+					class="nav-link nav">Inicio</a></li>
+				<li class="nav-item ml-2"><a th:href="@{/#beneficios}"
+					class="nav-link">Beneficios</a></li>
+				<li class="nav-item ml-2"><a th:href="@{/#about-us}"
+					class="nav-link">Acerca de</a></li>
+				<li class="nav-item ml-2"><a th:href="@{/cursos}"
+					class="nav-link active">Cursos</a></li>
+				<li>
+					<div class="btn-nav">
+						<a class="btn btn-outline-light navbar-btn ml-3"
+							th:href="@{/inicio-asesores}">Enseña</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div id="banner-text" class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Califica el curso</h1>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<form class="row">
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb1" id="rb1" value="1">
+          		<label class="form-check-label" for="rb1">
+            		1
+          		</label>
+        	</div>
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb2" id="rb2" value="2">
+          		<label class="form-check-label" for="rb2">
+            		2
+          		</label>
+        	</div>
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb3" id="rb3" value="3">
+          		<label class="form-check-label" for="rb3">
+            		3
+          		</label>
+        	</div>
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb4" id="rb4" value="4">
+          		<label class="form-check-label" for="rb4">
+            		4
+          		</label>
+        	</div>
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb5" id="rb5" value="5" checked>
+          		<label class="form-check-label" for="rb5">
+            		5
+          		</label>
+        	</div>
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb6" id="rb6" value="6" >
+          		<label class="form-check-label" for="rb6">
+            		6
+          		</label>
+        	</div>
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb7" id="rb7" value="7">
+          		<label class="form-check-label" for="rb7">
+            		7
+          		</label>
+        	</div>
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb8" id="rb8" value="8">
+          		<label class="form-check-label" for="rb8">
+            		8
+          		</label>
+        	</div>
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb9" id="rb9" value="9">
+          		<label class="form-check-label" for="rb9">
+            		9
+          		</label>
+        	</div>
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb10" id="rb10" value="10">
+          		<label class="form-check-label" for="rb10">
+            		10
+          		</label>
+        	</div>
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb11" id="rb11" value="11">
+          		<label class="form-check-label" for="rb11">
+            		11
+          		</label>
+        	</div>
+			<div class="col">
+          		<input class="form-check-input" type="radio" name="rb12" id="rb12" value="12">
+          		<label class="form-check-label" for="rb12">
+            		12
+          		</label>
+        	</div>
+		</form>
+		<div class="row pt-5">
+			<div class="col text-center">
+				<button class="btn btn-primary">Enviar</button>
+				<button class="btn btn-danger">Cancelar</button>
+			</div>
+		</div>
+	</div>
+
+
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{/js/bootstrap..min.js}"></script>
+</body>
+</html>
