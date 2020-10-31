@@ -1,5 +1,7 @@
 package pe.edu.upc.education.controllers;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,13 +36,12 @@ public class AsesorController {
 	
 	
 	@GetMapping("perfil-asesor")
-	public String editarPerifl(Model model) {
-		Asesor asesor = new Asesor();
-		asesor.setId(1);
-		
-		
+	public String editarPerfil(Model model) {
 		try {
-			model.addAttribute("asesor", asesor);
+			Optional<Asesor> optional = asesorService.findById(1);
+			if(optional.isPresent()) {
+			model.addAttribute("asesor", optional.get());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
@@ -49,7 +50,7 @@ public class AsesorController {
 	}
 	
 	@PostMapping("update")	
-	public String save(@ModelAttribute("asesor") Asesor asesor, SessionStatus status) {
+	public String updatePerfil(@ModelAttribute("asesor") Asesor asesor, SessionStatus status) {
 		try {
 			asesorService.update(asesor);
 			status.setComplete();
@@ -60,5 +61,42 @@ public class AsesorController {
 		// Devuelve la URL mapping
 		return "redirect:/asesores/perfil-asesor";
 	}
+	
+	
+	
+	@GetMapping("password-asesor")
+	public String editarContra(Model model) {
+			
+		try {
+			Optional<Asesor> optional = asesorService.findById(1);
+			if(optional.isPresent()) {
+			model.addAttribute("asesor", optional.get());
+			}
+			} 
+			catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/asesores/password-asesor";
+	
+	}
+	
+	@PostMapping("password")	
+	public String updateContra(@ModelAttribute("asesor") Asesor asesor, SessionStatus status) {
+		try {
+			
+			asesorService.update(asesor);
+			status.setComplete();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		// Devuelve la URL mapping
+		return "redirect:/asesores/password-asesor";
+	}
+	
+	
+	
+	
 	
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class IndexController {
 
-	@GetMapping
+	@GetMapping("inicio-alumnos")
 	public String indexAlumno() {		
 		return "/alumnos/inicio-alumnos";
 	}

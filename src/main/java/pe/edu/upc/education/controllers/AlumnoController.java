@@ -5,6 +5,8 @@ package pe.edu.upc.education.controllers;
 
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,13 +42,20 @@ public class AlumnoController {
 		return "/alumnos/registro-alumnos";
 	}	
 	
+	
+	
+	
+	
 	@GetMapping("perfil-alumno")
-	public String editarPerifl(Model model) {
-		Alumno alumno = new Alumno();
-		alumno.setId(1);
+	public String editarPerfil(Model model) {
+		
+		
 		
 		try {
-			model.addAttribute("alumno", alumno);
+			Optional<Alumno> optional = alumnoService.findById(1);
+			if(optional.isPresent()) {
+			model.addAttribute("alumno", optional.get());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
@@ -55,8 +64,9 @@ public class AlumnoController {
 	}
 	
 	@PostMapping("update")	
-	public String save(@ModelAttribute("alumno") Alumno alumno, SessionStatus status) {
+	public String updatePerfil(@ModelAttribute("alumno") Alumno alumno, SessionStatus status) {
 		try {
+			
 			alumnoService.update(alumno);
 			status.setComplete();
 		} catch (Exception e) {
@@ -66,5 +76,40 @@ public class AlumnoController {
 		// Devuelve la URL mapping
 		return "redirect:/alumnos/perfil-alumno";
 	}
+	
+	
+	
+	
+	@GetMapping("password-alumno")
+	public String editarContra(Model model) {
+			
+		try {
+			Optional<Alumno> optional = alumnoService.findById(1);
+			if(optional.isPresent()) {
+			model.addAttribute("alumno", optional.get());
+			}
+			} 
+			catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/alumnos/password-alumno";
+	
+	}
+	
+	@PostMapping("password")	
+	public String updateContra(@ModelAttribute("alumno") Alumno alumno, SessionStatus status) {
+		try {
+			
+			alumnoService.update(alumno);
+			status.setComplete();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		// Devuelve la URL mapping
+		return "redirect:/alumnos/password-alumno";
+	}
+	
 }
 
