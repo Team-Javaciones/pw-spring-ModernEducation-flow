@@ -1,5 +1,6 @@
 package pe.edu.upc.education.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,7 @@ public class AsesorController {
 	@Autowired
 	private AsesorService asesorService;
 	
-	@GetMapping("login-asesores")
-	public String loginAsesor() {		
-		return "/asesores/login-asesores";
-	}
+	
 	
 	@GetMapping("registro-asesores")
 	public String registroAsesor() {		
@@ -94,6 +92,39 @@ public class AsesorController {
 		// Devuelve la URL mapping
 		return "redirect:/asesores/password-asesor";
 	}
+	
+	@GetMapping("login-asesores")
+	public String LoginAsesor(Model model)
+	{
+		Asesor asesor=new Asesor();
+		try {
+			model.addAttribute("asesor", asesor);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		
+		return "/asesores/login-asesores";
+	}
+	@PostMapping("comprobar")
+	public String comprobarAsesor(@ModelAttribute("asesor") Asesor asesor ,SessionStatus status)
+	{
+		try {
+			List<Asesor> optionalCorreo=asesorService.findByCorreoContaining(asesor.getCorreo());
+			List<Asesor> optionalContraseña=asesorService.findByPasswordContaining(asesor.getPassword());
+			if(!optionalCorreo.isEmpty() && !optionalContraseña.isEmpty()) {
+				return "redirect:/inicio-asesores";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "redirect:/asesores/login-asesores";
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -56,4 +56,16 @@ public class AsesorServiceImpl implements AsesorService, Serializable {
 		return asesorRepository.findByUsername(username);
 	}
 
+	@Override
+	public List<Asesor> findByCorreoContaining(String correo) throws Exception {
+		
+		return asesorRepository.findByCorreoContaining(correo);
+	}
+
+	@Override
+	public List<Asesor> findByPasswordContaining(String password) throws Exception {
+		// TODO Auto-generated method stub
+		return  asesorRepository.findByPasswordContaining(password);
+	}
+
 }
