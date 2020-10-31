@@ -252,4 +252,10 @@ section {
 	font-weight: 500;
 }
 
-
+#vista-curso {
+	padding-top: 0px;
+}
+#vista-curso .container{
+	max-width: 1200px;
+	background-color: #C2D6FF;
+}
