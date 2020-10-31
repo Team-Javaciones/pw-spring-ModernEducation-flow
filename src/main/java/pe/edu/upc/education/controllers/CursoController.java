@@ -1,6 +1,6 @@
 package pe.edu.upc.education.controllers;
 
-import java.sql.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Curso;
-import pe.edu.upc.education.models.entities.Sesion;
 import pe.edu.upc.education.services.CursoService;
 
 @Controller
@@ -43,7 +42,7 @@ public class CursoController {
 	}
 	
 	@GetMapping("crear-curso")
-	public String crearSesion(Model model) {
+	public String crearUnidad(Model model) {
 		Curso curso = new Curso();
 		try {
 			model.addAttribute("curso", curso);
