@@ -68,6 +68,8 @@ public class CursoController {
 		// Devuelve la URL mapping 
 		return "redirect:/cursos/crear-curso";
 	}
-	
-
+	@GetMapping("calificar-curso")
+	public String registroAsesor() {		
+		return "/cursos/calificar-curso";
+	}
 }
