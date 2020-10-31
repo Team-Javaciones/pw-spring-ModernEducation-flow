@@ -29,7 +29,7 @@ public class Curso {
 	@Column(name = "descripcion", length = 250, nullable = false)
 	private String descripcion;
 	
-	@Column(name = "popularidad", nullable = false)
+	@Column(name = "popularidad", nullable = true)
 	private Float popularidad;
 	
 	@ManyToOne

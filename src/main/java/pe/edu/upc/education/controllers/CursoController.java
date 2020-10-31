@@ -1,5 +1,6 @@
 package pe.edu.upc.education.controllers;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Curso;
+import pe.edu.upc.education.models.entities.Sesion;
 import pe.edu.upc.education.services.CursoService;
 
 @Controller
@@ -39,10 +41,25 @@ public class CursoController {
 		// Devuelve el nombre del archivo HTML
 		return "/cursos/inicio-cursos";
 	}
-	//   /distritos/save
+	
+	@GetMapping("crear-curso")
+	public String crearSesion(Model model) {
+		Curso curso = new Curso();
+		try {
+			model.addAttribute("curso", curso);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/cursos/crear-curso";
+	}
+	
+	
 	@PostMapping("save")
 	public String save(@ModelAttribute("curso") Curso curso, SessionStatus status) {
 		try {
+			
+			
 			cursoService.save(curso);
 			status.setComplete();
 		} catch (Exception e) {
@@ -50,6 +67,8 @@ public class CursoController {
 			System.err.println(e.getMessage());
 		}
 		// Devuelve la URL mapping 
-		return "redirect:/cursos";
+		return "redirect:/cursos/crear-curso";
 	}
+	
+
 }
