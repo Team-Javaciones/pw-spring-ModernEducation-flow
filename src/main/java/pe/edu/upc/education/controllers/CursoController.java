@@ -31,7 +31,7 @@ public class CursoController {
 		try {
 			List<Curso> cursos = cursoService.findAll();
 			model.addAttribute("cursos", cursos);
-			// Enviando el objeto distrito para el nuevo elemento
+			// Enviando el objeto curso para el nuevo elemento
 			model.addAttribute("curso", curso);
 		} catch (Exception e) {
 			e.printStackTrace();

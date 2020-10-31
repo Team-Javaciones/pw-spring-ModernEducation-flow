@@ -34,6 +34,18 @@ public class SesionController {
 		return "/sesiones/crear-sesion";
 	}
 	
+	@GetMapping
+	public String menuSesion(Model model) {
+		Sesion sesion = new Sesion();
+		try {
+			model.addAttribute("sesion", sesion);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/sesiones/sesion";
+	}
+	
 	@PostMapping("save")	
 	public String save(@ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
 		try {
