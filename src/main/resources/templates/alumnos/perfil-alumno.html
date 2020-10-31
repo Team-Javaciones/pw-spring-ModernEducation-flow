@@ -15,7 +15,7 @@
 <title>Modern Education</title>
 </head>
 
-<body class="teacher-body">
+<body class="blue-body">
 
 	<header id="header" class="alt">
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -50,57 +50,44 @@
 		</nav>
 	</header>
 
-	
- <section id="crear-curso">
+	<section id="perfil-alumno">
 		<div class="container jumbotron">
 			<div class="text-center">
-				<img th:src="@{/images/crear-curso.png}" height="60">
-				<h3 class="card-title">Crear curso</h3>
+				<img th:src="@{/images/imagen usuario.png}" height="250">
+				<h3 class="card-title">Editar Pefil</h3>
 			</div>
-			<form th:action="@{/cursos/save}" th:object="${curso}" method="post">
+			<form th:action="@{/alumnos/update}" th:object="${alumno}" method="post">
 				<div class="form-row">
 					<div class="form-group col-md-12">					
-						<label>Nombre del Curso: </label> <input
-							type="text" class="form-control"  th:field="*{nombre}" required>
+						<label>nombre completo </label> <input
+							type="text" class="form-control" th:field="*{nombreCompleto}"	required>
 					</div>
-					<div class="form-group col-md-12">					
-						<label >Descripcion: </label> <input
-							type="text" class="form-control"  th:field="*{descripcion}" required>
+					<div class="form-group col-md-12">
+						<label>Telefono:</label> <input
+							type="text" class="form-control" th:field="*{telefono}"	required>
 					</div>
-					<div class="form-group col-md-12">					
-						<label>Precio: </label> <input
-							type="text" class="form-control"  th:field="*{precio}" required>
+					<div class="form-group col-md-12">
+						<label>Correo:</label> <input
+							type="text" class="form-control" th:field="*{correo}"	required>
 					</div>
-					<div class="form-group col-md-12">					
-						<label>Horas: </label> <input
-							type="text" class="form-control"  th:field="*{horas}" required>
+					<div class="form-group col-md-12">
+						<label>Fecha de Nacimiento:</label> <input
+							type="date" class="form-control" th:field="*{fechaNacimiento}"	required>
 					</div>
-					<div class="form-group col-md-12">					
-						<label>Capacidad: </label> <input
-							type="text" class="form-control"  th:field="*{capacidad}" required>
+					<div class="form-group col-md-12">
+						<label>Entidad Educativa:</label> <input
+							type="date" class="form-control" th:field="*{entidadEducativa}"	required>
 					</div>
-					
-					
-					  <div class="form-group col-md-6">
-					    <label for="fechaInicio">Fecha de Inicio</label>
-					    <input type="date" class="form-control" th:field="*{fechaInicio}" >
-					  </div>
-					 
-					  <div class="form-group col-md-6">
-					    <label for="fechaFin">Fecha de Fin</label>
-					    <input type="date" class="form-control" th:field="*{fechaFin}" >
-					  </div>
-				  
-					
-					
 				</div>
 				<div class="text-center pt-5">
-					<button type="submit" class="btn btn-dark mr-4">Crear curso</button>
+					<button type="submit" class="btn btn-dark mr-4">Editar Pefil</button>
 					<a class="btn btn btn-outline-dark" th:href="@{/inicio-asesores}">Cancelar</a>
 				</div>
 			</form>
 		</div>
 	</section>
+
+	
 
 
 	<nav id="footer"
@@ -113,9 +100,5 @@
 	<script th:src="@{/js/popper.min.js}"></script>
 	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-
-
-
-
 </body>
 </html>
