@@ -259,3 +259,33 @@ section {
 	max-width: 1200px;
 	background-color: #C2D6FF;
 }
+
+#vista-sesion {
+	padding-top: 100px;
+}
+#vista-sesion .container{
+	max-width: 1500px;
+	background-color: #C2D6FF;
+}
+
+#buscador-curso {
+	padding-top: 100px;
+}
+#buscador-curso .container{
+	max-width: 1700px;
+	background-color: #EEEEEE;
+}
+#buscador-curso h2 {
+	padding-top: 5px;
+}
+
+#buscador-asesor {
+	padding-top: 100px;
+}
+#buscador-asesor .container{
+	max-width: 1700px;
+	background-color: #EEEEEE;
+}
+#buscador-asesor h2 {
+	padding-top: 5px;
+}

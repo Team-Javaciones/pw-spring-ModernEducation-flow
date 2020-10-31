@@ -122,7 +122,19 @@ public class AsesorController {
 		return "redirect:/asesores/login-asesores";
 	}
 	
-	
+	@GetMapping("buscar-asesor")
+	public String buscarAsesor(Model model) {
+		Asesor asesor = new Asesor();
+		try {
+			List<Asesor> asesores = asesorService.findAll();
+			model.addAttribute("asesores", asesores);
+			model.addAttribute("asesor", asesor);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/asesores/buscador-asesor";
+	}
 	
 	
 	
