@@ -62,5 +62,17 @@ public class AlumnoServiceImpl implements AlumnoService, Serializable {
 	public Optional<Alumno> findByUsername(String username) throws Exception {
 		return alumnoRepository.findByUsername(username);
 	}
+	@Transactional(readOnly = true)
+	@Override
+	public List<Alumno> findByCorreoContaining(String correo) throws Exception {
+		
+		return alumnoRepository.findByCorreoContaining(correo);
+	}
+
+	@Override
+	public List<Alumno> findByPasswordContaining(String password) throws Exception {
+		
+		return alumnoRepository.findByPasswordContaining(password);
+	}
 
 }

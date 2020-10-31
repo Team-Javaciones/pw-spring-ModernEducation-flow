@@ -5,6 +5,7 @@ package pe.edu.upc.education.controllers;
 
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 
 import pe.edu.upc.education.models.entities.Alumno;
+
 import pe.edu.upc.education.services.AlumnoService;
 
 @Controller
@@ -31,11 +33,7 @@ public class AlumnoController {
 	private AlumnoService alumnoService;
 	
 	
-		
-	@GetMapping("login-alumnos")
-	public String loginAlumno() {		
-		return "/alumnos/login-alumnos";
-	}
+	
 	
 	@GetMapping("registro-alumnos")
 	public String registroAlumno() {		
@@ -110,6 +108,38 @@ public class AlumnoController {
 		// Devuelve la URL mapping
 		return "redirect:/alumnos/password-alumno";
 	}
+	
+	
+	@GetMapping("login-alumnos")
+	public String LoginAlumno(Model model) {
+		Alumno alumno = new Alumno();
+		try {
+			model.addAttribute("alumno",alumno);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/alumnos/login-alumnos";
+	}
+	
+	
+	@PostMapping("comprobar")	
+	public String comprobarAlumno(@ModelAttribute("alumno") Alumno alumno, SessionStatus status) {
+		try {
+			List<Alumno> optionalCorreo = alumnoService.findByCorreoContaining(alumno.getCorreo());
+			List<Alumno> optionalContraseña = alumnoService.findByPasswordContaining(alumno.getPassword());
+			if(!optionalCorreo.isEmpty() && !optionalContraseña.isEmpty()) {
+				return "redirect:/inicio-alumnos";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		// Devuelve la URL mapping
+		return "redirect:/alumnos/login-alumnos";
+	}
+	
+	
 	
 }
 
