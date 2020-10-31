@@ -55,6 +55,20 @@ public class CursoController {
 		return "/cursos/crear-curso";
 	}
 	
+	@GetMapping("buscar-curso")
+	public String buscarCurso(Model model) {
+		Curso curso = new Curso();
+		try {
+			List<Curso> cursos = cursoService.findAll();
+			model.addAttribute("cursos", cursos);
+			model.addAttribute("curso", curso);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/cursos/buscador-curso";
+	}
+	
 	@GetMapping("view-{id}")
 	public String view(@PathVariable("id") Integer id, Model model) {
 		try {
