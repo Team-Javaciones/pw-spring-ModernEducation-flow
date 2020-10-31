@@ -15,7 +15,7 @@
 <title>Modern Education</title>
 </head>
 
-<body class="teacher-body">
+<body class="student-body">
 
 	<header id="header" class="alt">
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -41,8 +41,8 @@
 							perfil</a></li>
 					<li>
 						<div class="btn-nav">
-							<a class="btn btn-outline-light navbar-btn ml-3"
-								th:href="@{/inicio-asesores}">Cerrar sesión</a>
+							<a class="btn btn-outline-light navbar-btn ml-3" th:href="@{/}">Cerrar
+								sesión</a>
 						</div>
 					</li>
 				</ul>
@@ -50,32 +50,31 @@
 		</nav>
 	</header>
 
-	<section id="crear-sesion">
+
+	<section id="enviar-solucion">
 		<div class="container jumbotron">
 			<div class="text-center">
-				<img th:src="@{/images/crear-sesion.png}" height="60">
-				<h3 class="card-title">Crear sesión</h3>
+				<img th:src="@{/images/enviar-solucion.png}" height="60">
+				<h3 class="card-title">Enviar solución</h3>
 			</div>
-			<form th:action="@{/sesiones/save}" th:object="${sesion}" method="post">
-				<div class="form-row">
-					<div class="form-group col-md-12">					
-						<label>Tema de la sesión: </label> <input
-							type="text" class="form-control" th:field="*{tema}"	required>
+			<form th:action="@{/soluciones/save}" th:object="${solucion}" method="post">
+				<div class="form-row">					
+					<div class="form-group col-md-12">
+						<label>Ingresa tu código con la solución: </label>
+						<textarea class="form-control" rows="8" th:field="*{codigo}" required></textarea>
 					</div>
 					<div class="form-group col-md-12">
-						<label>Enlace de la reunión en zoom:</label> <input
-							type="text" class="form-control" th:field="*{linkZoom}"	required>
+						<label>Comentario de la solución: <b>(Opcional)</b></label> 
+						<textarea class="form-control" rows="2" th:field="*{comentario}"></textarea>
 					</div>
 				</div>
 				<div class="text-center pt-5">
-					<button type="submit" class="btn btn-dark mr-4">Crear sesión</button>
-					<a class="btn btn btn-outline-dark" th:href="@{/inicio-asesores}">Cancelar</a>
+					<button type="submit" class="btn btn-dark mr-4">Enviar solución</button>
+					<a class="btn btn btn-outline-dark ">Cancelar</a>
 				</div>
 			</form>
 		</div>
 	</section>
-
-
 
 	<nav id="footer"
 		class="navbar sticky-bottom navbar-dark bg-dark justify-content-center">

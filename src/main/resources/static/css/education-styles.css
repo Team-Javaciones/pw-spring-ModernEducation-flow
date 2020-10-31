@@ -29,10 +29,17 @@ section {
 
 .teacher-body { 	
 	background:
-    linear-gradient(301deg, hsla(25.71, 100%, 97.25%, 1) 70%, hsla(25.71, 100%, 97.25%, 0) 100%);
-  
+    linear-gradient(301deg, hsla(25.71, 100%, 97.25%, 1) 70%, hsla(25.71, 100%, 97.25%, 0) 100%); 
 
 }
+
+.student-body{
+  background:
+    -webkit-linear-gradient(143deg, hsla(216.52, 100%, 96.67%, 1) 100%, hsla(216.52, 100%, 96.67%, 0) 100%);
+  background:
+    linear-gradient(307deg, hsla(216.52, 100%, 96.67%, 1) 100%, hsla(216.52, 100%, 96.67%, 0) 100%);  
+}
+
 #footer {
 	position: absolute;
 	bottom: 0;
@@ -225,3 +232,24 @@ section {
 #crear-sesion label {
 	padding-top: 20px;
 }
+
+
+#enviar-solucion {
+	padding-top: 123px;
+	padding-bottom: 10px;
+}
+#enviar-solucion h3 {
+	padding-bottom: 30px;
+}
+#enviar-solucion form {
+	padding-left: 60px;
+	padding-right: 60px;
+}
+#enviar-solucion textarea{
+	resize: none;
+}
+#enviar-solucion b{
+	font-weight: 500;
+}
+
+
