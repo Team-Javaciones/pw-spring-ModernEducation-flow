@@ -16,6 +16,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
 @Table(name = "cursos")
 public class Curso {
@@ -53,10 +56,12 @@ public class Curso {
 	
 	@Column(name = "fecha_inicio", nullable = false)
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date fechaInicio;
 	
 	@Column(name = "fecha_fin", nullable = false)
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date fechaFin;
 	
 	@ManyToOne

@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
 @Table(name = "asesores")
 public class Asesor {
@@ -32,6 +35,7 @@ public class Asesor {
 	
 	@Column(name = "fecha_nacimiento", nullable = false)
 	@Temporal(TemporalType.DATE) 
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date fechaNacimiento;
 	
 	@Column(name = "username", length = 50, nullable = false)
