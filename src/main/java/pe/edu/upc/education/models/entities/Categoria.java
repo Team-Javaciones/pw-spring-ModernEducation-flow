@@ -21,6 +21,9 @@ public class Categoria {
 	@Column(name = "nombre", length = 50, nullable = false)
 	private String nombre;
 	
+	@Column(name="url_image", length = 100)
+	private String urlImage;
+	
 	@OneToMany(mappedBy = "categoria")
 	private List<Curso> cursos;
 	
@@ -50,6 +53,14 @@ public class Categoria {
 
 	public void setCursos(List<Curso> cursos) {
 		this.cursos = cursos;
+	}
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
 	}
 	
 	

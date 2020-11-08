@@ -326,3 +326,15 @@ section {
 	width:250px;
 	height:200px;
 }
+
+#cursos-alumno .jumbotron{
+	padding-top:45px; 
+}
+
+#cursos-alumno h3{
+	padding-bottom: 40px;	
+}
+
+#cursos-alumno .btn{
+	color: white !important; 
+}

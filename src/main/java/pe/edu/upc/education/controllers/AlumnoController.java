@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Alumno;
-import pe.edu.upc.education.models.entities.Sesion;
 import pe.edu.upc.education.services.AlumnoService;
 
 @Controller
@@ -127,6 +126,21 @@ public class AlumnoController {
 			System.err.println(e.getMessage());
 		}
 		return "/alumnos/menu-alumnos";
-	}
+	}	
 
+	@GetMapping("cursos-alumno")
+	public String cursosAlumno(Model model)
+	{
+		try {
+			Optional<Alumno> optional = alumnoService.findById(1);
+			if (optional.isPresent()) {
+				model.addAttribute("alumno", optional.get());
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/alumnos/cursos-alumno";
+	}
 }

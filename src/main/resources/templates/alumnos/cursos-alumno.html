@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout-alumno :: head">
+</head>
+
+<body class="student-body">
+	<header th:replace="layout/layout-alumno :: header"> </header>
+	
+	<main>
+		<section id="cursos-alumno" class="container">
+			<div class="jumbotron">
+				<h3 class="text-center">Mis cursos</h3>
+				
+				<div th:each="alumnoCursos : ${alumno.alumnoCursos}" class="row cursos-card">
+					<div class="col-md-1" ></div>
+					<div class="card mb-3 col-md-10" style="max-height: 250px;">
+						<div class="row no-gutters align-items-center">
+							<div class="col-md-3 text-center">
+								<img th:src="@{${alumnoCursos.curso.categoria.urlImage}}" class="card-img" style="max-height: 150px; max-width: 150px;">
+							</div>
+							<div class="col-md-6">
+								<div class="card-body">
+									<h5 class="card-title"><span th:text="${alumnoCursos.curso.nombre}"></span></h5>
+									<p><b>Asesor: </b><span th:text="${alumnoCursos.curso.asesor.nombreCompleto}"></span></p>
+									<p><b>Descripción: </b><span th:text="${alumnoCursos.curso.descripcion}"></span></p>
+									<p>
+										<b>Fecha inicio: </b><span th:text="${alumnoCursos.curso.fechaInicio}"></span> - 
+										<b>Fecha fin: </b><span th:text="${alumnoCursos.curso.fechaFin}"></span>
+									</p>
+								</div>
+							</div>
+							<div class="col-md-3 text-center">
+								<a class="btn btn-lg btn-dark mr-4">Ingresar <i class="fas fa-chevron-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1" ></div>
+				</div>
+
+			</div>
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-alumno :: footer"></footer>
+</body>
+</html>
