@@ -104,7 +104,17 @@ public class CursoController {
 		return "/cursos/calificar-curso";
 	}
 	
-	
+	@GetMapping("recomendaciones-curso")
+	public String recomendacionesView(Model model) {		
+		try {
+			Optional<Curso> optional = cursoService.findById(1);
+			model.addAttribute("curso", optional.get());			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}		
+		return "/cursos/recomendaciones-curso";
+	}
 	
 	
 }

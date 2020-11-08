@@ -338,3 +338,23 @@ section {
 #cursos-alumno .btn{
 	color: white !important; 
 }
+
+#recomendaciones-curso .jumbotron{
+	padding-top: 50px;
+}
+#recomendaciones-curso h3{
+	padding-bottom: 25px;
+}
+#recomendaciones-curso .card-without p{
+	font-size: 15pt;
+}
+#recomendaciones-curso .card-without .card{
+	border: none ;
+}
+#recomendaciones-curso .btn{
+	color: white !important;
+}
+#cards-recom{
+	margin-top:30px;
+}
+

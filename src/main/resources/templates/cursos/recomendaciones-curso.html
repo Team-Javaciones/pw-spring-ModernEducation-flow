@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout-alumno :: head">
+</head>
+
+<body class="student-body">
+	<header th:replace="layout/layout-alumno :: header"> </header>
+
+	<main>
+		<section id="recomendaciones-curso" class="container">
+			<div class="jumbotron">
+				<h3 class="text-center">Recomendaciones del curso</h3>
+
+				<div class="row card-without">
+					<div class="col-md-2"></div>
+					<div class="card mb-3 col-md-8" style="max-height: 250px;">
+						<div class="row no-gutters align-items-center">
+							<div class="col-md-4 text-center">
+								<img th:src="@{${curso.categoria.urlImage}}" class="card-img" style="max-height: 150px; max-width: 150px;">
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<p><b>Curso: </b> <span th:text="${curso.nombre}"></span></p>
+									<p><b>Asesor: </b> <span th:text="${curso.asesor.nombreCompleto}"></span></p>
+									<p><b>Calificación: </b> <span th:text="${curso.popularidad}"></span></p>
+								</div>
+							</div>
+						</div>						
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+
+				<div class="text-center">
+					<a class="btn btn-dark mr-4">
+						<i class="fas fa-chevron-left"></i>  Volver</a>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-6" th:each="alumnoCursos : ${curso.alumnoCursos}">
+						<div id="cards-recom" class="card mb-3" style="max-height: 500px;">
+							<div class="row no-gutters align-items-center">
+								<div class="col-md-4 text-center">
+									<img th:src="@{/images/user.png}" class="card-img" style="max-height: 120px; max-width: 120px;">
+								</div>
+								<div class="col-md-8">
+									<div class="card-body">
+										<p><b>Alumno: </b> <span th:text="${alumnoCursos.alumno.nombreCompleto}"></span></p>
+										<p><b>Valoración: </b> <span th:text="${alumnoCursos.valoracion}"></span></p>
+										<p><b>Comentario: </b><span th:text="${alumnoCursos.comentario}"></span></p>
+									</div>
+								</div>
+							</div>						
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-alumno :: footer"></footer>
+</body>
+</html>
