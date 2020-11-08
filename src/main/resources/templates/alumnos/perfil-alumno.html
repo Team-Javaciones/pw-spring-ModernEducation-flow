@@ -1,104 +1,50 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-<link rel="stylesheet" th:href="@{/css/fontawesome.min.css}">
-<link rel="stylesheet" th:href="@{/css/solid.min.css}">
-<link rel="stylesheet" th:href="@{/css/education-styles.css}">
-<link rel="icon" th:href="@{/images/favicon.ico}">
-
-<title>Modern Education</title>
+<head th:replace="layout/layout-alumno :: head">
 </head>
 
-<body class="blue-body">
-
-	<header id="header" class="alt">
-		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-			<div class="d-flex flex-grow-1">
-				<span class="w-100 d-lg-none d-block"> <!-- hidden spacer to center brand on mobile --></span>
-				<a class="navbar-brand px-3" href="#"><img
-					th:src="@{/images/pc.png}" width="30" height="30"
-					class="d-inline-block align-top"><b> Modern</b> Education</a>
-				<div class="w-100 text-right">
-					<button class="navbar-toggler" type="button" data-toggle="collapse"
-						data-target="#myNavbar7">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-				</div>
-			</div>
-			<div class="collapse navbar-collapse flex-grow-1 text-right pr-3"
-				id="myNavbar7">
-				<ul class="navbar-nav ml-auto flex-nowrap">
-					<li class="nav-item ml-2"><a href="#" class="nav-link nav">Inicio</a></li>
-					<li class="nav-item ml-2"><a href="#beneficios"
-						class="nav-link">Mis cursos</a></li>
-					<li class="nav-item ml-2"><a href="#about-us" class="nav-link">Mi
-							perfil</a></li>
-					<li>
-						<div class="btn-nav">
-							<a class="btn btn-outline-light navbar-btn ml-3"
-								th:href="@{/inicio-asesores}">Cerrar sesión</a>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</nav>
-	</header>
-
-	<section id="perfil-alumno">
-		<div class="container jumbotron">
-			<div class="text-center">
-				<img th:src="@{/images/imagen usuario.png}" height="250">
-				<h3 class="card-title">Editar Pefil</h3>
-			</div>
-			<form th:action="@{/alumnos/update}" th:object="${alumno}" method="post">
-				<div class="form-row">
-					<div class="form-group col-md-12">					
-						<label>nombre completo </label> <input
-							type="text" class="form-control" th:field="*{nombreCompleto}"	required>
-					</div>
-					<div class="form-group col-md-12">
-						<label>Telefono:</label> <input
-							type="text" class="form-control" th:field="*{telefono}"	required>
-					</div>
-					<div class="form-group col-md-12">
-						<label>Correo:</label> <input
-							type="text" class="form-control" th:field="*{correo}"	required>
-					</div>
-					<div class="form-group col-md-12">
-						<label>Fecha de Nacimiento:</label> <input
-							type="date" class="form-control" th:field="*{fechaNacimiento}"	required>
-					</div>
-					<div class="form-group col-md-12">
-						<label>Entidad Educativa:</label> <input
-							type="text" class="form-control" th:field="*{entidadEducativa}"	required>
-					</div>
-				</div>
-				<div class="text-center pt-5">
-					<button type="submit" class="btn btn-dark mr-4">Editar Pefil</button>
-					<a class="btn btn btn-outline-dark" th:href="@{/inicio-alumnos}">Cancelar</a>
-				</div>
-			</form>
-		</div>
-	</section>
-
+<body class="student-body">
+	<header th:replace="layout/layout-alumno :: header"> </header>
 	
+	<main>
+		<section id="perfil-alumno">
+			<div class="container jumbotron">
+				<div class="text-center">
+					<img th:src="@{/images/imagen usuario.png}" height="250">
+					<h3 class="card-title">Editar Pefil</h3>
+				</div>
+				<form th:action="@{/alumnos/update}" th:object="${alumno}" method="post">
+					<div class="form-row">
+						<div class="form-group col-md-12">					
+							<label>nombre completo </label> <input
+								type="text" class="form-control" th:field="*{nombreCompleto}"	required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Telefono:</label> <input
+								type="text" class="form-control" th:field="*{telefono}"	required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Correo:</label> <input
+								type="text" class="form-control" th:field="*{correo}"	required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Fecha de Nacimiento:</label> <input
+								type="date" class="form-control" th:field="*{fechaNacimiento}"	required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Entidad Educativa:</label> <input
+								type="text" class="form-control" th:field="*{entidadEducativa}"	required>
+						</div>
+					</div>
+					<div class="text-center pt-5">
+						<button type="submit" class="btn btn-dark mr-4">Editar Pefil</button>
+						<a class="btn btn btn-outline-dark" th:href="@{/inicio-alumnos}">Cancelar</a>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
 
-
-	<nav id="footer"
-		class="navbar sticky-bottom navbar-dark bg-dark justify-content-center">
-		<span class="navbar-text"> <small>©2020 Todos los
-				derechos reservados. Creado por Modern Education</small>
-		</span>
-	</nav>
-
-	<script th:src="@{/js/popper.min.js}"></script>
-	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
-	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<footer th:replace="layout/layout-alumno :: footer"></footer>
 </body>
 </html>
