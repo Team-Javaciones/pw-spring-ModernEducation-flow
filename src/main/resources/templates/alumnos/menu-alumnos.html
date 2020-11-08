@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout-alumno :: head"></head>
+<body>
+	<header th:replace="layout/layout-alumno :: header"> </header>
+
+	>
+	<div id="Bienvenido" class="text-center">
+		<h1>¡Bienvenido !</h1>
+	</div>
+	<section id="menu-alumno">
+		<div class="container jumbotron">
+			<div class="row">
+				<div class="col">
+					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
+						<div class="row">
+							<div class="col-md-8">
+								<img th:src="@{/images/perfil-menu.jpg}" width="555"
+									height="200">
+							</div>
+							<div class="col-md-4">
+								<a th:href="@{/alumnos/login-alumnos}"><button
+										id="boton-grande" type="button" class="btn btn-dark btn-lg">
+										<svg width="4em" height="4em" viewBox="0 0 16 16"
+											class="bi bi-person-fill" fill="currentColor"
+											xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd"
+												d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+</svg>
+										<br>
+										<h2>Mi Perfil</h2>
+									</button></a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
+						<div class="row">
+							<div class="col-md-4">
+								<a th:href="@{/alumnos/login-alumnos}"><button
+										id="boton-grande" type="button" class="btn btn-dark btn-lg">
+										<svg aria-hidden="true" width="0.8em" height="0.8em"
+											focusable="false" data-prefix="fas" data-icon="user-edit"
+											role="img" xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 640 512"
+											class="svg-inline--fa fa-user-edit fa-w-20 fa-5x">
+											<path fill="currentColor"
+												d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h274.9c-2.4-6.8-3.4-14-2.6-21.3l6.8-60.9 1.2-11.1 7.9-7.9 77.3-77.3c-24.5-27.7-60-45.5-99.9-45.5zm45.3 145.3l-6.8 61c-1.1 10.2 7.5 18.8 17.6 17.6l60.9-6.8 137.9-137.9-71.7-71.7-137.9 137.8zM633 268.9L595.1 231c-9.3-9.3-24.5-9.3-33.8 0l-37.8 37.8-4.1 4.1 71.8 71.7 41.8-41.8c9.3-9.4 9.3-24.5 0-33.9z"
+												class=""></path></svg>
+										<h2>Editar Perfil</h2>
+									</button></a>
+							</div>
+							<div class="col-md-8">
+								<img th:src="@{/images/settings.jpg}" align="right" width="550"
+									height="200">
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col">
+					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
+						<div class="row">
+							<div class="col-md-8">
+								<img th:src="@{/images/mis-cursos.jpg}" width="555" height="200">
+							</div>
+							<div class="col-md-4">
+								<a th:href="@{/alumnos/login-alumnos}"><button
+										id="boton-grande" type="button" class="btn btn-dark btn-lg">
+										<svg width="4em" height="4em" viewBox="0 0 16 16"
+											class="bi bi-book" fill="currentColor"
+											xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd"
+												d="M1 2.828v9.923c.918-.35 2.107-.692 3.287-.81 1.094-.111 2.278-.039 3.213.492V2.687c-.654-.689-1.782-.886-3.112-.752-1.234.124-2.503.523-3.388.893zm7.5-.141v9.746c.935-.53 2.12-.603 3.213-.493 1.18.12 2.37.461 3.287.811V2.828c-.885-.37-2.154-.769-3.388-.893-1.33-.134-2.458.063-3.112.752zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+</svg>
+										<h2>Mis Cursos</h2>
+									</button></a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
+						<div class="row">
+							<div class="col-md-4">
+								<a th:href="@{/alumnos/login-alumnos}"><button
+										id="boton-grande" type="button" class="btn btn-dark btn-lg">
+										<svg aria-hidden="true" width="0.8em" height="0.8em"
+											focusable="false" data-prefix="fas" data-icon="cog"
+											role="img" xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 512 512"
+											class="svg-inline--fa fa-cog fa-w-16 fa-5x">
+											<path fill="currentColor"
+												d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"
+												class=""></path></svg>
+										<h2>Cambiar Contraseña</h2>
+									</button></a>
+							</div>
+							<div class="col-md-8">
+								<img th:src="@{/images/contraseña-seguridad.jpg}" align="right"
+									width="550" height="200">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col">
+					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
+						<div class="row">
+							<div class="col-md-8">
+								<img th:src="@{/images/buscar-curso.jpg}" width="555"
+									height="200">
+							</div>
+							<div class="col-md-4">
+								<a th:href="@{/alumnos/login-alumnos}"><button
+										id="boton-grande" type="button" class="btn btn-dark btn-lg">
+										<svg aria-hidden="true" width="0.8em" height="0.8em"
+											focusable="false" data-prefix="fas" data-icon="search"
+											role="img" xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 512 512"
+											class="svg-inline--fa fa-search fa-w-16 fa-5x">
+											<path fill="currentColor"
+												d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+												class=""></path></svg>
+										<h2>Buscador de Cursos</h2>
+									</button></a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
+						<div class="row">
+							<div class="col-md-4">
+								<a th:href="@{/alumnos/login-alumnos}"><button
+										id="boton-grande" type="button" class="btn btn-dark btn-lg">
+										<svg aria-hidden="true" width="0.8em" height="0.8em"
+											focusable="false" data-prefix="fas" data-icon="user-tie"
+											role="img" xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 448 512"
+											class="svg-inline--fa fa-user-tie fa-w-14 fa-5x">
+											<path fill="currentColor"
+												d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm95.8 32.6L272 480l-32-136 32-56h-96l32 56-32 136-47.8-191.4C56.9 292 0 350.3 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-72.1-56.9-130.4-128.2-133.8z"
+												class=""></path></svg>
+										<h2>Buscador de Asesores</h2>
+									</button></a>
+							</div>
+							<div class="col-md-8">
+								<img th:src="@{/images/maestros.jpg}" align="right" width="550"
+									height="200">
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="text-center">
+					<br><a th:href="@{/}"><button
+										 type="button" class="btn btn-dark btn-lg">
+										
+										<h3><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+</svg> Cerrar Sesión</h3>
+									</button></a>
+				</div>
+		</div>
+
+	</section>
+	<footer th:replace="layout/layout-alumno :: footer"></footer>
+</body>
+</html>

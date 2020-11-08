@@ -75,9 +75,9 @@
 									</button>
 								</div>
 							</div>
-							<br> <a th:href="@{/asesores/buscar-asesor}"><button type="button"
-									class="btn btn-primary btn-lg btn-block">Filtrar por
-									Asesores</button></a><br>
+							<br> <a th:href="@{/asesores/buscar-asesor}"><button
+									type="button" class="btn btn-primary btn-lg btn-block">Filtrar
+									por Asesores</button></a><br>
 							<h2>Preferencias</h2>
 							<br>
 							<div class="row">
@@ -126,18 +126,23 @@
 							style="max-width: 1050px; max-height: 200px;">
 							<div class="row no-gutters">
 								<div class="col-md-3">
-										<div class="text-center">
+									<div class="text-center">
+										<div class="img-buscador">
 											<img th:src="@{/images/Python2.png}" width="175" height="175">
 										</div>
+									</div>
 								</div>
 								<div class="col-md-9">
 									<div class="row">
 										<div class="col-sm-9">
-											<br>
-											<h5 th:text="${curso.nombre}"></h5>
-											<p th:text="${'Descripción del curso: ' + curso.descripcion}"></p>
-											<p th:text="${'Docente del curso: ' }"></p>
-											<p th:text="${'Precio: S/' + curso.precio}"></p>
+											<div class="Cap-buscador">
+												<br>
+												<h5 th:text="${curso.nombre}"></h5>
+												<p
+													th:text="${'Descripción del curso: ' + curso.descripcion}"></p>
+												<p th:text="${'Docente del curso: ' }"></p>
+												<p th:text="${'Precio: S/' + curso.precio}"></p>
+											</div>
 										</div>
 										<div class="col-sm-3">
 											<div class="row align-items-center h-100">

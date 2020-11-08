@@ -27,17 +27,16 @@ section {
 		rgba(194, 176, 158, 1) 90%);
 }
 
-.teacher-body { 	
-	background:
-    linear-gradient(301deg, hsla(25.71, 100%, 97.25%, 1) 70%, hsla(25.71, 100%, 97.25%, 0) 100%); 
-
+.teacher-body {
+	background: linear-gradient(301deg, hsla(25.71, 100%, 97.25%, 1) 70%,
+		hsla(25.71, 100%, 97.25%, 0) 100%);
 }
 
-.student-body{
-  background:
-    -webkit-linear-gradient(143deg, hsla(216.52, 100%, 96.67%, 1) 100%, hsla(216.52, 100%, 96.67%, 0) 100%);
-  background:
-    linear-gradient(307deg, hsla(216.52, 100%, 96.67%, 1) 100%, hsla(216.52, 100%, 96.67%, 0) 100%);  
+.student-body {
+	background: -webkit-linear-gradient(143deg, hsla(216.52, 100%, 96.67%, 1)
+		100%, hsla(216.52, 100%, 96.67%, 0) 100%);
+	background: linear-gradient(307deg, hsla(216.52, 100%, 96.67%, 1) 100%,
+		hsla(216.52, 100%, 96.67%, 0) 100%);
 }
 
 #footer {
@@ -211,12 +210,11 @@ section {
 	padding-bottom: 70px;
 }
 
-
-
 #crear-sesion {
 	padding-top: 200px;
 }
-#crear-sesion .container{
+
+#crear-sesion .container {
 	max-width: 800px;
 }
 
@@ -233,29 +231,33 @@ section {
 	padding-top: 20px;
 }
 
-
 #enviar-solucion {
 	padding-top: 123px;
 	padding-bottom: 10px;
 }
+
 #enviar-solucion h3 {
 	padding-bottom: 30px;
 }
+
 #enviar-solucion form {
 	padding-left: 60px;
 	padding-right: 60px;
 }
-#enviar-solucion textarea{
+
+#enviar-solucion textarea {
 	resize: none;
 }
-#enviar-solucion b{
+
+#enviar-solucion b {
 	font-weight: 500;
 }
 
 #vista-curso {
 	padding-top: 0px;
 }
-#vista-curso .container{
+
+#vista-curso .container {
 	max-width: 1200px;
 	background-color: #C2D6FF;
 }
@@ -263,7 +265,8 @@ section {
 #vista-sesion {
 	padding-top: 100px;
 }
-#vista-sesion .container{
+
+#vista-sesion .container {
 	max-width: 1500px;
 	background-color: #C2D6FF;
 }
@@ -271,10 +274,12 @@ section {
 #buscador-curso {
 	padding-top: 100px;
 }
-#buscador-curso .container{
+
+#buscador-curso .container {
 	max-width: 1700px;
 	background-color: #EEEEEE;
 }
+
 #buscador-curso h2 {
 	padding-top: 5px;
 }
@@ -282,10 +287,42 @@ section {
 #buscador-asesor {
 	padding-top: 100px;
 }
-#buscador-asesor .container{
+
+#buscador-asesor .container {
 	max-width: 1700px;
 	background-color: #EEEEEE;
 }
+
 #buscador-asesor h2 {
 	padding-top: 5px;
+}
+
+.Cap-buscador {
+	height: 200px;
+}
+
+.img-buscador {
+	padding-top: 12.5px;
+}
+
+#menu-alumno {
+	padding-top: 0px;
+}
+
+#menu-alumno .container {
+	max-width: 1700px;
+}
+
+#Bienvenido {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+#boton-grande{
+	width:250px;
+	height:200px;
+}
+#boton-grande-der{
+	width:250px;
+	height:200px;
 }
