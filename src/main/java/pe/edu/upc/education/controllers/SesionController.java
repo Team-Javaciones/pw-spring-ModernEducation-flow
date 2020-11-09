@@ -1,5 +1,7 @@
 package pe.edu.upc.education.controllers;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,4 +60,16 @@ public class SesionController {
 		// Devuelve la URL mapping
 		return "redirect:/sesiones/crear-sesion";
 	}
+	
+	@GetMapping("materiales-sesion")
+	public String materialesSesion(Model model){
+		try {
+			Optional<Sesion> optional = sesionService.findById(1);
+			model.addAttribute("sesion", optional.get());					
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/sesiones/materiales-sesion";
+	}			
 }
