@@ -20,7 +20,7 @@
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 			<div class="d-flex flex-grow-1">
 				<span class="w-100 d-lg-none d-block"> <!-- hidden spacer to center brand on mobile --></span>
-				<a class="navbar-brand px-3" href="#"><img
+				<a class="navbar-brand px-3" th:href="@{/alumnos/}" ><img
 					th:src="@{/images/pc.png}" width="30" height="30"
 					class="d-inline-block align-top"><b> Modern</b> Education</a>
 				<div class="w-100 text-right">
@@ -33,7 +33,7 @@
 			<div class="collapse navbar-collapse flex-grow-1 text-right pr-3"
 				id="myNavbar7">
 				<ul class="navbar-nav ml-auto flex-nowrap">
-					<li class="nav-item ml-2"><a href="#" class="nav-link nav">Inicio</a></li>
+					<li class="nav-item ml-2"><a th:href="@{/alumnos/}" class="nav-link nav">Inicio</a></li>
 					<li class="nav-item ml-2"><a th:href="@{/alumnos/cursos-alumno}" class="nav-link">Mis cursos</a></li>
 					<li class="nav-item ml-2"><a th:href="@{/alumnos/perfil-alumno}" class="nav-link">Mi
 							perfil</a></li>

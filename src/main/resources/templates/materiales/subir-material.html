@@ -13,15 +13,15 @@
 					<img th:src="@{/images/enviar-solucion.png}" height="60">
 					<h3 class="card-title">Subir material</h3>
 				</div>
-				<form >
+				<form th:action="@{/materiales/save}" th:object="${material}" method="post" >
 					<div class="form-row">					
 						<div class="form-group col-md-12">
 							<label>Nombre del material</label>
-							<input type="text" class="form-control" placeholder="Ficha número 1" rows="8" required>
+							<input th:field="*{nombre}" type="text" class="form-control" placeholder="Ficha número 1" rows="8" required>
 						</div>
 						<div class="form-group col-md-12">
 							<label>Enlace del material</label> 
-							<input type="text" class="form-control" placeholder="https://drive.google.com/drive/folders/1teiaL_foUiZy_5whefK" rows="2">
+							<input th:field="*{enlace}" type="text" class="form-control" placeholder="https://drive.google.com/drive/folders/1teiaL_foUiZy_5whefK" rows="2">
 						</div>
 					</div>
 					<div class="text-center pt-5">

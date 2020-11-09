@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/layout-alumno :: head"></head>
-<body>
+<body class="student-body">
 	<header th:replace="layout/layout-alumno :: header"> </header>
 
 	>
@@ -19,7 +19,7 @@
 									height="200">
 							</div>
 							<div class="col-md-4">
-								<a th:href="@{/alumnos/login-alumnos}"><button
+								<a href="#"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
 										<svg width="4em" height="4em" viewBox="0 0 16 16"
 											class="bi bi-person-fill" fill="currentColor"
@@ -70,7 +70,7 @@
 								<img th:src="@{/images/mis-cursos.jpg}" width="555" height="200">
 							</div>
 							<div class="col-md-4">
-								<a th:href="@{/alumnos/login-alumnos}"><button
+								<a th:href="@{/alumnos/cursos-alumno}"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
 										<svg width="4em" height="4em" viewBox="0 0 16 16"
 											class="bi bi-book" fill="currentColor"

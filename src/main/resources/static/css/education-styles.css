@@ -358,3 +358,18 @@ section {
 	margin-top:30px;
 }
 
+#titulo-materiales{
+	padding-top: 0;
+}
+
+#materiales-sesion h3{
+	padding-top: 10px;;
+}
+#materiales-sesion h5{
+	padding-top: 15px;
+	padding-bottom: 40px;
+}
+#materiales-sesion .btn{
+	color: white !important;
+}
+
