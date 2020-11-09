@@ -111,8 +111,8 @@ public class CursoController {
 		return "/cursos/calificar-curso";
 	}
 	
-	@GetMapping("recomendaciones-curso")
-	public String recomendacionesView(Model model) {		
+	@GetMapping("recomendaciones-curso-alumno")
+	public String recomendacionesViewAlumno(Model model) {		
 		try {
 			Optional<Curso> optional = cursoService.findById(1);
 			model.addAttribute("curso", optional.get());			
@@ -120,7 +120,19 @@ public class CursoController {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}		
-		return "/cursos/recomendaciones-curso";
+		return "/cursos/recomendaciones-curso-alumno";
+	}
+	
+	@GetMapping("recomendaciones-curso-asesor")
+	public String recomendacionesViewAsesor(Model model) {		
+		try {
+			Optional<Curso> optional = cursoService.findById(1);
+			model.addAttribute("curso", optional.get());			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}		
+		return "/cursos/recomendaciones-curso-asesor";
 	}
 	
 	
