@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.education.models.entities.Categoria;
 import pe.edu.upc.education.models.entities.Curso;
+import pe.edu.upc.education.services.CategoriaService;
 import pe.edu.upc.education.services.CursoService;
 
 @Controller
@@ -25,6 +27,9 @@ public class CursoController {
 
 	@Autowired
 	private CursoService cursoService;
+	
+	@Autowired
+	private CategoriaService categoriaService;
 	
 	@GetMapping
 	public String inicio(Model model) {
@@ -47,6 +52,8 @@ public class CursoController {
 	public String crearUnidad(Model model) {
 		Curso curso = new Curso();
 		try {
+			List<Categoria> categorias = categoriaService.findAll();
+			model.addAttribute("categorias",categorias);
 			model.addAttribute("curso", curso);
 		} catch (Exception e) {
 			e.printStackTrace();

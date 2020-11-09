@@ -16,6 +16,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
 @Table(name = "unidades")
 public class Unidad {
@@ -38,10 +41,12 @@ public class Unidad {
 	
 	@Column(name = "fecha_inicio", nullable = false)
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date fechaInicio;
 	
 	@Column(name = "fecha_fin", nullable = false)
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date fechaFin;
 	
 	@OneToMany(mappedBy = "unidad")
