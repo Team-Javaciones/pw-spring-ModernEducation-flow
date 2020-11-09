@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.education.models.entities.Categoria;
 import pe.edu.upc.education.models.entities.Curso;
+import pe.edu.upc.education.services.CategoriaService;
 import pe.edu.upc.education.services.CursoService;
 
 @Controller
@@ -25,6 +27,9 @@ public class CursoController {
 
 	@Autowired
 	private CursoService cursoService;
+	
+	@Autowired
+	private CategoriaService categoriaService;
 	
 	@GetMapping
 	public String inicio(Model model) {
@@ -47,6 +52,8 @@ public class CursoController {
 	public String crearUnidad(Model model) {
 		Curso curso = new Curso();
 		try {
+			List<Categoria> categorias = categoriaService.findAll();
+			model.addAttribute("categorias",categorias);
 			model.addAttribute("curso", curso);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,8 +111,8 @@ public class CursoController {
 		return "/cursos/calificar-curso";
 	}
 	
-	@GetMapping("recomendaciones-curso")
-	public String recomendacionesView(Model model) {		
+	@GetMapping("recomendaciones-curso-alumno")
+	public String recomendacionesViewAlumno(Model model) {		
 		try {
 			Optional<Curso> optional = cursoService.findById(1);
 			model.addAttribute("curso", optional.get());			
@@ -113,7 +120,19 @@ public class CursoController {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}		
-		return "/cursos/recomendaciones-curso";
+		return "/cursos/recomendaciones-curso-alumno";
+	}
+	
+	@GetMapping("recomendaciones-curso-asesor")
+	public String recomendacionesViewAsesor(Model model) {		
+		try {
+			Optional<Curso> optional = cursoService.findById(1);
+			model.addAttribute("curso", optional.get());			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}		
+		return "/cursos/recomendaciones-curso-asesor";
 	}
 	
 	

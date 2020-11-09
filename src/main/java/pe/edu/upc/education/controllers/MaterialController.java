@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Material;
-import pe.edu.upc.education.models.entities.Sesion;
 import pe.edu.upc.education.services.MaterialService;
 
 @Controller
