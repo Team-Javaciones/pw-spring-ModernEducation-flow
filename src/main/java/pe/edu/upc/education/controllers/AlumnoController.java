@@ -132,10 +132,8 @@ public class AlumnoController {
 	public String cursosAlumno(Model model)
 	{
 		try {
-			Optional<Alumno> optional = alumnoService.findById(1);
-			if (optional.isPresent()) {
-				model.addAttribute("alumno", optional.get());
-			}
+			Optional<Alumno> optional = alumnoService.findById(1);			
+			model.addAttribute("alumno", optional.get());			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

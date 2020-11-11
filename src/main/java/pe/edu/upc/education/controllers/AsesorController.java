@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-
 import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.services.AsesorService;
 
@@ -24,8 +23,6 @@ public class AsesorController {
 	
 	@Autowired
 	private AsesorService asesorService;
-	
-	
 	
 	@GetMapping("registro-asesores")
 	public String registroAsesor() {		
@@ -136,10 +133,17 @@ public class AsesorController {
 		return "/asesores/buscador-asesor";
 	}
 	
-	
-	
-	
-	
-	
-	
+	@GetMapping("cursos-asesor")
+	public String cursosAsesor(Model model)
+	{
+		try {
+			Optional<Asesor> optional = asesorService.findById(1);			
+			model.addAttribute("asesor", optional.get());			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/asesores/cursos-asesor";
+	}	
 }

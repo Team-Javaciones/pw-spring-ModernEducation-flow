@@ -111,29 +111,64 @@ public class CursoController {
 		return "/cursos/calificar-curso";
 	}
 	
-	@GetMapping("recomendaciones-curso-alumno")
-	public String recomendacionesViewAlumno(Model model) {		
+	@GetMapping("recomendaciones-curso-alumno-{id}")
+	public String recomendacionesViewAlumno(@PathVariable("id") Integer id, Model model) {		
 		try {
-			Optional<Curso> optional = cursoService.findById(1);
-			model.addAttribute("curso", optional.get());			
+			Optional<Curso> optional = cursoService.findById(id);
+			if(optional.isPresent()){
+				model.addAttribute("curso", optional.get());
+				return "/cursos/recomendaciones-curso-alumno";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}		
-		return "/cursos/recomendaciones-curso-alumno";
+		return "";
 	}
 	
-	@GetMapping("recomendaciones-curso-asesor")
-	public String recomendacionesViewAsesor(Model model) {		
+	@GetMapping("recomendaciones-curso-asesor-{id}")
+	public String recomendacionesViewAsesor(@PathVariable("id") Integer id, Model model) {		
 		try {
-			Optional<Curso> optional = cursoService.findById(1);
-			model.addAttribute("curso", optional.get());			
+			Optional<Curso> optional = cursoService.findById(id);
+			if(optional.isPresent()) {
+				model.addAttribute("curso", optional.get());
+				return "/cursos/recomendaciones-curso-asesor";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}		
-		return "/cursos/recomendaciones-curso-asesor";
+		return "";
 	}
 	
+	@GetMapping("curso-view-alumno-{id}")
+	public String cursoViewAlumno(@PathVariable("id") Integer id, Model model) {
+		try {
+			Optional<Curso> optional = cursoService.findById(id);
+			if(optional.isPresent()) {
+				model.addAttribute("curso", optional.get());
+				return "/cursos/curso-view-alumno";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}	
+		return "redirect: /alumnos/cursos-alumno";
+	}
+	
+	@GetMapping("curso-view-asesor-{id}")
+	public String cursoViewAsesor(@PathVariable("id") Integer id, Model model) {
+		try {
+			Optional<Curso> optional = cursoService.findById(id);
+			if(optional.isPresent()) {
+				model.addAttribute("curso", optional.get());
+				return "/cursos/curso-view-asesor";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}	
+		return "redirect: /asesores/cursos-asesor";
+	}
 	
 }
