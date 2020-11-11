@@ -13,9 +13,6 @@ section {
 }
 
 .blue-body {
-	/*  CSS PARA BACKGROND PARECIDO AL BANNER     
-    background: rgb(79,98,126);
-    background: linear-gradient(0deg, rgba(79,98,126,1) 6%, rgba(125,155,195,1) 88%);*/
 	background: rgb(176, 211, 244);
 	background: linear-gradient(180deg, rgba(176, 211, 244, 1) 13%,
 		rgba(101, 128, 166, 1) 90%);
@@ -351,9 +348,6 @@ section {
 #recomendaciones-curso .card-without .card{
 	border: none ;
 }
-#recomendaciones-curso .btn{
-	color: white !important;
-}
 #cards-recom{
 	margin-top:30px;
 }
@@ -373,3 +367,34 @@ section {
 	color: white !important;
 }
 
+#unidad-view .jumbotron{
+	padding-top: 50px;
+}
+#unidad-view h3{
+	padding-bottom: 20px;
+}
+#unidad-view .unidad-view-content .btn{
+	color: white !important;
+}
+#unidad-view .btn-toolbar{
+	padding-top: 20px;
+}
+
+#curso-view .jumbotron{
+	padding-top: 50px;
+}
+#curso-view h3{
+	padding-bottom: 20px;
+}
+#curso-view .card-without .card{
+	border: none ;
+}
+#curso-view .btn-toolbar{
+	color: white !important;
+}
+#curso-view .btn-toolbar{
+	padding-top: 10px;
+}
+#curso-view .cont-unidades .btn{
+	color: white !important;
+}

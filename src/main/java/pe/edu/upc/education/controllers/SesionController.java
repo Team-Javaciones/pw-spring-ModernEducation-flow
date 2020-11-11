@@ -7,13 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Sesion;
+import pe.edu.upc.education.models.entities.Unidad;
 import pe.edu.upc.education.services.SesionService;
+import pe.edu.upc.education.services.UnidadService;
 
 
 @Controller
@@ -24,10 +27,16 @@ public class SesionController {
 	@Autowired
 	private SesionService sesionService;
 	
-	@GetMapping("crear-sesion")
-	public String crearSesion(Model model) {
-		Sesion sesion = new Sesion();
+	@Autowired
+	private UnidadService unidadService;
+	
+	@GetMapping("crear-sesion-{id}")
+	public String crearSesion(@PathVariable("id") Integer id, Model model) {
+		Sesion sesion = new Sesion();		
 		try {
+			Optional<Unidad> optional = unidadService.findById(id);
+			sesion.setUnidad(optional.get());
+			
 			model.addAttribute("sesion", sesion);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,7 +67,7 @@ public class SesionController {
 			System.err.println(e.getMessage());
 		}
 		// Devuelve la URL mapping
-		return "redirect:/sesiones/crear-sesion";
+		return "redirect:/unidades/unidad-view-asesor-" + sesion.getUnidad().getId();
 	}
 	
 	@GetMapping("materiales-sesion")

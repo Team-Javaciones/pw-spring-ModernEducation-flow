@@ -7,7 +7,7 @@
 	<header th:replace="layout/layout-alumno :: header"> </header>
 
 	<main>
-		<section id="recomendaciones-curso" class="container">
+		<section id="curso-view" class="container">
 			<div class="jumbotron">
 				<h3 class="text-center">Curso del alumno</h3>
 
@@ -30,20 +30,9 @@
 						</div>						
 					</div>
 					<div class="col-md-2"></div>
-				</div>
-
-				<div class="btn-toolbar text-center">					
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-						<a class="btn btn-dark mr-4" 
-							th:href="@{'/cursos/recomendaciones-curso-alumno-' + ${curso.id}}"> Ver recomendaciones</a>				
-						<a class="btn btn-dark mr-4"> Calificar curso</a>				
-						<a class="btn btn-dark mr-4" onclick="history.back()"><i class="fas fa-chevron-left"></i> Volver</a>
-					</div>
-					<div class="col-md-1"></div>					
-				</div>			
+				</div>					
 				
-				<div class="pt-5">
+				<div >
 					<div class="row pb-3">
 						<div class="col-md-1"></div>
 						<div class="col-md-10">
@@ -51,7 +40,7 @@
 						</div>
 						<div class="col-md-1"></div>	
 					</div>
-					<div class="con-unidades" th:each="unidad : ${curso.unidades}">
+					<div class="cont-unidades" th:each="unidad : ${curso.unidades}">
 						<div class="row">
 							<div class="col-md-1"></div>
 							<div class="col-md-7">
@@ -62,7 +51,8 @@
 								</p>
 							</div>
 							<div class="col-md-3 text-center align-self-center">
-								<a class="btn btn-dark">Ingresar <i class="fas fa-chevron-right"></i></a>
+								<a class="btn btn-dark"
+									th:href="@{'/unidades/unidad-view-alumno-' + ${unidad.id}}">Ingresar <i class="fas fa-chevron-right"></i></a>
 							</div>	
 							<div class="col-md-1"></div>
 						</div>		
@@ -74,6 +64,20 @@
 							<div class="col-md-1"></div>					
 						</div>	
 					</div>			
+				</div>	
+				
+				<div class="btn-toolbar text-center">					
+					<div class="col-md-1"></div>
+					<div class="col-md-10">
+						<a class="btn btn-dark mr-4 mt-1" 
+							th:href="@{'/cursos/recomendaciones-curso-alumno-' + ${curso.id}}"> Ver recomendaciones</a>				
+						<a class="btn btn-dark mt-1"> Calificar curso</a>	
+					</div>
+					<div class="col-md-1"></div>					
+				</div>	
+				<div class="text-center pt-3">
+						<a class="btn btn-outline-dark" 
+						th:href="@{/alumnos/cursos-alumno}"><i class="fas fa-chevron-left"></i> Volver</a>
 				</div>	
 				
 			</div>

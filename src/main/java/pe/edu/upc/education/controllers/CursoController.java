@@ -115,60 +115,48 @@ public class CursoController {
 	public String recomendacionesViewAlumno(@PathVariable("id") Integer id, Model model) {		
 		try {
 			Optional<Curso> optional = cursoService.findById(id);
-			if(optional.isPresent()){
-				model.addAttribute("curso", optional.get());
-				return "/cursos/recomendaciones-curso-alumno";
-			}
+			model.addAttribute("curso", optional.get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}		
-		return "";
+		return "/cursos/recomendaciones-curso-alumno";
 	}
 	
 	@GetMapping("recomendaciones-curso-asesor-{id}")
 	public String recomendacionesViewAsesor(@PathVariable("id") Integer id, Model model) {		
 		try {
 			Optional<Curso> optional = cursoService.findById(id);
-			if(optional.isPresent()) {
-				model.addAttribute("curso", optional.get());
-				return "/cursos/recomendaciones-curso-asesor";
-			}
+			model.addAttribute("curso", optional.get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}		
-		return "";
+		return "/cursos/recomendaciones-curso-asesor";
 	}
 	
 	@GetMapping("curso-view-alumno-{id}")
 	public String cursoViewAlumno(@PathVariable("id") Integer id, Model model) {
 		try {
 			Optional<Curso> optional = cursoService.findById(id);
-			if(optional.isPresent()) {
-				model.addAttribute("curso", optional.get());
-				return "/cursos/curso-view-alumno";
-			}
+			model.addAttribute("curso", optional.get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}	
-		return "redirect: /alumnos/cursos-alumno";
+		return "/cursos/curso-view-alumno";
 	}
 	
 	@GetMapping("curso-view-asesor-{id}")
 	public String cursoViewAsesor(@PathVariable("id") Integer id, Model model) {
 		try {
 			Optional<Curso> optional = cursoService.findById(id);
-			if(optional.isPresent()) {
-				model.addAttribute("curso", optional.get());
-				return "/cursos/curso-view-asesor";
-			}
+			model.addAttribute("curso", optional.get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}	
-		return "redirect: /asesores/cursos-asesor";
+		return "/cursos/curso-view-asesor";
 	}
 	
 }
