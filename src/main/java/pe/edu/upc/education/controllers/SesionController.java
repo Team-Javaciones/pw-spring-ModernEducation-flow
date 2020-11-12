@@ -45,16 +45,16 @@ public class SesionController {
 		return "/sesiones/crear-sesion";
 	}
 	
-	@GetMapping
-	public String menuSesion(Model model) {
-		Sesion sesion = new Sesion();
+	@GetMapping("sesion-alumno-{id}")
+	public String menuSesionAlumno(@PathVariable("id") Integer id, Model model) {
 		try {
-			model.addAttribute("sesion", sesion);
+			Optional<Sesion> optional = sesionService.findById(id);
+			model.addAttribute("sesion", optional.get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-		return "/sesiones/sesion";
+		return "/sesiones/sesion-alumno";
 	}
 	
 	@PostMapping("save")	
@@ -70,10 +70,10 @@ public class SesionController {
 		return "redirect:/unidades/unidad-view-asesor-" + sesion.getUnidad().getId();
 	}
 	
-	@GetMapping("materiales-sesion")
-	public String materialesSesion(Model model){
+	@GetMapping("materiales-sesion-{id}")
+	public String materialesSesion(@PathVariable("id") Integer id, Model model){
 		try {
-			Optional<Sesion> optional = sesionService.findById(1);
+			Optional<Sesion> optional = sesionService.findById(id);
 			model.addAttribute("sesion", optional.get());					
 		} catch (Exception e) {
 			e.printStackTrace();

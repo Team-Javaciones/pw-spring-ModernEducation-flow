@@ -267,6 +267,12 @@ section {
 	max-width: 1500px;
 	background-color: #C2D6FF;
 }
+#vista-sesion a{
+	color: white;
+}
+#vista-sesion .btn-white{
+	color: black;
+}
 
 #buscador-curso {
 	padding-top: 100px;
@@ -363,7 +369,7 @@ section {
 	padding-top: 15px;
 	padding-bottom: 40px;
 }
-#materiales-sesion .btn{
+#materiales-sesion .row .btn{
 	color: white !important;
 }
 

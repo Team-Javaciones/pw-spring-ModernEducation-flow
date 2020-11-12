@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout-alumno :: head">
+</head>
+
+<body class="student-body">
+	<header th:replace="layout/layout-alumno :: header"> </header>
+	
+	<main>
+		<section id="vista-sesion">
+			<div class="container jumbotron">
+				<div class="text-center">
+					<img th:src="@{/images/sesion.png}" height="100"><br></br>
+					<h3 class="card-title">Sesión de: <span th:text="${sesion.tema}"></span></h3>
+	
+					<a type="button" class="btn btn-dark btn-lg btn-block">
+						<i class="fas fa-video"></i> Ingresar a reunión Zoom </a>
+						
+					<br></br> 
+					
+					<a type="button" class="btn btn-dark btn-lg btn-block">
+						<i class="fas fa-file-video"></i> Ver Grabación </a>
+					
+					<br></br>
+					
+					<div class="row">
+						<div class="col">
+							<a type="button" class="btn btn-dark btn-lg" th:href="@{'/sesiones/materiales-sesion-' + ${sesion.id}}">
+								<i class="fas fa-cloud-download-alt"></i> Materiales </a>
+						</div>
+						
+						<div class="col">
+							<a type="button"class="btn btn-dark btn-lg">
+								<i class="fas fa-file-alt"></i> Ejercicios </a>
+						</div>						
+					</div>
+					
+					
+					<h4>Califica a tu Asesor</h4>
+					
+					<div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio1" value="option1">
+							<label class="form-check-label" for="inlineRadio1">1</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio2" value="option2">
+							<label class="form-check-label" for="inlineRadio2">2</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio3" value="option3">
+							<label class="form-check-label" for="inlineRadio3">3</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio4" value="option4">
+							<label class="form-check-label" for="inlineRadio4">4</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio5" value="option5">
+							<label class="form-check-label" for="inlineRadio5">5</label>
+						</div>
+					</div>
+					<br>
+					<div>
+						<a type="submit" class="btn btn-dark btn-lg mr-3">
+							<i class="fas fa-star"></i> Calificar</a>
+						<a type="submit" class="btn btn-outline-dark btn-lg btn-white" 
+							th:href="@{'/unidades/unidad-view-alumno-' + ${sesion.unidad.id}}">
+							<i class="fas fa-chevron-left"></i> Volver</a>
+					</div>
+					
+				</div>
+	
+	
+			</div>
+		</section>
+	
+		<br></br>
+	</main>
+	
+	<footer th:replace="layout/layout-alumno :: footer"></footer>
+</body>
+</html>
