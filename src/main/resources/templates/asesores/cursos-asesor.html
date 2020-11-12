@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout-asesor :: head">
+</head>
+
+<body class="teacher-body">
+	<header th:replace="layout/layout-asesor :: header"> </header>
+	
+	<main>
+		<section id="cursos-alumno" class="container">
+			<div class="jumbotron">
+				<h3 class="text-center">Mis cursos</h3>
+				
+				<div th:each="curso : ${asesor.cursos}" class="row cursos-card">
+					<div class="col-md-1" ></div>
+					<div class="card mb-3 col-md-10" style="max-height: 250px;">
+						<div class="row no-gutters align-items-center">
+							<div class="col-md-3 text-center">
+								<img th:src="@{${curso.categoria.urlImage}}" class="card-img" style="max-height: 100px; max-width: 100px;">
+							</div>
+							<div class="col-md-6">
+								<div class="card-body">
+									<h5 class="card-title"><span th:text="${curso.nombre}"></span></h5>
+									<p><b>Descripción: </b><span th:text="${curso.descripcion}"></span></p>
+									<p>
+										<b>Fecha inicio: </b><span th:text="${curso.fechaInicio}"></span> - 
+										<b>Fecha fin: </b><span th:text="${curso.fechaFin}"></span>
+									</p>
+								</div>
+							</div>
+							<div class="col-md-3 text-center">
+								<a class="btn btn-lg btn-dark mr-4"
+									th:href="@{'/cursos/curso-view-asesor-' + ${curso.id}}">Ingresar <i class="fas fa-chevron-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1" ></div>
+				</div>
+
+			</div>
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-asesor :: footer"></footer>
+</body>
+</html>

@@ -13,16 +13,18 @@
 
 				<div class="row card-without">
 					<div class="col-md-2"></div>
-					<div class="card mb-3 col-md-8" style="max-height: 250px;">
+					<div class="card col-md-8" style="max-height: 250px;">
 						<div class="row no-gutters align-items-center">
 							<div class="col-md-4 text-center">
-								<img th:src="@{${curso.categoria.urlImage}}" class="card-img" style="max-height: 150px; max-width: 150px;">
+								<img th:src="@{${curso.categoria.urlImage}}" class="card-img" style="max-height: 120px; max-width: 120px;">
 							</div>
 							<div class="col-md-8">
 								<div class="card-body">
-									<p><b>Curso: </b> <span th:text="${curso.nombre}"></span></p>
-									<p><b>Asesor: </b> <span th:text="${curso.asesor.nombreCompleto}"></span></p>
-									<p><b>Calificación: </b> <span th:text="${curso.popularidad}"></span></p>
+									<p>
+										<b>Curso: </b> <span th:text="${curso.nombre}"></span>
+										<br><b>Asesor: </b> <span th:text="${curso.asesor.nombreCompleto}"></span>
+										<br><b>Calificación: </b> <span th:text="${curso.popularidad}"></span>
+									</p>
 								</div>
 							</div>
 						</div>						
@@ -31,7 +33,7 @@
 				</div>
 
 				<div class="text-center">
-					<a class="btn btn-dark mr-4">
+					<a class="btn btn-outline-dark mr-4" th:href="@{'/cursos/curso-view-asesor-' + ${curso.id}}">
 						<i class="fas fa-chevron-left"></i>  Volver</a>
 				</div>
 				

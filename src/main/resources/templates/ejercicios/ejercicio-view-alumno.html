@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout-alumno :: head">
+</head>
+
+<body class="student-body">
+	<header th:replace="layout/layout-alumno :: header"> </header>
+	
+	<main>
+		<section id="ejercicio-view" class="container">
+			<div class="jumbotron">
+				<div id="titulo-materiales" class="text-center">
+					<img th:src="@{/images/descargar-material.png}" height="60">
+					<h3><span th:text="${ejercicio.nombre}"></span></h3>					
+					<h5><b>Enunciado:</b> <span th:text="${ejercicio.enunciado}"></span></h5>				
+				</div>
+				
+				<div class="row" th:each="solucion : ${ejercicio.soluciones}">
+					<div class="col-md-2"></div>
+					<div class="card mb-3 col-md-8" style="max-height: 250px;">
+						<div class="row no-gutters align-items-center">							
+							<div class="col-md-12">
+								<div class="card-body">
+									<p>
+										<b>Autor: </b><span th:text="${solucion.alumno.nombreCompleto}"></span> 
+										<br><b>Comentario: </b><span th:text="${solucion.comentario}"></span> 
+										<br><b>Solución: </b><br><span th:text="${solucion.codigo}"></span>
+									</p>								
+								</div>
+							</div>
+						</div>						
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+				
+				<div class="text-center">
+					<a class="btn btn-dark mr-4 btn-white" th:href="@{'/soluciones/enviar-solucion-' + ${ejercicio.id}}"> Compartir solución</a>
+					<a class="btn btn-outline-dark" th:href="@{'/sesiones/ejercicios-sesion-' + ${ejercicio.sesion.id}}">
+						<i class="fas fa-chevron-left"></i>  Volver</a>										
+				</div>	
+			</div>
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-alumno :: footer"></footer>
+</body>
+</html>

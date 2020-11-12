@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout-asesor :: head">
+</head>
+
+<body class="teacher-body">
+	<header th:replace="layout/layout-asesor :: header"> </header>
+
+	<main>
+		<section id="curso-view" class="container">
+			<div class="jumbotron">
+				<h3 class="text-center">Curso del asesor</h3>
+
+				<div class="row card-without">
+					<div class="col-md-2"></div>
+					<div class="card mb-3 col-md-8" style="max-height: 250px;">
+						<div class="row no-gutters align-items-center">
+							<div class="col-md-4 text-center">
+								<img th:src="@{${curso.categoria.urlImage}}" class="card-img" style="max-height: 120px; max-width: 120px;">
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<p>
+										<b>Curso: </b> <span th:text="${curso.nombre}"></span>										
+										<br><b>Calificación: </b> <span th:text="${curso.popularidad}"></span>
+										<br><b>Fecha inicio: </b><span th:text="${curso.fechaInicio}"></span> 
+										<br><b>Fecha fin: </b><span th:text="${curso.fechaFin}"></span>									
+									</p>
+								</div>
+							</div>
+						</div>						
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+
+						
+				
+				<div>
+					<div class="row pb-3">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							<h5> <b>Contenido:</b> </h5>
+						</div>
+						<div class="col-md-1"></div>	
+					</div>
+					<div class="con-unidades" th:each="unidad : ${curso.unidades}">
+						<div class="row">
+							<div class="col-md-1"></div>
+							<div class="col-md-7">
+								<p>
+									<b>Nombre:</b>&emsp;&emsp;&emsp;<span th:text="${unidad.nombre}"></span>
+									<br><b>Horas:</b>&emsp;&emsp;&emsp;&emsp;<span th:text="${unidad.horas}"></span>
+									<br><b>Descripción:</b>&emsp;<span th:text="${unidad.descripcion}"></span>
+								</p>
+							</div>
+							<div class="col-md-3 text-center align-self-center">
+								<a class="btn btn-dark" 
+									th:href="@{'/unidades/unidad-view-asesor-' + ${unidad.id}}">Ingresar <i class="fas fa-chevron-right"></i></a>
+							</div>	
+							<div class="col-md-1"></div>
+						</div>		
+						<div class="row">
+							<div class="col-md-1"></div>
+							<div class="col-md-10">
+								<hr>
+							</div>	
+							<div class="col-md-1"></div>					
+						</div>	
+					</div>			
+				</div>	
+				
+				<div class="btn-toolbar text-center">								
+					<div class="col-md-1"></div>
+					<div class="col-md-10">
+						<a class="btn btn-dark mr-4 mt-1"> Crear unidad</a>
+						<a class="btn btn-dark mr-4 mt-1" 
+							th:href="@{'/cursos/recomendaciones-curso-asesor-' + ${curso.id}}"> Ver recomendaciones</a>			
+						<a class="btn btn-dark mr-4 mt-1"> Lista de alumnos</a>							
+					</div>					
+					<div class="col-md-1"></div>										
+				</div>		
+				<div class="text-center pt-3">
+						<a class="btn btn-outline-dark" 
+						th:href="@{/asesores/cursos-asesor}"><i class="fas fa-chevron-left"></i> Volver</a>
+				</div>	
+				
+			</div>
+
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-asesor :: footer"></footer>
+</body>
+</html>

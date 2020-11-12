@@ -26,7 +26,7 @@
 					</div>
 					<div class="text-center pt-5">
 						<button type="submit" class="btn btn-dark mr-4">Crear sesión</button>
-						<a class="btn btn btn-outline-dark" th:href="@{/inicio-asesores}">Cancelar</a>
+						<a class="btn btn btn-outline-dark" th:href="@{'/unidades/unidad-view-asesor-' + ${sesion.unidad.id}}"><i class="fas fa-chevron-left"></i> Volver</a>
 					</div>
 				</form>
 			</div>

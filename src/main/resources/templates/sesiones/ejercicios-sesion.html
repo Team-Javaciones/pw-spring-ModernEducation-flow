@@ -11,11 +11,11 @@
 			<div class="jumbotron">
 				<div id="titulo-materiales" class="text-center">
 					<img th:src="@{/images/descargar-material.png}" height="60">
-					<h3>Materiales de la sesión</h3>					
+					<h3>Ejercicios de la sesión</h3>					
 					<h5> <b>Tema:</b> <span th:text="${sesion.tema}"></span></h5>				
 				</div>
 				
-				<div class="row" th:each="materiales : ${sesion.materiales}">
+				<div class="row" th:each="ejercicio : ${sesion.ejercicios}">
 					<div class="col-md-2"></div>
 					<div class="card mb-3 col-md-8" style="max-height: 250px;">
 						<div class="row no-gutters align-items-center">
@@ -24,13 +24,13 @@
 							</div>
 							<div class="col-md-7">
 								<div class="card-body">
-									<p><b>Material: </b> <span th:text="${materiales.nombre}"></span> </p>
-									<p><b>Enlace: </b> <span th:text="${materiales.enlace}"></span></p>								
+									<p><b>Nombre: </b> <span th:text="${ejercicio.nombre}"></span> </p>
+									<p><b>Enunciado: </b> <span th:text="${ejercicio.enunciado}"></span></p>								
 								</div>
 							</div>
 							<div class="col-md-3 text-center">
-								<a th:href="@{${materiales.enlace}}" class="btn btn-dark">Descargar 
-								<i class="fas fa-arrow-alt-circle-down"></i></a>
+								<a class="btn btn-dark" th:href="@{'/ejercicios/ejercicio-view-alumno-' + ${ejercicio.id}}">
+									Ver soluciones <i class="fas fa-chevron-right"></i></a>
 							</div>
 						</div>						
 					</div>

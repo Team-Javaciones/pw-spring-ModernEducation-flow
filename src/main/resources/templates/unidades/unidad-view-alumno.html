@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout-alumno :: head">
+</head>
+
+<body class="student-body">
+	<header th:replace="layout/layout-alumno :: header"> </header>
+
+	<main>
+		<section id="unidad-view" class="container">
+			<div class="jumbotron">
+				<h3 class="text-center"><span th:text="${unidad.nombre}"></span></h3>		
+				
+				<div class="unidad-view-content">
+					<div class="row pb-3">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							<h5> <b>Sesiones:</b> </h5>
+						</div>
+						<div class="col-md-1"></div>	
+					</div>
+					<div class="cont-sesiones" th:each="sesion : ${unidad.sesiones}">
+						<div class="row">
+							<div class="col-md-1"></div>
+							<div class="col-md-7">
+								<p>
+									<b>Tema:</b>&emsp;&emsp;&emsp;<span th:text="${sesion.tema}"></span>
+									<br><b>Enlace:</b>&emsp;&emsp;<span th:text="${sesion.linkZoom}"></span>
+								</p>
+							</div>
+							<div class="col-md-3 text-center align-self-center">
+								<a class="btn btn-dark"
+									th:href="@{'/sesiones/sesion-alumno-' + ${sesion.id}}">Ingresar <i class="fas fa-chevron-right"></i></a>
+							</div>	
+							<div class="col-md-1"></div>
+						</div>		
+						<div class="row">
+							<div class="col-md-1"></div>
+							<div class="col-md-10">
+								<hr>
+							</div>	
+							<div class="col-md-1"></div>					
+						</div>	
+					</div>			
+				</div>	
+				
+				<div class="btn-toolbar text-center">								
+					<div class="col-md-1"></div>
+					<div class="col-md-10">						
+						<a class="btn btn-outline-dark" 
+							th:href="@{'/cursos/curso-view-alumno-' + ${unidad.curso.id}}"><i class="fas fa-chevron-left"></i> Volver</a>						
+					</div>					
+					<div class="col-md-1"></div>										
+				</div>		
+				
+			</div>
+
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-alumno :: footer"></footer>
+</body>
+</html>

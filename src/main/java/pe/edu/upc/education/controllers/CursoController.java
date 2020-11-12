@@ -111,11 +111,11 @@ public class CursoController {
 		return "/cursos/calificar-curso";
 	}
 	
-	@GetMapping("recomendaciones-curso-alumno")
-	public String recomendacionesViewAlumno(Model model) {		
+	@GetMapping("recomendaciones-curso-alumno-{id}")
+	public String recomendacionesViewAlumno(@PathVariable("id") Integer id, Model model) {		
 		try {
-			Optional<Curso> optional = cursoService.findById(1);
-			model.addAttribute("curso", optional.get());			
+			Optional<Curso> optional = cursoService.findById(id);
+			model.addAttribute("curso", optional.get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
@@ -123,11 +123,11 @@ public class CursoController {
 		return "/cursos/recomendaciones-curso-alumno";
 	}
 	
-	@GetMapping("recomendaciones-curso-asesor")
-	public String recomendacionesViewAsesor(Model model) {		
+	@GetMapping("recomendaciones-curso-asesor-{id}")
+	public String recomendacionesViewAsesor(@PathVariable("id") Integer id, Model model) {		
 		try {
-			Optional<Curso> optional = cursoService.findById(1);
-			model.addAttribute("curso", optional.get());			
+			Optional<Curso> optional = cursoService.findById(id);
+			model.addAttribute("curso", optional.get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
@@ -135,5 +135,28 @@ public class CursoController {
 		return "/cursos/recomendaciones-curso-asesor";
 	}
 	
+	@GetMapping("curso-view-alumno-{id}")
+	public String cursoViewAlumno(@PathVariable("id") Integer id, Model model) {
+		try {
+			Optional<Curso> optional = cursoService.findById(id);
+			model.addAttribute("curso", optional.get());
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}	
+		return "/cursos/curso-view-alumno";
+	}
+	
+	@GetMapping("curso-view-asesor-{id}")
+	public String cursoViewAsesor(@PathVariable("id") Integer id, Model model) {
+		try {
+			Optional<Curso> optional = cursoService.findById(id);
+			model.addAttribute("curso", optional.get());
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}	
+		return "/cursos/curso-view-asesor";
+	}
 	
 }
