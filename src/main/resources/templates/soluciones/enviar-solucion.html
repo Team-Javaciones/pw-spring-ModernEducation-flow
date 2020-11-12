@@ -26,7 +26,8 @@
 					</div>
 					<div class="text-center pt-5">
 						<button type="submit" class="btn btn-dark mr-4">Enviar solución</button>
-						<a class="btn btn btn-outline-dark ">Cancelar</a>
+						<a class="btn btn-outline-dark" th:href="@{'/ejercicios/ejercicio-view-alumno-' + ${solucion.ejercicio.id}}">
+							<i class="fas fa-chevron-left"></i>  Volver</a>		
 					</div>
 				</form>
 			</div>

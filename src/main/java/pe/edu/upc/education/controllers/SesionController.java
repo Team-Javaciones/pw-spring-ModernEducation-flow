@@ -80,5 +80,17 @@ public class SesionController {
 			System.err.println(e.getMessage());
 		}
 		return "/sesiones/materiales-sesion";
-	}			
+	}		
+	
+	@GetMapping("ejercicios-sesion-{id}")
+	public String ejerciciosSesion(@PathVariable("id") Integer id, Model model){
+		try {
+			Optional<Sesion> optional = sesionService.findById(id);
+			model.addAttribute("sesion", optional.get());					
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/sesiones/ejercicios-sesion";
+	}		
 }

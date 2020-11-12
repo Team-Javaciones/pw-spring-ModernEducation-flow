@@ -404,3 +404,14 @@ section {
 #curso-view .cont-unidades .btn{
 	color: white !important;
 }
+
+#ejercicio-view h3{
+	padding-top: 10px;;
+}
+#ejercicio-view h5{
+	padding-top: 15px;
+	padding-bottom: 40px;
+}
+#ejercicio-view .btn-white{
+	color: white !important;
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout-alumno :: head">
+</head>
+
+<body class="student-body">
+	<header th:replace="layout/layout-alumno :: header"> </header>
+	
+	<main>
+		<section id="materiales-sesion" class="container">
+			<div class="jumbotron">
+				<div id="titulo-materiales" class="text-center">
+					<img th:src="@{/images/descargar-material.png}" height="60">
+					<h3>Ejercicios de la sesión</h3>					
+					<h5> <b>Tema:</b> <span th:text="${sesion.tema}"></span></h5>				
+				</div>
+				
+				<div class="row" th:each="ejercicio : ${sesion.ejercicios}">
+					<div class="col-md-2"></div>
+					<div class="card mb-3 col-md-8" style="max-height: 250px;">
+						<div class="row no-gutters align-items-center">
+							<div class="col-md-2 text-center">
+								<img th:src="@{/images/material-sesion.png}" class="card-img" style="max-height: 70px; max-width: 70px;">
+							</div>
+							<div class="col-md-7">
+								<div class="card-body">
+									<p><b>Nombre: </b> <span th:text="${ejercicio.nombre}"></span> </p>
+									<p><b>Enunciado: </b> <span th:text="${ejercicio.enunciado}"></span></p>								
+								</div>
+							</div>
+							<div class="col-md-3 text-center">
+								<a class="btn btn-dark" th:href="@{'/ejercicios/ejercicio-view-alumno-' + ${ejercicio.id}}">
+									Ver soluciones <i class="fas fa-chevron-right"></i></a>
+							</div>
+						</div>						
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+				<div class="text-center">
+					<a class="btn btn-outline-dark" th:href="@{'/sesiones/sesion-alumno-' + ${sesion.id}}">
+						<i class="fas fa-chevron-left"></i>  Volver</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-alumno :: footer"></footer>
+</body>
+</html>

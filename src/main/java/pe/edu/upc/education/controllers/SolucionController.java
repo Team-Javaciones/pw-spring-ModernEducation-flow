@@ -1,18 +1,24 @@
 package pe.edu.upc.education.controllers;
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.education.models.entities.Alumno;
+import pe.edu.upc.education.models.entities.Ejercicio;
 import pe.edu.upc.education.models.entities.Solucion;
+import pe.edu.upc.education.services.AlumnoService;
+import pe.edu.upc.education.services.EjercicioService;
 import pe.edu.upc.education.services.SolucionService;
 
 @Controller
@@ -23,12 +29,22 @@ public class SolucionController {
 	@Autowired
 	private SolucionService solucionService;
 	
-	@GetMapping("enviar-solucion")
-	public String enviarSolucion(Model model) {
+	@Autowired
+	private EjercicioService ejercicioService;
+	
+	@Autowired
+	private AlumnoService alumnoService;
+	
+	@GetMapping("enviar-solucion-{id}")
+	public String enviarSolucion(@PathVariable("id") Integer id, Model model) {
 		Solucion solucion = new Solucion();
 		Date fechaActual = new Date();
-		solucion.setFecha(fechaActual);
+		solucion.setFecha(fechaActual);		
 		try {
+			Optional<Alumno> optional1 = alumnoService.findById(1); 
+			solucion.setAlumno(optional1.get());
+			Optional<Ejercicio> optional2 = ejercicioService.findById(id); 
+			solucion.setEjercicio(optional2.get());
 			model.addAttribute("solucion", solucion);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,6 +62,6 @@ public class SolucionController {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-		return "redirect:/soluciones/enviar-solucion";
+		return "redirect:/soluciones/enviar-solucion-" + solucion.getEjercicio().getId();
 	}
 }
