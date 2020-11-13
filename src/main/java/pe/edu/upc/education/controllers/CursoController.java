@@ -65,8 +65,11 @@ public class CursoController {
 	@GetMapping("buscar-curso")
 	public String buscarCurso(Model model) {
 		Curso curso = new Curso();
+		Curso cursoSearch = new Curso();
 		try {
 			List<Curso> cursos = cursoService.findAll();
+
+			model.addAttribute("cursoSearch", cursoSearch);
 			model.addAttribute("cursos", cursos);
 			model.addAttribute("curso", curso);
 		} catch (Exception e) {
@@ -157,6 +160,45 @@ public class CursoController {
 			System.err.println(e.getMessage());
 		}	
 		return "/cursos/curso-view-asesor";
+	}
+	
+	@PostMapping("search-curso")
+	public String search(@ModelAttribute("cursoSearch") Curso cursoSearch, Model model) {
+		model.addAttribute("cursoSearch", cursoSearch);
+		try {
+			List<Curso> cursos = cursoService.findByNombre(cursoSearch.getNombre());
+			model.addAttribute("cursos", cursos);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/cursos/buscador-curso";
+	}
+	
+	@PostMapping("search-precio")
+	public String searchPrecio(@ModelAttribute("cursoSearch") Curso cursoSearch, Model model) {
+		model.addAttribute("cursoSearch", cursoSearch);
+		try {
+			List<Curso> cursos = cursoService.findByPrecio(cursoSearch.getPrecio());
+			model.addAttribute("cursos", cursos);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/cursos/buscador-curso";
+	}
+	
+	@PostMapping("search-valoracion")
+	public String searchValoracion(@ModelAttribute("cursoSearch") Curso cursoSearch, Model model) {
+		model.addAttribute("cursoSearch", cursoSearch);
+		try {
+			List<Curso> cursos = cursoService.findByPopularidad(cursoSearch.getPopularidad());
+			model.addAttribute("cursos", cursos);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/cursos/buscador-curso";
 	}
 	
 }

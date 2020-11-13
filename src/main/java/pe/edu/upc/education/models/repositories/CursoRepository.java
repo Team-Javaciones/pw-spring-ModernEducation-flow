@@ -10,6 +10,6 @@ import pe.edu.upc.education.models.entities.Curso;
 @Repository
 public interface CursoRepository extends JpaRepository<Curso, Integer> {
 	List<Curso> findByNombreContaining(String nombre) throws Exception; 
-	List<Curso> findByPopularidadContaining(Float popularidad) throws Exception; 
-	List<Curso> findByPrecioContaining(Float precio) throws Exception; 
+	List<Curso> findByPopularidad(Float popularidad) throws Exception; 
+	List<Curso> findByPrecio(Float precio) throws Exception; 
 }

@@ -1,41 +1,8 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout-alumno :: head"></head>
+<head th:replace="layout/layout-curso :: curso-inicio-view-head"></head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="d-flex flex-grow-1">
-			<span class="w-100 d-lg-none d-block"> <!-- hidden spacer to center brand on mobile --></span>
-			<a class="navbar-brand px-3" th:href="@{/}"><img
-				th:src="@{/images/pc.png}" width="30" height="30"
-				class="d-inline-block align-top" alt=""><b> Modern</b>
-				Education</a>
-			<div class="w-100 text-right">
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#myNavbar7">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-			</div>
-		</div>
-		<div class="collapse navbar-collapse flex-grow-1 text-right pr-3"
-			id="myNavbar7">
-			<ul class="navbar-nav ml-auto flex-nowrap">
-				<li class="nav-item ml-2"><a th:href="@{/}"
-					class="nav-link nav">Inicio</a></li>
-				<li class="nav-item ml-2"><a th:href="@{/#beneficios}"
-					class="nav-link">Beneficios</a></li>
-				<li class="nav-item ml-2"><a th:href="@{/#about-us}"
-					class="nav-link">Acerca de</a></li>
-				<li class="nav-item ml-2"><a th:href="@{/cursos}"
-					class="nav-link">Cursos</a></li>
-				<li>
-					<div class="btn-nav">
-						<a class="btn btn-outline-light navbar-btn ml-3"
-							th:href="@{/inicio-asesores}">Enseña</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</nav>
+	<header th:replace="layout/layout-curso :: curso-inicio-view-header"> </header>
 
 	<div id="banner-text" class="container"></div>
 
@@ -44,7 +11,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="text-center">
-						<img th:src="@{/images/Python2.png}" height="100">
+						<img th:src="${curso.categoria.urlImage}" height="100">
 						<div class="row">
 							<div class="col">
 								<h1 th:text="${curso.nombre}"></h1>
@@ -135,15 +102,6 @@
 	</section>
 
 	<br></br>
-	<nav id="footer"
-		class="navbar sticky-bottom navbar-dark bg-dark justify-content-center">
-		<span class="navbar-text"> <small>©2020 Todos los
-				derechos reservados. Creado por Modern Education</small>
-		</span>
-	</nav>
-
-	<script th:src="@{/js/popper.min.js}"></script>
-	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
-	<script th:src="@{/js/bootstrap..min.js}"></script>
+	<footer th:replace="layout/layout-curso :: curso-inicio-footer"></footer>
 </body>
 </html>
