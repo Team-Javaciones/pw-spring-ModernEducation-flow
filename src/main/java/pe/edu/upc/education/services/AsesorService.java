@@ -10,5 +10,6 @@ public interface AsesorService extends CrudService<Asesor, Integer> {
 	Optional<Asesor> findByUsername(String username) throws Exception;
 	List<Asesor> findByCorreoContaining(String correo) throws Exception;
 	List<Asesor> findByPasswordContaining(String password) throws Exception;
+	Optional<Asesor> findByCorreo(String correo) throws Exception;
 
 }
