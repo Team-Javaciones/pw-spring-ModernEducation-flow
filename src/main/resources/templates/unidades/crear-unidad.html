@@ -25,13 +25,15 @@
 						</div>
 						<div class="form-group col-md-12">
 							<label>Horas:</label> <input
-								type="text" class="form-control" th:field="*{horas}"	required>
+								type="number" class="form-control" th:field="*{horas}"	required>
+								<small id="passwordHelpBlock" class="form-text text-muted">
+								duracion de la unidad aprox </small>
 						</div>
-						<div class="form-group col-md-12">
+						<div class="form-group col-md-6">
 							<label>Fecha de Inicio:</label> <input
 								type="date" class="form-control" th:field="*{fechaInicio}"	required>
 						</div>
-						<div class="form-group col-md-12">
+						<div class="form-group col-md-6">
 							<label>Fecha de Fin:</label> <input
 								type="date" class="form-control" th:field="*{fechaFin}"	required>
 						</div>

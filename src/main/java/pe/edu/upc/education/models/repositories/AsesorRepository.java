@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+
 import pe.edu.upc.education.models.entities.Asesor;
 
 @Repository
@@ -14,4 +15,5 @@ public interface AsesorRepository extends JpaRepository<Asesor, Integer> {
 	Optional<Asesor> findByUsername(String username) throws Exception;
 	List<Asesor> findByCorreoContaining(String correo) throws Exception;
 	List<Asesor> findByPasswordContaining(String password) throws Exception;
+	Optional<Asesor> findByCorreoIs(String correo) throws Exception;
 }

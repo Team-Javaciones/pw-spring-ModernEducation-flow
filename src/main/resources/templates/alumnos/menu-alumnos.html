@@ -6,7 +6,7 @@
 
 	>
 	<div id="Bienvenido" class="text-center">
-		<h1>¡Bienvenido !</h1>
+		<h1 th:text="'¡Bienvenido ' + ${alumno.nombreCompleto} + '!'"></h1>
 	</div>
 	<section id="menu-alumno">
 		<div class="container jumbotron">

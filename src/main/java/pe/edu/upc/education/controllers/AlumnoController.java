@@ -118,9 +118,11 @@ public class AlumnoController {
 
 	@GetMapping
 	public String menuAlumno(Model model) {
-		Alumno alumno = new Alumno();
+		//Alumno alumno = new Alumno();
 		try {
-			model.addAttribute("alumno", alumno);
+			//model.addAttribute("alumno", alumno);
+			Optional<Alumno> optional = alumnoService.findById(1);			
+			model.addAttribute("alumno", optional.get());	
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
@@ -141,4 +143,38 @@ public class AlumnoController {
 		}
 		return "/alumnos/cursos-alumno";
 	}
+	
+	@GetMapping("olvida-contra")
+	public String olvidoContra(Model model) {
+		Alumno alumno = new Alumno();
+		try {
+			model.addAttribute("alumno", alumno);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/alumnos/olvida-contra";
+	}
+	
+	
+	@PostMapping("verificar")
+	public String verificarCorreo(@ModelAttribute("alumno") Alumno alumno, SessionStatus status) {
+		try {
+			List<Alumno> optionalCorreo = alumnoService.findByCorreoContaining(alumno.getCorreo());
+			if (!optionalCorreo.isEmpty()) {
+				Optional<Alumno> op =alumnoService.findByCorreo(alumno.getCorreo());
+				op.get().setPassword(alumno.getPassword());
+				
+				alumnoService.update(op.get());
+				return "redirect:/alumnos";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		// Devuelve la URL mapping
+		return "redirect:/alumnos/login-alumnos";
+	}
+	
+	
 }
