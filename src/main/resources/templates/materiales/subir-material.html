@@ -4,35 +4,35 @@
 </head>
 
 <body class="teacher-body">
-	<header th:replace="layout/layout-asesor :: header"> </header>
-
-	<main>
-		<section id="subir-material">
-			<div class="container jumbotron">
-				<div class="text-center">
-					<img th:src="@{/images/enviar-solucion.png}" height="60">
-					<h3 class="card-title">Subir material</h3>
-				</div>
-				<form th:action="@{/materiales/save}" th:object="${material}" method="post" >
-					<div class="form-row">					
-						<div class="form-group col-md-12">
-							<label>Nombre del material</label>
-							<input th:field="*{nombre}" type="text" class="form-control" placeholder="Ficha número 1" rows="8" required>
-						</div>
-						<div class="form-group col-md-12">
-							<label>Enlace del material</label> 
-							<input th:field="*{enlace}" type="text" class="form-control" placeholder="https://drive.google.com/drive/folders/1teiaL_foUiZy_5whefK" rows="2">
-						</div>
-					</div>
-					<div class="text-center pt-5">
-						<button type="submit" class="btn btn-dark mr-4">Enviar material</button>
-						<a class="btn btn btn-outline-dark ">Cancelar</a>
-					</div>
-				</form>
+  <header th:replace=" layout/layout-asesor :: header">
+  </header>
+    <main>
+	  <section id="subir-material">
+		<div class="container jumbotron">
+		<div class="text-center">
+		  <img th:src="@{/images/enviar-solucion.png}" height="60">
+		    <h3 class="card-title">Subir material</h3>
+		  </div>
+		  <form  method="post" th:object="${material}" th:action="@{/materiales/guardar}"  >
+		    <div class="form form-row">					
+			  <div class="form-group col-md-12">
+			    <label>Nombre del material</label>
+				<input th:field="*{nombre}" type="text" class="form-control" placeholder="Ficha número 1" rows="8" required>
+			  </div>
+			  <div class="form-group col-md-12">
+			    <label>Enlace del material</label> 
+			    <input th:field="*{enlace}" type="text" class="form-control" placeholder="https://drive.google.com/drive/folders/1teiaL_foUiZy_5whefK" rows="2">
+			  </div>
+		    </div>
+		    <div class="text-center pt-5">
+			  <button type="submit" class="btn btn-dark mr-4">Enviar material</button>
+			  <a class="btn btn btn-outline-dark ">Cancelar</a>
 			</div>
-		</section>
+		  </form>
+		</div>
+	  </section>
 	</main>
-
-	<footer th:replace="layout/layout-asesor :: footer"></footer>
+	<footer th:replace=" layout/layout-asesor :: footer">
+	</footer>
 </body>
 </html>
