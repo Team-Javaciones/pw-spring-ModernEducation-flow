@@ -47,6 +47,18 @@ public class SesionController {
 		return "/sesiones/crear-sesion";
 	}
 	
+	@GetMapping("sesion-alumno-{id}")
+	public String menuSesionAlumno(@PathVariable("id") Integer id, Model model) {
+		try {
+			Optional<Sesion> optional = sesionService.findById(id);
+			model.addAttribute("sesion", optional.get());
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/sesiones/sesion-alumno";
+	}
+	
 	@GetMapping("sesion-asesor-{id}")
 	public String menuSesionAsesor(@PathVariable("id") Integer id, Model model) {
 		try {

@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout-alumno :: head">
+<head th:replace="layout/layout-asesor :: head">
 </head>
 
-<body class="student-body">
-	<header th:replace="layout/layout-alumno :: header"> </header>
+<body class="teacher-body">
+	<header th:replace="layout/layout-asesor :: header"> </header>
 	
 	<main>
 		<section id="vista-sesion">
@@ -42,7 +42,7 @@
 						<a type="submit" class="btn btn-dark btn-lg mr-3">
 							<i class="fas fa-star"></i> Calificar</a>
 						<a type="submit" class="btn btn-outline-dark btn-lg btn-white" 
-							th:href="@{'/unidades/unidad-view-alumno-' + ${sesion.unidad.id}}">
+							th:href="@{'/unidades/unidad-view-asesor-' + ${sesion.unidad.id}}">
 							<i class="fas fa-chevron-left"></i> Volver</a>
 					</div>
 					
@@ -55,6 +55,6 @@
 		<br></br>
 	</main>
 	
-	<footer th:replace="layout/layout-alumno :: footer"></footer>
+	<footer th:replace="layout/layout-asesor :: footer"></footer>
 </body>
 </html>
