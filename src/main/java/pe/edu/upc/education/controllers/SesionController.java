@@ -1,6 +1,5 @@
 package pe.edu.upc.education.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.education.models.entities.Ejercicio;
 import pe.edu.upc.education.models.entities.Sesion;
 import pe.edu.upc.education.models.entities.Unidad;
 import pe.edu.upc.education.services.SesionService;
@@ -96,8 +94,8 @@ public class SesionController {
 		return "/sesiones/materiales-sesion";
 	}		
 	
-	@GetMapping("ejercicios-sesion-{id}")
-	public String ejerciciosSesion(@PathVariable("id") Integer id, Model model){
+	@GetMapping("ejercicios-sesion-alumno-{id}")
+	public String ejerciciosSesionAlumno(@PathVariable("id") Integer id, Model model){
 		try {
 			Optional<Sesion> optional = sesionService.findById(id);
 			model.addAttribute("sesion", optional.get());					
@@ -105,20 +103,18 @@ public class SesionController {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-		return "/sesiones/ejercicios-sesion";
+		return "/sesiones/ejercicios-sesion-alumno";
 	}	
 	
-	
-	@GetMapping("crear-ejercicio")
-	public String crearEjercicio( Model model) {
-		Ejercicio ejercicio = new Ejercicio();		
+	@GetMapping("ejercicios-sesion-asesor-{id}")
+	public String ejerciciosSesionAsesor(@PathVariable("id") Integer id, Model model){
 		try {
-			List<Sesion> sesion = sesionService.findAll();
-			model.addAttribute("sesion", sesion);	
+			Optional<Sesion> optional = sesionService.findById(id);
+			model.addAttribute("sesion", optional.get());					
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-		return "/sesiones/crear-ejercicio";
+		return "/sesiones/ejercicios-sesion-asesor";
 	}
 }

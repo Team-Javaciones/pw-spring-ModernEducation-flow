@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout-alumno :: head">
+<head th:replace="layout/layout-asesor :: head">
 </head>
 
-<body class="student-body">
-	<header th:replace="layout/layout-alumno :: header"> </header>
+<body class="teacher-body">
+	<header th:replace="layout/layout-asesor :: header"> </header>
 	
 	<main>
 		<section id="ejercicio-view" class="container">
@@ -34,14 +34,13 @@
 				</div>
 				
 				<div class="text-center">
-					<a class="btn btn-dark mr-4 btn-white" th:href="@{'/soluciones/enviar-solucion-' + ${ejercicio.id}}"> Compartir solución</a>
-					<a class="btn btn-outline-dark" th:href="@{'/sesiones/ejercicios-sesion-alumno-' + ${ejercicio.sesion.id}}">
+					<a class="btn btn-outline-dark" th:href="@{'/sesiones/ejercicios-sesion-asesor-' + ${ejercicio.sesion.id}}">
 						<i class="fas fa-chevron-left"></i>  Volver</a>										
 				</div>	
 			</div>
 		</section>
 	</main>
 
-	<footer th:replace="layout/layout-alumno :: footer"></footer>
+	<footer th:replace="layout/layout-asesor :: footer"></footer>
 </body>
 </html>
