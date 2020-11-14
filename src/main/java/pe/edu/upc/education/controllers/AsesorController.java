@@ -150,19 +150,5 @@ public class AsesorController {
 		return "/asesores/cursos-asesor";
 	}	
 	
-	@Autowired
-	private SesionService sesionService;
-	
-	@GetMapping("crear-ejercicio")
-	public String crearEjercicio( Model model) {
-		Ejercicio ejercicio = new Ejercicio();		
-		try {
-			List<Sesion> sesion = sesionService.findAll();
-			model.addAttribute("sesion", sesion);	
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		return "/sesiones/crear-ejercicio";
-	}
+
 }
