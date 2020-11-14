@@ -154,7 +154,7 @@ public class AsesorController {
 	private SesionService sesionService;
 	
 	@GetMapping("crear-ejercicio")
-	public String crearEjercicio( Integer id, Model model) {
+	public String crearEjercicio( Model model) {
 		Ejercicio ejercicio = new Ejercicio();		
 		try {
 			List<Sesion> sesion = sesionService.findAll();
@@ -163,6 +163,6 @@ public class AsesorController {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-		return "/sesiones/crear-sesion";
+		return "/sesiones/crear-ejercicio";
 	}
 }
