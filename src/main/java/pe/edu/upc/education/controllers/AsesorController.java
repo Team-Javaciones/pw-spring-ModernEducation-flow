@@ -125,8 +125,10 @@ public class AsesorController {
 	@GetMapping("buscar-asesor")
 	public String buscarAsesor(Model model) {
 		Asesor asesor = new Asesor();
+		Asesor asesorSearch = new Asesor();
 		try {
 			List<Asesor> asesores = asesorService.findAll();
+			model.addAttribute("asesorSearch", asesorSearch);
 			model.addAttribute("asesores", asesores);
 			model.addAttribute("asesor", asesor);
 		} catch (Exception e) {
@@ -148,7 +150,20 @@ public class AsesorController {
 			System.err.println(e.getMessage());
 		}
 		return "/asesores/cursos-asesor";
-	}	
+	}
+	
+	@PostMapping("search-asesor")
+	public String searchAsesor(@ModelAttribute("asesorSearch") Asesor asesorSearch, Model model) {
+		model.addAttribute("asesorSearch", asesorSearch);
+		try {
+			List<Asesor> asesores = asesorService.findByNombreCompleto(asesorSearch.getNombreCompleto()); 
+			model.addAttribute("asesores", asesores);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/asesores/buscador-asesor";
+	}
 	
 	@Autowired
 	private SesionService sesionService;

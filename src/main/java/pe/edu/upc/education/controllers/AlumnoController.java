@@ -118,9 +118,11 @@ public class AlumnoController {
 
 	@GetMapping
 	public String menuAlumno(Model model) {
-		Alumno alumno = new Alumno();
+		//Alumno alumno = new Alumno();
 		try {
-			model.addAttribute("alumno", alumno);
+			//model.addAttribute("alumno", alumno);
+			Optional<Alumno> optional = alumnoService.findById(1);			
+			model.addAttribute("alumno", optional.get());	
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
