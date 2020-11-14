@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.models.entities.Categoria;
 import pe.edu.upc.education.models.entities.Curso;
+import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.CategoriaService;
 import pe.edu.upc.education.services.CursoService;
 
@@ -30,6 +32,9 @@ public class CursoController {
 	
 	@Autowired
 	private CategoriaService categoriaService;
+	
+	@Autowired
+	private AsesorService asesorService;
 	
 	@GetMapping
 	public String inicio(Model model) {
@@ -52,9 +57,14 @@ public class CursoController {
 	public String crearUnidad(Model model) {
 		Curso curso = new Curso();
 		try {
+			Optional<Asesor> op = asesorService.findById(1);			
+			model.addAttribute("asesor", op.get());
+			
 			List<Categoria> categorias = categoriaService.findAll();
 			model.addAttribute("categorias",categorias);
-			model.addAttribute("curso", curso);
+			model.addAttribute("cursoo", curso);
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
@@ -95,9 +105,11 @@ public class CursoController {
 	}
 	
 	@PostMapping("save")
-	public String save(@ModelAttribute("curso") Curso curso, SessionStatus status) {
+	public String save(@ModelAttribute("cursoo") Curso curso,@ModelAttribute("asesor") Asesor asesor, SessionStatus status) {
 		try {
 			
+			System.out.print(asesor.getId());
+			System.out.print(curso.getNombre());
 			
 			cursoService.save(curso);
 			status.setComplete();

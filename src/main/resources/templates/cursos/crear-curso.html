@@ -14,7 +14,7 @@
 					<img th:src="@{/images/crear-curso.png}" height="60">
 					<h3 class="card-title">Crear curso</h3>
 				</div>
-				<form th:action="@{/cursos/save}" th:object="${curso}" method="post">
+				<form th:action="@{/cursos/save}" th:object="${cursoo}" method="post">
 					<div class="form-row">
 						<div class="form-group col-md-12">
 							<label>Nombre del Curso: </label> <input type="text"
@@ -33,7 +33,7 @@
 						</div>
 						<div class="form-group col-md-12">
 							<label>Precio: </label> <input type="number" class="form-control"
-								th:field="*{precio}" required>
+								th:field="*{precio}" step=".01" required>
 						</div>
 						<div class="form-group col-md-12">
 							<label>Horas: </label> <input type="number" class="form-control"
