@@ -4,7 +4,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/modernEducationdb
     username: postgres
-    password: postgres
+    password: upc2020
   jpa:
     database: postgresql
     hibernate:

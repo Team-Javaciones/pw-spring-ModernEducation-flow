@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout-asesor :: head">
+</head>
+
+<body class="teacher-body">
+	<header th:replace="layout/layout-asesor :: header"> </header>
+	
+	<main>
+		<section id="actualizar-sesion">
+			<div class="container jumbotron">
+				<div class="text-center">
+					<img th:src="@{/images/actualizar-sesion.png}" height="60">
+					<h3 class="card-title">Actualizar sesion</h3>
+				</div>
+				<form th:action="@{/sesiones/update}" th:object="${sesion}" method="post">
+					<div class="form-row">
+						<div class="form-group col-md-12">					
+							<label>Tema de la sesión: </label> <input
+								type="text" class="form-control" th:field="*{tema}"	required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Enlace de la reunión en zoom:</label> <input
+								type="text" class="form-control" th:field="*{linkZoom}"	required>
+						</div>
+					</div>
+					<div class="text-center pt-5">
+						<button type="submit" class="btn btn-dark mr-4">Actualizar sesión</button>
+						<a class="btn btn btn-outline-dark" th:href="@{'/unidades/unidad-view-asesor-' + ${sesion.unidad.id}}"><i class="fas fa-chevron-left"></i> Volver</a>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-asesor :: footer"></footer>
+</body>
+</html>

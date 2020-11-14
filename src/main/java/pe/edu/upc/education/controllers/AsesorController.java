@@ -15,6 +15,9 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.services.AsesorService;
+import pe.edu.upc.education.services.SesionService;
+import pe.edu.upc.education.models.entities.Ejercicio;
+import pe.edu.upc.education.models.entities.Sesion;
 
 @Controller
 @RequestMapping("/asesores")
@@ -146,4 +149,20 @@ public class AsesorController {
 		}
 		return "/asesores/cursos-asesor";
 	}	
+	
+	@Autowired
+	private SesionService sesionService;
+	
+	@GetMapping("crear-ejercicio")
+	public String crearEjercicio( Integer id, Model model) {
+		Ejercicio ejercicio = new Ejercicio();		
+		try {
+			List<Sesion> sesion = sesionService.findAll();
+			model.addAttribute("sesion", sesion);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/sesiones/crear-sesion";
+	}
 }

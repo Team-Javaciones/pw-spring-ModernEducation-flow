@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout-asesor :: head">
+</head>
+
+<body class="teacher-body">
+	<header th:replace="layout/layout-asesor :: header"> </header>
+
+	<main>
+		<section id="crear-ejercicio">
+			<div class="container jumbotron">
+				<div class="text-center">
+					<img th:src="@{/images/crear-ejercicio.png}" height="60">
+					<h3 class="card-title">Crear Ejercicio</h3>
+				</div>
+				<form th:action="@{/ejercicios/save}" th:object="${ejercicio}" method="post">
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label>Nombre del ejercicio: </label> <input type="text"
+								class="form-control" th:field="*{nombre}" required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Sesion: </label> <input type="text"
+								class="form-control" th:field="*{sesion}" required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Ingresa ejercicio: </label>
+							<textarea class="form-control" rows="8" th:field="*{enunciado}" required></textarea>
+						</div>
+					</div>
+					<div class="text-center pt-5">
+						<button type="submit" class="btn btn-dark mr-4">Crear
+							ejercicio</button>
+						<a class="btn btn btn-outline-dark" th:href="@{/inicio-asesores}">Cancelar</a>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-asesor :: footer"></footer>
+</body>
+</html>
