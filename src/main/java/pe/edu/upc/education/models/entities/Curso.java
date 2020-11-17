@@ -30,10 +30,10 @@ public class Curso {
 	private String nombre;
 	
 	@Column(name = "descripcion", length = 250, nullable = false)
-	private String descripcion;
+	private String descripcion;	
 	
 	@Column(name = "popularidad", nullable = true)
-	private Float popularidad;
+	private Float popularidad;	
 	
 	@ManyToOne
 	@JoinColumn(name = "asesor_id")
@@ -104,12 +104,30 @@ public class Curso {
 		this.descripcion = descripcion;
 	}
 
-
+	public void updatePopularidad() {
+		Float val = 0F;
+		Integer cont = 0;
+		
+		
+		for (AlumnoCurso alumnoCurso : alumnoCursos) {	
+			if(alumnoCurso.getValoracion() != null) {
+				val += alumnoCurso.getValoracion();
+				cont++;
+			}
+		}
+		if(cont != 0)
+			setPopularidad(Math.round(val/cont * 10F) / 10.0F);			
+		else 
+			setPopularidad(null);		
+	}
+	
+	
 	public Float getPopularidad() {
+		updatePopularidad();
 		return popularidad;
 	}
 
-
+	
 	public void setPopularidad(Float popularidad) {
 		this.popularidad = popularidad;
 	}
