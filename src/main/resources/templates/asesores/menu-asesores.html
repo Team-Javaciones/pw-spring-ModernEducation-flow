@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout-alumno :: head"></head>
-<body class="student-body">
-	<header th:replace="layout/layout-alumno :: header"> </header>
+<head th:replace="layout/layout-asesor :: head"></head>
+<body class="teacher-body">
+	<header th:replace="layout/layout-asesor :: header"> </header>
 
 	<br>
 	<div id="Bienvenido" class="text-center">
-		<h1 th:text="'¡Bienvenido ' + ${alumno.nombreCompleto} + '!'"></h1>
+		<h1 th:text="'¡Bienvenido ' + ${asesor.nombreCompleto} + '!'"></h1>
 	</div>
 	<section id="menu-alumno">
 		<div class="container jumbotron">
@@ -19,8 +19,8 @@
 									height="200">
 							</div>
 							<div class="col-md-4">
-								<a href="#"><button
-										id="boton-grande" type="button" class="btn btn-dark btn-lg">
+								<a href="#"><button id="boton-grande" type="button"
+										class="btn btn-dark btn-lg">
 										<svg width="4em" height="4em" viewBox="0 0 16 16"
 											class="bi bi-person-fill" fill="currentColor"
 											xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,7 @@
 					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
 						<div class="row">
 							<div class="col-md-4">
-								<a th:href="@{/alumnos/perfil-alumno}"><button
+								<a th:href="@{/asesores/perfil-asesor}"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
 										<svg aria-hidden="true" width="0.8em" height="0.8em"
 											focusable="false" data-prefix="fas" data-icon="user-edit"
@@ -70,7 +70,7 @@
 								<img th:src="@{/images/mis-cursos.jpg}" width="555" height="200">
 							</div>
 							<div class="col-md-4">
-								<a th:href="@{/alumnos/cursos-alumno}"><button
+								<a th:href="@{/asesores/cursos-asesor}"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
 										<svg width="4em" height="4em" viewBox="0 0 16 16"
 											class="bi bi-book" fill="currentColor"
@@ -89,7 +89,7 @@
 					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
 						<div class="row">
 							<div class="col-md-4">
-								<a th:href="@{/alumnos/password-alumno}"><button
+								<a th:href="@{/asesores/password-asesor}"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
 										<svg aria-hidden="true" width="0.8em" height="0.8em"
 											focusable="false" data-prefix="fas" data-icon="cog"
@@ -116,21 +116,16 @@
 					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
 						<div class="row">
 							<div class="col-md-8">
-								<img th:src="@{/images/buscar-curso.jpg}" width="555"
-									height="200">
+								<img th:src="@{/images/new-course.png}" width="555" height="200">
 							</div>
 							<div class="col-md-4">
-								<a th:href="@{/cursos/buscar-curso}"><button
+								<a th:href="@{/cursos/crear-curso}"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
-										<svg aria-hidden="true" width="0.8em" height="0.8em"
-											focusable="false" data-prefix="fas" data-icon="search"
-											role="img" xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 512 512"
-											class="svg-inline--fa fa-search fa-w-16 fa-5x">
-											<path fill="currentColor"
-												d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
-												class=""></path></svg>
-										<h2>Buscador de Cursos</h2>
+										<svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+</svg>
+										<h2>Crea Curso</h2>
 									</button></a>
 
 							</div>
@@ -141,49 +136,31 @@
 					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
 						<div class="row">
 							<div class="col-md-4">
-								<a th:href="@{/asesores/buscar-asesor}"><button
+								<a th:href="@{/inicio-asesores}"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
-										<svg aria-hidden="true" width="0.8em" height="0.8em"
-											focusable="false" data-prefix="fas" data-icon="user-tie"
-											role="img" xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 448 512"
-											class="svg-inline--fa fa-user-tie fa-w-14 fa-5x">
-											<path fill="currentColor"
-												d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm95.8 32.6L272 480l-32-136 32-56h-96l32 56-32 136-47.8-191.4C56.9 292 0 350.3 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-72.1-56.9-130.4-128.2-133.8z"
-												class=""></path></svg>
-										<h2>Buscador de Asesores</h2>
+										<svg width="4em" height="4em" viewBox="0 0 16 16"
+											class="bi bi-box-arrow-right" fill="currentColor"
+											xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd"
+												d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+  <path fill-rule="evenodd"
+												d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+</svg>
+										<h2>Cerrar Sesión</h2>
 									</button></a>
 							</div>
 							<div class="col-md-8">
-								<img th:src="@{/images/maestros.jpg}" align="right" width="550"
-									height="200">
+								<img th:src="@{/images/exit.png}" align="right"
+									width="550" height="200">
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
-			<div class="text-center">
-				<br>
-				<a th:href="@{/}"><button type="button"
-						class="btn btn-dark btn-lg">
-
-						<h3>
-							<svg width="1em" height="1em" viewBox="0 0 16 16"
-								class="bi bi-box-arrow-right" fill="currentColor"
-								xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd"
-									d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-  <path fill-rule="evenodd"
-									d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-</svg>
-							Cerrar Sesión
-						</h3>
-					</button></a>
-			</div>
+			
 		</div>
 
 	</section>
-	<footer th:replace="layout/layout-alumno :: footer"></footer>
+	<footer th:replace="layout/layout-asesor :: footer"></footer>
 </body>
 </html>

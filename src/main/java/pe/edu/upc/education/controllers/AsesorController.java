@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.education.models.entities.Alumno;
 import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.SesionService;
@@ -137,6 +138,20 @@ public class AsesorController {
 		}
 		return "/asesores/buscador-asesor";
 	}
+	
+	@GetMapping
+	public String menuAsesor(Model model) {
+		//Asesor asesor = new Asesor();
+		try {
+			//model.addAttribute("asesor", asesor);
+			Optional<Asesor> optional = asesorService.findById(1);			
+			model.addAttribute("asesor", optional.get());	
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/asesores/menu-asesores";
+	}	
 	
 	@GetMapping("cursos-asesor")
 	public String cursosAsesor(Model model)

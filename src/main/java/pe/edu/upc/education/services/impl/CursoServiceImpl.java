@@ -55,10 +55,10 @@ public class CursoServiceImpl implements CursoService, Serializable {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Curso> findByPopularidad(Float popularidad) throws Exception {
-		return cursoRepository.findByPopularidad(popularidad);
+		return cursoRepository.findByPopularidadGreaterThanEqual(popularidad);
 	}
 	@Transactional(readOnly = true)
 	public List<Curso> findByPrecio(Float precio) throws Exception {
-		return cursoRepository.findByPrecio(precio);
+		return cursoRepository.findByPrecioLessThanEqual(precio);
 	}
 }
