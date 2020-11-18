@@ -29,10 +29,33 @@ public class AsesorController {
 	private AsesorService asesorService;
 	
 	@GetMapping("registro-asesores")
-	public String registroAsesor() {		
+	public String registroAsesor(Model model) {
+		Asesor asesor = new Asesor();
+		model.addAttribute("asesor", asesor);
+		
 		return "/asesores/registro-asesores";
 	}
-	
+	@PostMapping("registrar")
+	public String registrarAsesor(@ModelAttribute("asesor") Asesor asesor ,SessionStatus status)
+	{
+		try {
+			asesorService.save(asesor);
+			status.setComplete();
+			return "redirect:/asesores/perfil-asesor";
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+	/*	try {
+			return "redirect:/asesores/login-asesores";
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "redirect:/asesores/registro-asesores";
+	*/
+		return "redirect:/asesores/registro-asesores";
+	}
 	
 	@GetMapping("perfil-asesor")
 	public String editarPerfil(Model model) {
@@ -122,7 +145,7 @@ public class AsesorController {
 		}
 		return "redirect:/asesores/login-asesores";
 	}
-	
+
 	@GetMapping("buscar-asesor")
 	public String buscarAsesor(Model model) {
 		Asesor asesor = new Asesor();
