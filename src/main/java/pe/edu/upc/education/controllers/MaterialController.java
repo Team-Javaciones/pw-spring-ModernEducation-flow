@@ -34,7 +34,7 @@ public class MaterialController {
 		return "/materiales/subir-material";
 	}
 	
-	@PostMapping("save")	
+	@PostMapping("guardar")	
 	public String save(@ModelAttribute("material") Material material, SessionStatus status) {
 		try {
 			materialService.save(material);
