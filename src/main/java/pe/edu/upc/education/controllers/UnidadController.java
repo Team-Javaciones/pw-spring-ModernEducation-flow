@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.education.models.entities.Curso;
 import pe.edu.upc.education.models.entities.Unidad;
+import pe.edu.upc.education.services.CursoService;
 import pe.edu.upc.education.services.UnidadService;
 
 @Controller
@@ -22,11 +24,16 @@ import pe.edu.upc.education.services.UnidadService;
 public class UnidadController {
 	@Autowired
 	private UnidadService unidadService;
+
+	@Autowired
+	private CursoService cursoService;	
 	
-	@GetMapping("crear-unidad")
-	public String crearUnidad(Model model) {
+	@GetMapping("crear-unidad-{id}")
+	public String crearUnidad(@PathVariable Integer id, Model model) {
 		Unidad unidad = new Unidad();
 		try {
+			Optional<Curso> optional = cursoService.findById(id);
+			unidad.setCurso(optional.get());
 			model.addAttribute("unidad", unidad);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,7 +52,7 @@ public class UnidadController {
 			System.err.println(e.getMessage());
 		}
 		// Devuelve la URL mapping
-		return "redirect:/unidades/crear-unidad";
+		return "redirect:/cursos/curso-view-asesor-"+unidad.getCurso().getId();
 	}
 	
 	@GetMapping("unidad-view-asesor-{id}")

@@ -82,8 +82,8 @@ public class SesionController {
 		return "redirect:/unidades/unidad-view-asesor-" + sesion.getUnidad().getId();
 	}
 	
-	@GetMapping("materiales-sesion-{id}")
-	public String materialesSesion(@PathVariable("id") Integer id, Model model){
+	@GetMapping("materiales-sesion-alumno-{id}")
+	public String materialesSesionAlumno(@PathVariable("id") Integer id, Model model){
 		try {
 			Optional<Sesion> optional = sesionService.findById(id);
 			model.addAttribute("sesion", optional.get());					
@@ -93,6 +93,18 @@ public class SesionController {
 		}
 		return "/sesiones/materiales-sesion";
 	}		
+	
+	@GetMapping("materiales-sesion-asesor-{id}")
+	public String materialesSesionAsesor(@PathVariable("id") Integer id, Model model){
+		try {
+			Optional<Sesion> optional = sesionService.findById(id);
+			model.addAttribute("sesion", optional.get());					
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/sesiones/materiales-sesion-asesor";
+	}	
 	
 	@GetMapping("ejercicios-sesion-alumno-{id}")
 	public String ejerciciosSesionAlumno(@PathVariable("id") Integer id, Model model){

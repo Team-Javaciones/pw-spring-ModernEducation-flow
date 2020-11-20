@@ -50,7 +50,7 @@
 								<p>
 									<b>Nombre:</b>&emsp;&emsp;&emsp;<span th:text="${unidad.nombre}"></span>
 									<br><b>Horas:</b>&emsp;&emsp;&emsp;&emsp;<span th:text="${unidad.horas}"></span>
-									<br><b>Descripción:</b>&emsp;<span th:text="${unidad.descripcion}"></span>
+									<br><b>DescripciÃ³n:</b>&emsp;<span th:text="${unidad.descripcion}"></span>
 								</p>
 							</div>
 							<div class="col-md-3 text-center align-self-center">
@@ -72,7 +72,7 @@
 				<div class="btn-toolbar text-center">								
 					<div class="col-md-1"></div>
 					<div class="col-md-10">
-						<a class="btn btn-dark mr-4 mt-1" th:href="@{/unidades/crear-unidad}"> Crear unidad</a>
+						<a class="btn btn-dark mr-4 mt-1" th:href="@{'/unidades/crear-unidad-'+${curso.id}}"> Crear unidad</a>
 						<a class="btn btn-dark mr-4 mt-1" 
 							th:href="@{'/cursos/recomendaciones-curso-asesor-' + ${curso.id}}"> Ver recomendaciones</a>			
 						<a class="btn btn-dark mr-4 mt-1"> Lista de alumnos</a>							
