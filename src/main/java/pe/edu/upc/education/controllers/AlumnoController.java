@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Alumno;
+import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.services.AlumnoService;
 
 @Controller
@@ -25,10 +26,27 @@ public class AlumnoController {
 	private AlumnoService alumnoService;
 
 	@GetMapping("registro-alumnos")
-	public String registroAlumno() {
+	public String registroAlumno(Model model) {
+		Alumno alumno = new Alumno();
+		model.addAttribute("alumno", alumno);
+		
 		return "/alumnos/registro-alumnos";
 	}
-
+	@PostMapping("registrar")
+	public String registrarAsesor(@ModelAttribute("alumno") Alumno alumno ,SessionStatus status)
+	{
+		try {
+			alumnoService.save(alumno);
+			status.setComplete();
+			return "redirect:/alumnos/perfil-alumno";
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		
+		return "redirect:/alumnos/registro-alumnos";
+	}
+	
 	@GetMapping("perfil-alumno")
 	public String editarPerfil(Model model) {
 
