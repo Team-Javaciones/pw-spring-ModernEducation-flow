@@ -52,12 +52,16 @@ public class Alumno { //Edit para test
 		
 	@OneToMany(mappedBy = "alumno")
 	private List<AlumnoCurso> alumnoCursos;
-
+	
+	@OneToMany(mappedBy = "alumno")
+	private List<AlumnoAsesor> alumnoAsesores;
+	
 	@OneToMany(mappedBy = "alumno")
 	private List<Solucion> soluciones;
 	
 	public Alumno() {
 		alumnoCursos = new ArrayList<AlumnoCurso>();
+		alumnoAsesores = new ArrayList<AlumnoAsesor>();
 		soluciones = new ArrayList<Solucion>();
 	}
 
@@ -147,6 +151,14 @@ public class Alumno { //Edit para test
 
 	public void setSoluciones(List<Solucion> soluciones) {
 		this.soluciones = soluciones;
+	}
+
+	public List<AlumnoAsesor> getAlumnoAsesor() {
+		return alumnoAsesores;
+	}
+
+	public void setAlumnoAsesor(List<AlumnoAsesor> alumnoAsesor) {
+		this.alumnoAsesores = alumnoAsesor;
 	}		
 	
 }

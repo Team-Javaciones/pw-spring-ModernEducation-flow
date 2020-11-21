@@ -47,6 +47,9 @@ public class Asesor {
 	@Column(name = "tocken", nullable = true)
 	private Integer tocken;
 	
+	@Column(name = "valoracion", nullable = true)
+	private Float valoracion;
+	
 	@Column(name = "cuenta_zoom", length = 50, nullable = false)
 	private String cuentaZoom;
 	
@@ -56,8 +59,12 @@ public class Asesor {
 	@OneToMany(mappedBy = "asesor")
 	private List<Curso> cursos;
 	
+	@OneToMany(mappedBy = "asesor")
+	private List<AlumnoAsesor> alumnoAsesores;
+	
 	public Asesor() {
 		cursos = new ArrayList<Curso>();
+		alumnoAsesores = new ArrayList<AlumnoAsesor>();
 	}
 
 	public Integer getId() {
@@ -146,6 +153,39 @@ public class Asesor {
 
 	public void setCursos(List<Curso> cursos) {
 		this.cursos = cursos;
+	}
+
+	public void updateValoracion() {
+		Float val = 0F;
+		Integer cont = 0;
+		
+		for (AlumnoAsesor alumnoAsesor : alumnoAsesores) {	
+			if(alumnoAsesor.getValoracion() != null) {
+				val += alumnoAsesor.getValoracion();
+				cont++;
+			}
+		}
+		if(cont != 0)
+			setValoracion(Math.round(val/cont * 10F) / 10.0F);			
+		else 
+			setValoracion(null);		
+	}
+	
+	public Float getValoracion() {
+		updateValoracion();
+		return valoracion;
+	}
+
+	public void setValoracion(Float valoracion) {
+		this.valoracion = valoracion;
+	}
+
+	public List<AlumnoAsesor> getAlumnoAsesor() {
+		return alumnoAsesores;
+	}
+
+	public void setAlumnoAsesor(List<AlumnoAsesor> alumnoAsesor) {
+		this.alumnoAsesores = alumnoAsesor;
 	}
 	
 }

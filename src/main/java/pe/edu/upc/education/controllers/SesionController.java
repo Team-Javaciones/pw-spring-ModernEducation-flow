@@ -13,30 +13,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.education.models.entities.Alumno;
+import pe.edu.upc.education.models.entities.AlumnoAsesor;
+import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.models.entities.Sesion;
 import pe.edu.upc.education.models.entities.Unidad;
+import pe.edu.upc.education.services.AlumnoAsesorService;
+import pe.edu.upc.education.services.AlumnoService;
+import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.SesionService;
 import pe.edu.upc.education.services.UnidadService;
-
 
 @Controller
 @RequestMapping("/sesiones")
 @SessionAttributes("sesion")
 public class SesionController {
-	
+
 	@Autowired
 	private SesionService sesionService;
+
+	@Autowired
+	private AlumnoService alumnoService;
+	
+	@Autowired
+	private AsesorService asesorService;
 	
 	@Autowired
 	private UnidadService unidadService;
 	
+	@Autowired
+	private AlumnoAsesorService alumnoAsesorService;
+
 	@GetMapping("crear-sesion-{id}")
 	public String crearSesion(@PathVariable("id") Integer id, Model model) {
-		Sesion sesion = new Sesion();		
+		Sesion sesion = new Sesion();
 		try {
 			Optional<Unidad> optional = unidadService.findById(id);
 			sesion.setUnidad(optional.get());
-			
+
 			model.addAttribute("sesion", sesion);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,32 +58,57 @@ public class SesionController {
 		}
 		return "/sesiones/crear-sesion";
 	}
-	
+
 	@GetMapping("sesion-alumno-{id}")
 	public String menuSesionAlumno(@PathVariable("id") Integer id, Model model) {
+		AlumnoAsesor alumnoAsesor = new AlumnoAsesor();
 		try {
-			Optional<Sesion> optional = sesionService.findById(id);
+			Optional<Alumno> optional_alumno = alumnoService.findById(id);
+			model.addAttribute("alumno", optional_alumno.get());
+			Optional<Asesor> optional_asesor = asesorService.findById(id);
+			model.addAttribute("asesor", optional_asesor.get());
+			Optional<AlumnoAsesor> optional_alumnoAsesor = alumnoAsesorService.findById(id);
+			model.addAttribute("alumnoAsesor", optional_alumnoAsesor.get());
+			Optional<Sesion> optional = sesionService.findById(id);			
+			alumnoAsesor.setAlumno(optional_alumno.get());
+			
 			model.addAttribute("sesion", optional.get());
+			model.addAttribute("alumnoAsesor", alumnoAsesor);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
 		return "/sesiones/sesion-alumno";
 	}
-	
+
+	@PostMapping("saveAlumnoAsesor")
+	public String saveAlumnoAsesor(@ModelAttribute("alumnoAsesor") AlumnoAsesor alumnoAsesor, @ModelAttribute("alumno") Alumno alumno, @ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
+		try {
+			alumnoAsesor.setAsesor(sesion.getUnidad().getCurso().getAsesor());
+			alumnoAsesorService.save(alumnoAsesor);
+			status.setComplete();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		// Devuelve la URL mapping
+		return "redirect:/sesiones/sesion-alumno-" + sesion.getId();
+	}
+
 	@GetMapping("sesion-asesor-{id}")
 	public String menuSesionAsesor(@PathVariable("id") Integer id, Model model) {
 		try {
 			Optional<Sesion> optional = sesionService.findById(id);
 			model.addAttribute("sesion", optional.get());
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
 		return "/sesiones/sesion-asesor";
 	}
-	
-	@PostMapping("save")	
+
+	@PostMapping("save")
 	public String save(@ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
 		try {
 			sesionService.save(sesion);
@@ -81,48 +120,48 @@ public class SesionController {
 		// Devuelve la URL mapping
 		return "redirect:/unidades/unidad-view-asesor-" + sesion.getUnidad().getId();
 	}
-	
+
 	@GetMapping("materiales-sesion-alumno-{id}")
-	public String materialesSesionAlumno(@PathVariable("id") Integer id, Model model){
+	public String materialesSesionAlumno(@PathVariable("id") Integer id, Model model) {
 		try {
 			Optional<Sesion> optional = sesionService.findById(id);
-			model.addAttribute("sesion", optional.get());					
+			model.addAttribute("sesion", optional.get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
 		return "/sesiones/materiales-sesion";
-	}		
-	
+	}
+
 	@GetMapping("materiales-sesion-asesor-{id}")
-	public String materialesSesionAsesor(@PathVariable("id") Integer id, Model model){
+	public String materialesSesionAsesor(@PathVariable("id") Integer id, Model model) {
 		try {
 			Optional<Sesion> optional = sesionService.findById(id);
-			model.addAttribute("sesion", optional.get());					
+			model.addAttribute("sesion", optional.get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
 		return "/sesiones/materiales-sesion-asesor";
-	}	
-	
+	}
+
 	@GetMapping("ejercicios-sesion-alumno-{id}")
-	public String ejerciciosSesionAlumno(@PathVariable("id") Integer id, Model model){
+	public String ejerciciosSesionAlumno(@PathVariable("id") Integer id, Model model) {
 		try {
 			Optional<Sesion> optional = sesionService.findById(id);
-			model.addAttribute("sesion", optional.get());					
+			model.addAttribute("sesion", optional.get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
 		return "/sesiones/ejercicios-sesion-alumno";
-	}	
-	
+	}
+
 	@GetMapping("ejercicios-sesion-asesor-{id}")
-	public String ejerciciosSesionAsesor(@PathVariable("id") Integer id, Model model){
+	public String ejerciciosSesionAsesor(@PathVariable("id") Integer id, Model model) {
 		try {
 			Optional<Sesion> optional = sesionService.findById(id);
-			model.addAttribute("sesion", optional.get());					
+			model.addAttribute("sesion", optional.get());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
