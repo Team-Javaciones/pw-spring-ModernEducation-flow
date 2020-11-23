@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,8 +46,10 @@ public class Asesor {
 	@Column(name = "password", length = 50, nullable = false)
 	private String password;
 	
-	@Column(name = "tocken", nullable = true)
-	private Integer tocken;
+	private Boolean enable;
+	
+	@OneToMany(mappedBy = "asesor", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<AuthorityAsesor> authorities;
 	
 	@Column(name = "valoracion", nullable = true)
 	private Float valoracion;
@@ -63,10 +67,35 @@ public class Asesor {
 	private List<AlumnoAsesor> alumnoAsesores;
 	
 	public Asesor() {
+		
+		this.enable = true;
+		this.authorities = new ArrayList<>();
+		
 		cursos = new ArrayList<Curso>();
 		alumnoAsesores = new ArrayList<AlumnoAsesor>();
 	}
-
+	public Asesor(String username, String password) {
+		
+		this.username = username;
+		this.password = password;
+		this.enable = true;
+		this.authorities = new ArrayList<>();
+		
+		cursos = new ArrayList<Curso>();
+		alumnoAsesores = new ArrayList<AlumnoAsesor>();
+	}
+	public Boolean getEnable() {
+		return enable;
+	}
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
+	}
+	public List<AuthorityAsesor> getAuthorities() {
+		return authorities;
+	}
+	public void setAuthorities(List<AuthorityAsesor> authorities) {
+		this.authorities = authorities;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -121,14 +150,6 @@ public class Asesor {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Integer getTocken() {
-		return tocken;
-	}
-
-	public void setTocken(Integer tocken) {
-		this.tocken = tocken;
 	}
 
 	public String getCuentaZoom() {

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,8 +46,11 @@ public class Alumno { //Edit para test
 	@Column(name = "password", length = 50, nullable = false)
 	private String password;
 	
-	@Column(name = "tocken", nullable = true)
-	private Integer tocken;
+	private Boolean enable;
+	
+	//ATENCION AQUI
+	@OneToMany(mappedBy = "alumno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<AuthorityAlumno> authorities;
 	
 	@Column(name = "entidad_educativa", length = 50, nullable = false)
 	private String entidadEducativa;
@@ -59,12 +64,38 @@ public class Alumno { //Edit para test
 	@OneToMany(mappedBy = "alumno")
 	private List<Solucion> soluciones;
 	
-	public Alumno() {
+	public Alumno() {		
+		this.enable = true;
+		this.authorities = new ArrayList<>();
+		
 		alumnoCursos = new ArrayList<AlumnoCurso>();
 		alumnoAsesores = new ArrayList<AlumnoAsesor>();
 		soluciones = new ArrayList<Solucion>();
 	}
-
+	public Alumno(String username, String password) {
+		
+		this.username = username;
+		this.password = password;
+		this.enable = true;
+		this.authorities = new ArrayList<>();
+		
+		alumnoCursos = new ArrayList<AlumnoCurso>();
+		alumnoAsesores = new ArrayList<AlumnoAsesor>();
+		soluciones = new ArrayList<Solucion>();
+	}
+	
+	public Boolean getEnable() {
+		return enable;
+	}
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
+	}
+	public List<AuthorityAlumno> getAuthorities() {
+		return authorities;
+	}
+	public void setAuthorities(List<AuthorityAlumno> authorities) {
+		this.authorities = authorities;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -120,15 +151,6 @@ public class Alumno { //Edit para test
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public Integer getTocken() {
-		return tocken;
-	}
-
-	public void setTocken(Integer tocken) {
-		this.tocken = tocken;
-	}
-
 	public String getEntidadEducativa() {
 		return entidadEducativa;
 	}
