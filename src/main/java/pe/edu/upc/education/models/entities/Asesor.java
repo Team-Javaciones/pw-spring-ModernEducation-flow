@@ -43,7 +43,7 @@ public class Asesor {
 	@Column(name = "username", length = 50, nullable = false)
 	private String username;
 	
-	@Column(name = "password", length = 50, nullable = false)
+	@Column(name = "password", length = 60, nullable = false)
 	private String password;
 	
 	private Boolean enable;
@@ -83,6 +83,13 @@ public class Asesor {
 		
 		cursos = new ArrayList<Curso>();
 		alumnoAsesores = new ArrayList<AlumnoAsesor>();
+	}
+	public void addAuthority( String auth ) {
+		AuthorityAsesor authority = new AuthorityAsesor();
+		authority.setAuthority( auth ) ;
+		authority.setAsesor( this );
+		
+		this.authorities.add( authority );
 	}
 	public Boolean getEnable() {
 		return enable;
