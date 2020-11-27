@@ -23,7 +23,7 @@
 								<div class="card-body">
 									<p>
 										<b>Curso: </b> <span th:text="${curso.nombre}"></span>										
-										<br><b>Calificación: </b> <span th:text="${curso.popularidad}"></span>
+										<br><b>Calificación: </b> <span th:text="${curso.popularidad}"></span><span th:if="${curso.popularidad} == null">No existen calificaciones</span>
 										<br><b>Fecha inicio: </b><span th:text="${curso.fechaInicio}"></span> 
 										<br><b>Fecha fin: </b><span th:text="${curso.fechaFin}"></span>									
 									</p>
@@ -51,7 +51,7 @@
 								<p>
 									<b>Nombre:</b>&emsp;&emsp;&emsp;<span th:text="${unidad.nombre}"></span>
 									<br><b>Horas:</b>&emsp;&emsp;&emsp;&emsp;<span th:text="${unidad.horas}"></span>
-									<br><b>DescripciÃ³n:</b>&emsp;<span th:text="${unidad.descripcion}"></span>
+									<br><b>Descripción:</b>&emsp;<span th:text="${unidad.descripcion}"></span>
 								</p>
 							</div>
 							<div class="col-md-3 text-center align-self-center">
@@ -67,8 +67,13 @@
 							</div>	
 							<div class="col-md-1"></div>					
 						</div>	
+					</div>	
+					
+					<div th:if="${curso.unidades.isEmpty()}" class="text-center pb-5">
+						<h6>Este curso no posee ninguna unidad.</h6>
 					</div>			
 				</div>	
+				
 				
 				<div class="btn-toolbar text-center">								
 					<div class="col-md-1"></div>

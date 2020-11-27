@@ -10,15 +10,12 @@
 	<main>
 		<section id="cursos-alumno" class="container">
 			<div class="jumbotron">
-				<h3 class="text-center">Mis cursos</h3>
+				<h3 class="text-center pb-4">Mis cursos</h3>			
+									
+				<div class="text-center pb-4">
+					<a class="btn btn-dark" th:href="@{/cursos/crear-curso}"><i class="fas fa-plus-circle"></i> Crear curso</a>
+				</div>			
 				
-				<div class="text-center">
-						<a class="btn btn-success " th:href="@{/cursos/crear-curso}"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-</svg> Crear Curso</a>
-					</div>
-				<br>
 				<div th:each="curso : ${asesor.cursos}" class="row cursos-card">
 					<div class="col-md-1" ></div>
 					<div class="card mb-3 col-md-10" style="max-height: 250px;">
@@ -43,6 +40,10 @@
 						</div>
 					</div>
 					<div class="col-md-1" ></div>
+				</div>
+				
+				<div th:if="${asesor.cursos.isEmpty()}" class="text-center">
+					<h6>No has creado ningún curso hasta el momento.</h6>
 				</div>
 
 			</div>

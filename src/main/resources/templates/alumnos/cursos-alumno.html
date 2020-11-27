@@ -38,6 +38,10 @@
 					</div>
 					<div class="col-md-1" ></div>
 				</div>
+				
+				<div th:if="${alumno.alumnoCursos.isEmpty()}" class="text-center">
+					<h6>No te encuentras registrado en ningún curso.</h6>
+				</div>
 
 			</div>
 		</section>

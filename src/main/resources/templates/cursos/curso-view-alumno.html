@@ -24,7 +24,7 @@
 									<p>
 										<b>Curso: </b> <span th:text="${curso.nombre}"></span>
 										<br><b>Asesor: </b> <span th:text="${curso.asesor.nombreCompleto}"></span>
-										<br><b>Calificación: </b> <span th:text="${curso.popularidad}"></span>
+										<br><b>Calificación: </b> <span th:text="${curso.popularidad}"></span><span th:if="${curso.popularidad} == null">No existen calificaciones</span>
 									</p>
 								</div>
 							</div>
@@ -40,7 +40,7 @@
 							<h5> <b>Contenido:</b> </h5>
 						</div>
 						<div class="col-md-1"></div>	
-					</div>
+					</div>	
 					<div class="cont-unidades" th:each="unidad : ${curso.unidades}">
 						<div class="row">
 							<div class="col-md-1"></div>
@@ -64,7 +64,11 @@
 							</div>	
 							<div class="col-md-1"></div>					
 						</div>	
-					</div>			
+					</div>		
+					
+					<div th:if="${curso.unidades.isEmpty()}" class="text-center pb-5">
+						<h6>Este curso no posee ninguna unidad.</h6>
+					</div>	
 				</div>	
 				
 				<div class="btn-toolbar text-center">					
