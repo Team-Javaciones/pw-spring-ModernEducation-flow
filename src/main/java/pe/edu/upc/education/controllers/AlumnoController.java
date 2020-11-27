@@ -88,8 +88,7 @@ public class AlumnoController {
 	}
 	*/
 	@GetMapping("perfil-alumno")
-	public String editarPerfil(Model model, Authentication authentication) {
-
+	public String perfilAlumno(Model model, Authentication authentication) {
 		try {
 			Optional<Alumno> optional = alumnoService.findByUsername(authentication.getName());
 			if (optional.isPresent()) {
@@ -101,7 +100,20 @@ public class AlumnoController {
 		}
 		return "/alumnos/perfil-alumno";
 	}
+	@GetMapping("editar-perfil-alumno")
+	public String editarPerfil(Model model, Authentication authentication) {
 
+		try {
+			Optional<Alumno> optional = alumnoService.findByUsername(authentication.getName());
+			if (optional.isPresent()) {
+				model.addAttribute("alumno", optional.get());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/alumnos/editar-perfil-alumno";
+	}
 	@PostMapping("update")
 	public String updatePerfil(@ModelAttribute("alumno") Alumno alumno, SessionStatus status) {
 		try {

@@ -20,13 +20,11 @@
 									height="200">
 							</div>
 							<div class="col-md-4">
-								<a href="#"><button
+								<a th:href="@{/alumnos/perfil-alumno}"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
 										<svg width="4em" height="4em" viewBox="0 0 16 16"
-											class="bi bi-person-fill" fill="currentColor"
-											xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd"
-												d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+											class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+ 												<path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
 </svg>
 										<br>
 										<h2>Mi Perfil</h2>
@@ -40,7 +38,7 @@
 					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
 						<div class="row">
 							<div class="col-md-4">
-								<a th:href="@{/alumnos/perfil-alumno}"><button
+								<a th:href="@{/alumnos/editar-perfil-alumno}"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
 										<svg aria-hidden="true" width="0.8em" height="0.8em"
 											focusable="false" data-prefix="fas" data-icon="user-edit"

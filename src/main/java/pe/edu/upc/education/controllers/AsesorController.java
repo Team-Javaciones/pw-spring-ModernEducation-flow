@@ -90,7 +90,7 @@ public class AsesorController {
 	*/
 	
 	@GetMapping("perfil-asesor")
-	public String editarPerfil(Model model, Authentication authentication) {
+	public String perfilAsesor(Model model, Authentication authentication) {
 		try {
 			Optional<Asesor> optional = asesorService.findByUsername(authentication.getName());
 			if(optional.isPresent()) {
@@ -101,6 +101,19 @@ public class AsesorController {
 			System.err.println(e.getMessage());
 		}
 		return "/asesores/perfil-asesor";
+	}		
+	@GetMapping("editar-perfil-asesor")
+	public String editarPerfil(Model model, Authentication authentication) {
+		try {
+			Optional<Asesor> optional = asesorService.findByUsername(authentication.getName());
+			if(optional.isPresent()) {
+			model.addAttribute("asesor", optional.get());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/asesores/editar-perfil-asesor";
 	}	
 	@PostMapping("update")	
 	public String updatePerfil(@ModelAttribute("asesor") Asesor asesor, SessionStatus status) {
