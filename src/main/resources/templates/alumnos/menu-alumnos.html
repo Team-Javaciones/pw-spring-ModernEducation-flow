@@ -7,7 +7,7 @@
 
 	<br>
 	<div id="Bienvenido" class="text-center">
-		<h1>!Bienvenido <span sec:authentication="name">Username</span></h1>
+		<h1>Bienvenido <span th:text="${alumno.nombreCompleto}"></span></h1>
 	</div>
 	<section id="menu-alumno">
 		<div class="container jumbotron">
@@ -166,7 +166,7 @@
 			</div>
 			<div class="text-center">
 				<br>
-				<a th:href="@{/}"><button type="button"
+				<a th:href="@{/logout}"><button type="button"
 						class="btn btn-dark btn-lg">
 
 						<h3>
@@ -180,7 +180,8 @@
 </svg>
 							Cerrar Sesión
 						</h3>
-					</button></a>
+					</button>
+				</a>
 			</div>
 		</div>
 

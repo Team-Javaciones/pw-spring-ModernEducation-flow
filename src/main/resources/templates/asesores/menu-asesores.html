@@ -7,7 +7,7 @@
 
 	<br>
 	<div id="Bienvenido" class="text-center">
-		<h1 th:text="'¡Bienvenido ' + ${asesor.nombreCompleto} + '!'"></h1>
+		<h1 th:text="'Bienvenido ' + ${asesor.nombreCompleto}"></h1>
 	</div>
 	<section id="menu-alumno">
 		<div class="container jumbotron">
@@ -137,7 +137,7 @@
 					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
 						<div class="row">
 							<div class="col-md-4">
-								<a th:href="@{/inicio-asesores}"><button
+								<a th:href="@{/logout}"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
 										<svg width="4em" height="4em" viewBox="0 0 16 16"
 											class="bi bi-box-arrow-right" fill="currentColor"

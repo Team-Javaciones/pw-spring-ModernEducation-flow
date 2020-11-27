@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,6 +58,8 @@ public class AsesorController {
 		
 		return "redirect:/login";
 	}
+	
+	/*
 	@GetMapping("login-asesores")
 	public String loginAsesores(Model model) {
 		Usuario usuario = new Usuario();
@@ -84,10 +87,12 @@ public class AsesorController {
 		
 		return "redirect:/alumnos/ingreso-alumnos";
 	}
+	*/
+	
 	@GetMapping("perfil-asesor")
-	public String editarPerfil(Model model) {
+	public String editarPerfil(Model model, Authentication authentication) {
 		try {
-			Optional<Asesor> optional = asesorService.findById(1);
+			Optional<Asesor> optional = asesorService.findByUsername(authentication.getName());
 			if(optional.isPresent()) {
 			model.addAttribute("asesor", optional.get());
 			}
@@ -96,8 +101,7 @@ public class AsesorController {
 			System.err.println(e.getMessage());
 		}
 		return "/asesores/perfil-asesor";
-	}
-	
+	}	
 	@PostMapping("update")	
 	public String updatePerfil(@ModelAttribute("asesor") Asesor asesor, SessionStatus status) {
 		try {
@@ -109,15 +113,13 @@ public class AsesorController {
 		}
 		// Devuelve la URL mapping
 		return "redirect:/asesores/perfil-asesor";
-	}
-	
+	}	
 	
 	
 	@GetMapping("password-asesor")
-	public String editarContra(Model model) {
-			
+	public String editarContra(Model model, Authentication authentication) {			
 		try {
-			Optional<Asesor> optional = asesorService.findById(1);
+			Optional<Asesor> optional = asesorService.findByUsername(authentication.getName());
 			if(optional.isPresent()) {
 			model.addAttribute("asesor", optional.get());
 			}
@@ -129,11 +131,9 @@ public class AsesorController {
 		return "/asesores/password-asesor";
 	
 	}
-	
 	@PostMapping("password")	
 	public String updateContra(@ModelAttribute("asesor") Asesor asesor, SessionStatus status) {
-		try {
-			
+		try {			
 			asesorService.update(asesor);
 			status.setComplete();
 		} catch (Exception e) {
@@ -162,11 +162,9 @@ public class AsesorController {
 	}
 	
 	@GetMapping
-	public String menuAsesor(Model model) {
-		//Asesor asesor = new Asesor();
-		try {
-			//model.addAttribute("asesor", asesor);
-			Optional<Asesor> optional = asesorService.findById(1);			
+	public String menuAsesor(Model model, Authentication authentication) {		
+		try {			
+			Optional<Asesor> optional = asesorService.findByUsername(authentication.getName());			
 			model.addAttribute("asesor", optional.get());	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,10 +174,10 @@ public class AsesorController {
 	}	
 	
 	@GetMapping("cursos-asesor")
-	public String cursosAsesor(Model model)
+	public String cursosAsesor(Model model, Authentication authentication)
 	{
 		try {
-			Optional<Asesor> optional = asesorService.findById(1);			
+			Optional<Asesor> optional = asesorService.findByUsername(authentication.getName());			
 			model.addAttribute("asesor", optional.get());			
 			
 		} catch (Exception e) {
