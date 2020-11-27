@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,22 +55,32 @@ public class CursoController {
 	}
 	
 	@GetMapping("crear-curso")
-	public String crearUnidad(Model model) {
+	public String crearCurso(Model model, Authentication authentication) {
 		Curso curso = new Curso();
 		try {
-			Optional<Asesor> op = asesorService.findById(1);			
-			model.addAttribute("asesor", op.get());
+			Optional<Asesor> op = asesorService.findByUsername(authentication.getName());
+			curso.setAsesor(op.get());
+			model.addAttribute("curso", curso);
 			
 			List<Categoria> categorias = categoriaService.findAll();
-			model.addAttribute("categorias",categorias);
-			model.addAttribute("cursoo", curso);
-			
-			
+			model.addAttribute("categorias",categorias);			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
 		return "/cursos/crear-curso";
+	}
+	@PostMapping("save")
+	public String save(@ModelAttribute("curso") Curso curso, SessionStatus status) {
+		try {						
+			cursoService.save(curso);
+			status.setComplete();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		// Devuelve la URL mapping 
+		return "redirect:/asesores/cursos-asesor";
 	}
 	
 	@GetMapping("buscar-curso")
@@ -104,22 +115,7 @@ public class CursoController {
 		return "redirect:/cursos";		
 	}
 	
-	@PostMapping("save")
-	public String save(@ModelAttribute("cursoo") Curso curso,@ModelAttribute("asesor") Asesor asesor, SessionStatus status) {
-		try {
-			
-			System.out.print(asesor.getId());
-			System.out.print(curso.getNombre());
-			
-			cursoService.save(curso);
-			status.setComplete();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		// Devuelve la URL mapping 
-		return "redirect:/cursos/crear-curso";
-	}
+	
 	
 	@GetMapping("calificar-curso")
 	public String registroAsesor() {		

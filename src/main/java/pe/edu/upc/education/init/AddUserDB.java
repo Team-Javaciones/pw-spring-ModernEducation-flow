@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 
 import pe.edu.upc.education.models.entities.Alumno;
 import pe.edu.upc.education.models.entities.Asesor;
+import pe.edu.upc.education.models.entities.Categoria;
 import pe.edu.upc.education.models.entities.Usuario;
 import pe.edu.upc.education.models.repositories.AlumnoRepository;
 import pe.edu.upc.education.models.repositories.AsesorRepository;
 import pe.edu.upc.education.models.repositories.AuthorityRepository;
+import pe.edu.upc.education.models.repositories.CategoriaRepository;
 import pe.edu.upc.education.models.repositories.UsuarioRepository;
 
 @Service 
@@ -28,6 +30,9 @@ public class AddUserDB implements CommandLineRunner {
 
 	@Autowired
 	private AsesorRepository asesorRepository;
+	
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 	
 	public void run(String... args) throws Exception {
 		/*
@@ -84,7 +89,45 @@ public class AddUserDB implements CommandLineRunner {
 		asesorRepository.save(a_asesor1);
 		
 		
-		System.out.println("USUARIOS CREADOS");*/
+		System.out.println("USUARIOS CREADOS");
+		
+		
+		Categoria categoria1 = new Categoria();
+		categoria1.setNombre("C#");
+		categoria1.setUrlImage("/images/categoria-c.png");
+		categoriaRepository.save(categoria1);
+		
+		Categoria categoria2 = new Categoria();
+		categoria2.setNombre("C++");
+		categoria2.setUrlImage("/images/categoria-c++.png");
+		categoriaRepository.save(categoria2);
+		
+		Categoria categoria3 = new Categoria();
+		categoria3.setNombre("Java");
+		categoria3.setUrlImage("/images/categoria-java.png");
+		categoriaRepository.save(categoria3);
+		
+		Categoria categoria4 = new Categoria();
+		categoria4.setNombre("Python");
+		categoria4.setUrlImage("/images/categoria-python.png");
+		categoriaRepository.save(categoria4);
+		
+		Categoria categoria5 = new Categoria();
+		categoria5.setNombre("Java Script");
+		categoria5.setUrlImage("/images/categoria-js.png");
+		categoriaRepository.save(categoria5);
+		
+		Categoria categoria6 = new Categoria();
+		categoria6.setNombre("PHP");
+		categoria6.setUrlImage("/images/categoria-php.png");
+		categoriaRepository.save(categoria6);
+		
+		Categoria categoria7 = new Categoria();
+		categoria7.setNombre("Swift");
+		categoria7.setUrlImage("/images/categoria-swift.png");
+		categoriaRepository.save(categoria7);
+		
+		System.out.println("CATEGORIAS CREADAS");*/
 	}
 
 }
