@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout-alumno :: head"></head>
 <body class="student-body">
 	<header th:replace="layout/layout-alumno :: header"> </header>
 
 	<br>
 	<div id="Bienvenido" class="text-center">
-		<h1 th:text="'¡Bienvenido ' + ${alumno.nombreCompleto} + '!'"></h1>
+		<h1>!Bienvenido <span sec:authentication="name">Username</span></h1>
 	</div>
 	<section id="menu-alumno">
 		<div class="container jumbotron">

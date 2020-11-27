@@ -1,6 +1,5 @@
 package pe.edu.upc.education.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Alumno;
-import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.models.entities.Usuario;
 import pe.edu.upc.education.services.AlumnoService;
 import pe.edu.upc.education.services.UsuarioService;
@@ -41,11 +39,13 @@ public class AlumnoController {
 		return "/alumnos/registro-alumnos";
 	}
 	@PostMapping("registrar")
-	public String registrarAsesor(@ModelAttribute("alumno") Alumno alumno, @ModelAttribute("usuario") Usuario usuario, SessionStatus status)
+	public String registrarAlumno(@ModelAttribute("alumno") Alumno alumno, @ModelAttribute("usuario") Usuario usuario, SessionStatus status)
 	{
 		try {
 			usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
 			usuario.setTipo("ALUMNO");
+			usuario.setEnable(true);
+			usuario.addAuthority("ROLE_ALUMNO");
 			alumnoService.save(alumno);
 			usuarioService.save(usuario);
 			status.setComplete();
@@ -54,7 +54,7 @@ public class AlumnoController {
 			System.err.println(e.getMessage());
 		}
 		
-		return "redirect:/alumnos/login-alumnos";
+		return "redirect:/login";
 	}
 	@GetMapping("login-alumnos")
 	public String loginAlumno(Model model) {

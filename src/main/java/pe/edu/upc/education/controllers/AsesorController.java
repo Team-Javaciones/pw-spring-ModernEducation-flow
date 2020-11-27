@@ -14,13 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.education.models.entities.Alumno;
 import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.services.AsesorService;
-import pe.edu.upc.education.services.SesionService;
 import pe.edu.upc.education.services.UsuarioService;
-import pe.edu.upc.education.models.entities.Ejercicio;
-import pe.edu.upc.education.models.entities.Sesion;
 import pe.edu.upc.education.models.entities.Usuario;
 
 @Controller
@@ -49,6 +45,8 @@ public class AsesorController {
 		try {
 			usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
 			usuario.setTipo("ASESOR");
+			usuario.setEnable(true);
+			usuario.addAuthority("ROLE_ASESOR");
 			asesorService.save(asesor);
 			usuarioService.save(usuario);
 			status.setComplete();
@@ -57,7 +55,7 @@ public class AsesorController {
 			System.err.println(e.getMessage());
 		}
 		
-		return "redirect:/asesores/login-asesores";
+		return "redirect:/login";
 	}
 	@GetMapping("login-asesores")
 	public String loginAsesores(Model model) {

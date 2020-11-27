@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:fragment="head">
 <meta charset="utf-8">
@@ -38,7 +39,7 @@
 					<li>
 						<div class="btn-nav">
 							<a class="btn btn-outline-light navbar-btn ml-3"
-								th:href="@{/inicio-asesores}">Cerrar sesión</a>
+								th:href="@{/logout}">Cerrar sesión</a>
 						</div>
 					</li>
 				</ul>

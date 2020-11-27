@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <meta charset="utf-8">
@@ -65,7 +66,7 @@
 					<p>
 						Concéctate y aprende a programar<br>desde donde te encuentres
 					</p>
-					<a class="btn btn-light btn-lg mr-4" th:href="@{/alumnos/login-alumnos}">Iniciar sesión</a> 
+					<a class="btn btn-light btn-lg mr-4" th:href="@{/login}">Iniciar sesión</a> 
 					<a class="btn btn-outline-light btn-lg" th:href="@{/alumnos/registro-alumnos}">Regístrate</a>
 				</div>
 				<div class="col my-auto">

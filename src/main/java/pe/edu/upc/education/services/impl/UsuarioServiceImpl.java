@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pe.edu.upc.education.models.entities.Alumno;
 import pe.edu.upc.education.models.entities.Usuario;
 import pe.edu.upc.education.models.repositories.UsuarioRepository;
 import pe.edu.upc.education.services.UsuarioService;
