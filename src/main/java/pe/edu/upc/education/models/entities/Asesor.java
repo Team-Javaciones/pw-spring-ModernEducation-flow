@@ -41,12 +41,6 @@ public class Asesor {
 	@Column(name = "username", length = 50, nullable = false)
 	private String username;
 	
-	@Column(name = "password", length = 50, nullable = false)
-	private String password;
-	
-	@Column(name = "tocken", nullable = true)
-	private Integer tocken;
-	
 	@Column(name = "valoracion", nullable = true)
 	private Float valoracion;
 	
@@ -113,22 +107,6 @@ public class Asesor {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Integer getTocken() {
-		return tocken;
-	}
-
-	public void setTocken(Integer tocken) {
-		this.tocken = tocken;
 	}
 
 	public String getCuentaZoom() {

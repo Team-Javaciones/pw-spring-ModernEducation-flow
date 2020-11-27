@@ -63,12 +63,6 @@ public class AsesorServiceImpl implements AsesorService, Serializable {
 	}
 	@Transactional(readOnly = true)
 	@Override
-	public List<Asesor> findByPasswordContaining(String password) throws Exception {
-		// TODO Auto-generated method stub
-		return  asesorRepository.findByPasswordContaining(password);
-	}
-	@Transactional(readOnly = true)
-	@Override
 	public Optional<Asesor> findByCorreo(String correo) throws Exception {
 		
 		return asesorRepository.findByCorreoIs(correo);

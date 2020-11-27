@@ -18,34 +18,34 @@
                         <h4 class="card-title text-center">Regístrate como asesor</h4>
                         
                         
-                        <form method="post" th:object="${asesor}" th:action="@{/asesores/registrar}">
+                        <form method="post" th:action="@{/asesores/registrar}">
 
 							<h5 class="pb-1 pt-4">Datos personales</h5>
   							<div class="form-row">
   							
   								<div class="form-group col-md-6">
     								<label>Nombre completo: </label>
-    								<input th:field="*{nombreCompleto}" type="text" class="form-control form-control-sm" placeholder="Carlos Alberto Sánchez Prado" required>
+    								<input th:field="${asesor.nombreCompleto}" type="text" class="form-control form-control-sm" placeholder="Carlos Alberto Sánchez Prado" required>
 								</div>
   								<div class="form-group col-md-6">
     								<label for="inputTelefono">Teléfono:</label>
-    								<input th:field="*{telefono}" type="number" class="form-control form-control-sm" placeholder="980564578" required>
+    								<input th:field="${asesor.telefono}" type="number" class="form-control form-control-sm" placeholder="980564578" required>
 								</div>
 								<div class="form-group col-md-6">
     								<label for="inputCorreoElectronico">Correo electrónico: </label>
-    								<input th:field="*{correo}" type="text" class="form-control form-control-sm" placeholder="albertito123@gmail.com" required>
+    								<input th:field="${asesor.correo}" type="text" class="form-control form-control-sm" placeholder="albertito123@gmail.com" required>
 								</div>
 								<div class="form-group col-md-6">
     								<label for="inputFechaNacimiento">Fecha de nacimiento:</label>
-    								<input th:field="*{fechaNacimiento}" type="date" class="form-control form-control-sm" required>
+    								<input th:field="${asesor.fechaNacimiento}" type="date" class="form-control form-control-sm" required>
 								</div>
 								<div class="form-group col-md-6">
     								<label for="inputCuentaZoom">Cuenta de zoom:</label>
-    								<input th:field="*{cuentaZoom}" type="text" class="form-control form-control-sm" placeholder="albertito123@gmail.com" required>
+    								<input th:field="${asesor.cuentaZoom}" type="text" class="form-control form-control-sm" placeholder="albertito123@gmail.com" required>
 								</div>
 								<div class="form-group col-md-6">
     								<label for="inputEntidadEducativa">Enlace documentos de estudio:</label>
-    								<input th:field="*{enlaceDocumento}" type="text" class="form-control form-control-sm" placeholder="https://drive.google.com/drive/1cxACx" required>
+    								<input th:field="${asesor.enlaceDocumento}" type="text" class="form-control form-control-sm" placeholder="https://drive.google.com/drive/1cxACx" required>
 								</div>
   							</div>
   							
@@ -54,13 +54,13 @@
 							<div class="form-row">
     							<div class="form-group col-md-6">
         							<label for="inputUsuario">Usuario: </label>
-        							<input th:field="*{username}" type="text" class="form-control form-control-sm" placeholder="AlbertitoTuTerror123" required>
+        							<input th:field="${usuario.username}" type="text" class="form-control form-control-sm" placeholder="AlbertitoTuTerror123" required>
     							</div>
 							</div>
 							<div class="form-row">
     							<div class="form-group col-md-6">
         							<label for="inputPassword1">Contraseña: </label>
-        							<input th:field="*{password}" type="password" class="form-control form-control-sm" required>
+        							<input th:field="${usuario.password}" type="password" class="form-control form-control-sm" required>
     							</div>
     							<div class="form-group col-md-6">
         							<label for="inputPassword2">Confirmar Contraseña: </label>
