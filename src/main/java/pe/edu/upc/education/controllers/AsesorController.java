@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,46 +18,74 @@ import pe.edu.upc.education.models.entities.Alumno;
 import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.SesionService;
+import pe.edu.upc.education.services.UsuarioService;
 import pe.edu.upc.education.models.entities.Ejercicio;
 import pe.edu.upc.education.models.entities.Sesion;
+import pe.edu.upc.education.models.entities.Usuario;
 
 @Controller
 @RequestMapping("/asesores")
 @SessionAttributes("asesor")
 public class AsesorController {	
-	
+
 	@Autowired
 	private AsesorService asesorService;
+
+	@Autowired
+	private UsuarioService usuarioService;
 	
 	@GetMapping("registro-asesores")
 	public String registroAsesor(Model model) {
 		Asesor asesor = new Asesor();
 		model.addAttribute("asesor", asesor);
+		Usuario usuario = new Usuario();
+		model.addAttribute("usuario", usuario);
 		
 		return "/asesores/registro-asesores";
 	}
 	@PostMapping("registrar")
-	public String registrarAsesor(@ModelAttribute("asesor") Asesor asesor ,SessionStatus status)
+	public String registrarAsesor(@ModelAttribute("asesor") Asesor asesor ,@ModelAttribute("usuario") Usuario usuario ,SessionStatus status)
 	{
 		try {
+			usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+			usuario.setTipo("ASESOR");
 			asesorService.save(asesor);
+			usuarioService.save(usuario);
 			status.setComplete();
-			return "redirect:/asesores/perfil-asesor";
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-	/*	try {
-			return "redirect:/asesores/login-asesores";
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		return "redirect:/asesores/registro-asesores";
-	*/
-		return "redirect:/asesores/registro-asesores";
+		
+		return "redirect:/asesores/login-asesores";
 	}
-	
+	@GetMapping("login-asesores")
+	public String loginAsesores(Model model) {
+		Usuario usuario = new Usuario();
+		model.addAttribute("usuario", usuario);
+		
+		return "/asesores/login-asesores";
+	}
+	@PostMapping("login")
+	public String loginAsesor(@ModelAttribute("usuario") Usuario usuario, SessionStatus status)
+	{
+		try {
+			//Valida solo en usuario
+			//Fata la contraseña
+			Optional<Asesor> asesor = asesorService.findByUsername(usuario.getUsername());
+			
+			if (!asesor.isEmpty())
+			{
+				
+				return "redirect:/alumnos/perfil-alumno";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		
+		return "redirect:/alumnos/ingreso-alumnos";
+	}
 	@GetMapping("perfil-asesor")
 	public String editarPerfil(Model model) {
 		try {
@@ -117,35 +146,7 @@ public class AsesorController {
 		return "redirect:/asesores/password-asesor";
 	}
 	
-	@GetMapping("login-asesores")
-	public String LoginAsesor(Model model)
-	{
-		Asesor asesor=new Asesor();
-		try {
-			model.addAttribute("asesor", asesor);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		
-		return "/asesores/login-asesores";
-	}
-	@PostMapping("comprobar")
-	public String comprobarAsesor(@ModelAttribute("asesor") Asesor asesor ,SessionStatus status)
-	{
-		try {
-			List<Asesor> optionalCorreo=asesorService.findByCorreoContaining(asesor.getCorreo());
-			List<Asesor> optionalContraseña=asesorService.findByPasswordContaining(asesor.getPassword());
-			if(!optionalCorreo.isEmpty() && !optionalContraseña.isEmpty()) {
-				return "redirect:/inicio-asesores";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		return "redirect:/asesores/login-asesores";
-	}
-
+	
 	@GetMapping("buscar-asesor")
 	public String buscarAsesor(Model model) {
 		Asesor asesor = new Asesor();

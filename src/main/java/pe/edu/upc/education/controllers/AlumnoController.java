@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Alumno;
 import pe.edu.upc.education.models.entities.Asesor;
+import pe.edu.upc.education.models.entities.Usuario;
 import pe.edu.upc.education.services.AlumnoService;
+import pe.edu.upc.education.services.UsuarioService;
 
 @Controller
 @RequestMapping("/alumnos")
@@ -24,27 +27,61 @@ public class AlumnoController {
 
 	@Autowired
 	private AlumnoService alumnoService;
-
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	@GetMapping("registro-alumnos")
 	public String registroAlumno(Model model) {
 		Alumno alumno = new Alumno();
 		model.addAttribute("alumno", alumno);
+		Usuario usuario = new Usuario();
+		model.addAttribute("usuario", usuario);
 		
 		return "/alumnos/registro-alumnos";
 	}
 	@PostMapping("registrar")
-	public String registrarAsesor(@ModelAttribute("alumno") Alumno alumno ,SessionStatus status)
+	public String registrarAsesor(@ModelAttribute("alumno") Alumno alumno, @ModelAttribute("usuario") Usuario usuario, SessionStatus status)
 	{
 		try {
+			usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+			usuario.setTipo("ALUMNO");
 			alumnoService.save(alumno);
+			usuarioService.save(usuario);
 			status.setComplete();
-			return "redirect:/alumnos/perfil-alumno";
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
 		
-		return "redirect:/alumnos/registro-alumnos";
+		return "redirect:/alumnos/login-alumnos";
+	}
+	@GetMapping("login-alumnos")
+	public String loginAlumno(Model model) {
+		Usuario usuario = new Usuario();
+		model.addAttribute("usuario", usuario);
+		
+		return "/alumnos/login-alumnos";
+	}
+	@PostMapping("login")
+	public String loginAsesor(@ModelAttribute("usuario") Usuario usuario, SessionStatus status)
+	{
+		try {
+			//Valida solo en usuario
+			//Fata la contraseña
+			Optional<Alumno> alumno = alumnoService.findByUsername(usuario.getUsername());
+			
+			if (!alumno.isEmpty())
+			{
+				
+				return "redirect:/alumnos/perfil-alumno";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		
+		return "redirect:/alumnos/ingreso-alumnos";
 	}
 	
 	@GetMapping("perfil-alumno")
@@ -106,34 +143,6 @@ public class AlumnoController {
 		return "redirect:/alumnos/password-alumno";
 	}
 
-	@GetMapping("login-alumnos")
-	public String LoginAlumno(Model model) {
-		Alumno alumno = new Alumno();
-		try {
-			model.addAttribute("alumno", alumno);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		return "/alumnos/login-alumnos";
-	}
-
-	@PostMapping("comprobar")
-	public String comprobarAlumno(@ModelAttribute("alumno") Alumno alumno, SessionStatus status) {
-		try {
-			List<Alumno> optionalCorreo = alumnoService.findByCorreoContaining(alumno.getCorreo());
-			List<Alumno> optionalContraseña = alumnoService.findByPasswordContaining(alumno.getPassword());
-			if (!optionalCorreo.isEmpty() && !optionalContraseña.isEmpty()) {
-				return "redirect:/inicio-alumnos";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		// Devuelve la URL mapping
-		return "redirect:/alumnos/login-alumnos";
-	}
-
 	@GetMapping
 	public String menuAlumno(Model model) {
 		//Alumno alumno = new Alumno();
@@ -173,26 +182,4 @@ public class AlumnoController {
 		}
 		return "/alumnos/olvida-contra";
 	}
-	
-	
-	@PostMapping("verificar")
-	public String verificarCorreo(@ModelAttribute("alumno") Alumno alumno, SessionStatus status) {
-		try {
-			List<Alumno> optionalCorreo = alumnoService.findByCorreoContaining(alumno.getCorreo());
-			if (!optionalCorreo.isEmpty()) {
-				Optional<Alumno> op =alumnoService.findByCorreo(alumno.getCorreo());
-				op.get().setPassword(alumno.getPassword());
-				
-				alumnoService.update(op.get());
-				return "redirect:/alumnos";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		// Devuelve la URL mapping
-		return "redirect:/alumnos/login-alumnos";
-	}
-	
-	
 }

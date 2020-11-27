@@ -11,5 +11,4 @@ public interface AlumnoService extends CrudService<Alumno, Integer> {
 	Optional<Alumno> findByUsername(String username) throws Exception;
 	Optional<Alumno> findByCorreo(String correo) throws Exception;
 	List<Alumno> findByCorreoContaining(String correo) throws Exception;
-	List<Alumno> findByPasswordContaining(String password) throws Exception;
 }

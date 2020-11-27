@@ -14,6 +14,5 @@ public interface AsesorRepository extends JpaRepository<Asesor, Integer> {
 	List<Asesor> findByNombreCompletoContaining(String nombreCompleto) throws Exception;
 	Optional<Asesor> findByUsername(String username) throws Exception;
 	List<Asesor> findByCorreoContaining(String correo) throws Exception;
-	List<Asesor> findByPasswordContaining(String password) throws Exception;
 	Optional<Asesor> findByCorreoIs(String correo) throws Exception;
 }

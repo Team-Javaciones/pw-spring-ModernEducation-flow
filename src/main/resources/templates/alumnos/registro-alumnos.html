@@ -17,31 +17,31 @@
                     <div class="card-body">
                         <h4 class="card-title text-center">Regístrate como alumno</h4>
 
-                        <form method="post" th:object="${alumno}" th:action="@{/alumnos/registrar}">
+                        <form method="post" th:action="@{/alumnos/registrar}">
                             <h5 class="pb-1 pt-4">Datos personales</h5>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Nombre completo:</label>
-                                    <input th:field="*{nombreCompleto}" type="text" class="form-control form-control-sm" id="inputNombreCompleto"
+                                    <input th:field="${alumno.nombreCompleto}" type="text" class="form-control form-control-sm" id="inputNombreCompleto"
                                         placeholder="Mario Alfonso Rodríguez Pérez" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Teléfono:</label>
-                                    <input th:field="*{telefono}" type="number" class="form-control form-control-sm" id="inputTelefono" placeholder="945876512"
+                                    <input th:field="${alumno.telefono}" type="number" class="form-control form-control-sm" id="inputTelefono" placeholder="945876512"
                                         required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputCorreoElectronico">Correo electrónico: </label>
-                                    <input th:field="*{correo}" type="text" class="form-control form-control-sm" id="inputCorreoElectronico"
+                                    <input th:field="${alumno.correo}" type="text" class="form-control form-control-sm" id="inputCorreoElectronico"
                                         placeholder="marioProHD@gmail.com" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputFechaNacimiento">Fecha de nacimiento:</label>
-                                    <input th:field="*{fechaNacimiento}" type="date" class="form-control form-control-sm" id="inputFechaNacimiento" required>
+                                    <input th:field="${alumno.fechaNacimiento}" type="date" class="form-control form-control-sm" id="inputFechaNacimiento" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputEntidadEducativa">Entidad Educativa:</label>
-                                    <input th:field="*{entidadEducativa}" type="text" class="form-control form-control-sm" id="inputEntidadEducativa"
+                                    <input th:field="${alumno.entidadEducativa}" type="text" class="form-control form-control-sm" id="inputEntidadEducativa"
                                         placeholder="Universidad Peruana de Ciencias Aplicadas" required>
                                 </div>
                             </div>
@@ -50,14 +50,14 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputUsuario">Usuario: </label>
-                                    <input th:field="*{username}" type="text" class="form-control form-control-sm" id="inputUsuario" placeholder="MarioProHD"
+                                    <input th:field="${usuario.username}" type="text" class="form-control form-control-sm" id="inputUsuario" placeholder="MarioProHD"
                                         required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword1">Contraseña: </label>
-                                    <input th:field="*{password}" type="password" class="form-control form-control-sm" id="inputPassword1" required>
+                                    <input th:field="${usuario.password}" type="password" class="form-control form-control-sm" id="inputPassword1" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword2">Confirmar Contraseña: </label>
