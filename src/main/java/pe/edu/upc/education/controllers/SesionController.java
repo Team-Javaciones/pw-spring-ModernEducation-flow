@@ -168,4 +168,42 @@ public class SesionController {
 		}
 		return "/sesiones/ejercicios-sesion-asesor";
 	}
+	
+	@GetMapping("editar-sesion")
+	public String editarSesion(Model model) {
+
+		try {
+			Optional<Sesion> optional = sesionService.findById(1);
+			if (optional.isPresent()) {
+				model.addAttribute("sesion", optional.get());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/sesion/editar-sesion";
+	}
+
+	@PostMapping("update")
+	public String updateSesion(@ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
+		try {
+
+			sesionService.update(sesion);
+			status.setComplete();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		// Devuelve la URL mapping
+		return "redirect:/sesion/editar-sesion";
+	}
+
+	
+	
 }
+
+
+
+
+
+
