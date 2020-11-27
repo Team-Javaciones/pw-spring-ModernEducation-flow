@@ -28,19 +28,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		/*
+		
 		 http
 			.authorizeRequests()
-				.antMatchers("/**").authenticated()
+				.antMatchers("/").permitAll()
+				/*
+				.antMatchers("/alumnos/menu-alumnos/").hasRole("ALUMNO")
+				.antMatchers("/asesores/menu-asesores/").hasRole("ASESORES")*/
 			.and()
-			.formLogin()
+			.formLogin()				
 				.loginProcessingUrl("/signin")
-				.loginPage("/login")
+				.loginPage("/login")	
+				.defaultSuccessUrl("/default")
 				.usernameParameter("username")
-				.passwordParameter("password");
-				
-		  */
-		super.configure(http);
+				.passwordParameter("password")
+			.and()
+		 	.logout()
+		 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+		 		.logoutSuccessUrl("/");
 	}
 
 

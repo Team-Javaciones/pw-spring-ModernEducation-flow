@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout-asesor :: head"></head>
 <body class="teacher-body">
 	<header th:replace="layout/layout-asesor :: header"> </header>
 
 	<br>
 	<div id="Bienvenido" class="text-center">
-		<h1 th:text="'¡Bienvenido ' + ${asesor.nombreCompleto} + '!'"></h1>
+		<h1 th:text="'Bienvenido ' + ${asesor.nombreCompleto}"></h1>
 	</div>
 	<section id="menu-alumno">
 		<div class="container jumbotron">
@@ -19,7 +20,7 @@
 									height="200">
 							</div>
 							<div class="col-md-4">
-								<a href="#"><button id="boton-grande" type="button"
+								<a th:href="@{/asesores/perfil-asesor}"><button id="boton-grande" type="button"
 										class="btn btn-dark btn-lg">
 										<svg width="4em" height="4em" viewBox="0 0 16 16"
 											class="bi bi-person-fill" fill="currentColor"
@@ -39,7 +40,7 @@
 					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
 						<div class="row">
 							<div class="col-md-4">
-								<a th:href="@{/asesores/perfil-asesor}"><button
+								<a th:href="@{/asesores/editar-perfil-asesor}"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
 										<svg aria-hidden="true" width="0.8em" height="0.8em"
 											focusable="false" data-prefix="fas" data-icon="user-edit"
@@ -136,7 +137,7 @@
 					<div class="card mb-3" style="max-width: 850px; max-height: 200px;">
 						<div class="row">
 							<div class="col-md-4">
-								<a th:href="@{/inicio-asesores}"><button
+								<a th:href="@{/logout}"><button
 										id="boton-grande" type="button" class="btn btn-dark btn-lg">
 										<svg width="4em" height="4em" viewBox="0 0 16 16"
 											class="bi bi-box-arrow-right" fill="currentColor"

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout-alumno :: head">
+</head>
+
+<body class="student-body">
+	<header th:replace="layout/layout-alumno :: header"> </header>
+	
+	<main>
+		<section id="perfil-alumno">
+			<div class="container jumbotron">
+				<div class="text-center pb-2">
+					<img th:src="@{/images/student.png}" height="100">
+					<h3 class="card-title pt-2">Editar Perfil</h3>
+				</div>	
+				<form th:action="@{/alumnos/update}" th:object="${alumno}" method="post">
+					<div class="form-row">
+						<div class="form-group col-md-12">					
+							<label>Nombre completo: </label> <input
+								type="text" class="form-control" th:field="*{nombreCompleto}"	required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Telefono:</label> <input
+								type="number" class="form-control" th:field="*{telefono}"	required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Correo:</label> <input
+								type="text" class="form-control" th:field="*{correo}"	required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Fecha de Nacimiento:</label> <input
+								type="date" class="form-control" th:field="*{fechaNacimiento}"	required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Entidad Educativa:</label> <input
+								type="text" class="form-control" th:field="*{entidadEducativa}"	required>
+						</div>
+					</div>
+					<div class="text-center pt-3">
+						<button type="button" class="btn btn-dark mr-4" data-toggle="modal"
+							data-target="#perfilModal"><i class="fas fa-edit"></i> Editar Perfil</button>						
+						<a class="btn btn btn-outline-dark" th:href="@{/alumnos}"><i class="fas fa-chevron-left"></i> Cancelar</a>
+					</div>
+					
+					
+					<div>
+
+						<div class="modal fade" id="perfilModal" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">seguro
+											que deseas editar tu perfil?</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">actualiza sabiamente</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn btn-outline-dark"
+											data-dismiss="modal">Cerrar</button>
+										<button type="submit" class="btn btn-primary">Editar Pefil</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+					</div>
+					
+				
+				</form>
+				
+				
+				
+			</div>
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-alumno :: footer"></footer>
+</body>
+</html>

@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout-asesor :: head">
 </head>
 
@@ -14,7 +15,7 @@
 					<img th:src="@{/images/crear-curso.png}" height="60">
 					<h3 class="card-title">Crear curso</h3>
 				</div>
-				<form th:action="@{/cursos/save}" th:object="${cursoo}" method="post">
+				<form th:action="@{/cursos/save}" th:object="${curso}" method="post">
 					<div class="form-row">
 						<div class="form-group col-md-12">
 							<label>Nombre del Curso: </label> <input type="text"
@@ -63,8 +64,7 @@
 
 					</div>
 					<div class="text-center pt-5">
-						<button type="submit" class="btn btn-dark mr-4">Crear
-							curso</button>
+						<button type="submit" class="btn btn-dark mr-4">Crear curso</button>
 						<a class="btn btn btn-outline-dark" th:href="@{/asesores/cursos-asesor}">Cancelar</a>
 					</div>
 				</form>

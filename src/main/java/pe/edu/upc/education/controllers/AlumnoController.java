@@ -1,9 +1,9 @@
 package pe.edu.upc.education.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Alumno;
-import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.models.entities.Usuario;
 import pe.edu.upc.education.services.AlumnoService;
 import pe.edu.upc.education.services.UsuarioService;
@@ -41,11 +40,13 @@ public class AlumnoController {
 		return "/alumnos/registro-alumnos";
 	}
 	@PostMapping("registrar")
-	public String registrarAsesor(@ModelAttribute("alumno") Alumno alumno, @ModelAttribute("usuario") Usuario usuario, SessionStatus status)
+	public String registrarAlumno(@ModelAttribute("alumno") Alumno alumno, @ModelAttribute("usuario") Usuario usuario, SessionStatus status)
 	{
 		try {
 			usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
 			usuario.setTipo("ALUMNO");
+			usuario.setEnable(true);
+			usuario.addAuthority("ROLE_ALUMNO");
 			alumnoService.save(alumno);
 			usuarioService.save(usuario);
 			status.setComplete();
@@ -54,15 +55,17 @@ public class AlumnoController {
 			System.err.println(e.getMessage());
 		}
 		
-		return "redirect:/alumnos/login-alumnos";
+		return "redirect:/login";
 	}
+	/*
 	@GetMapping("login-alumnos")
 	public String loginAlumno(Model model) {
 		Usuario usuario = new Usuario();
 		model.addAttribute("usuario", usuario);
 		
 		return "/alumnos/login-alumnos";
-	}
+	}*/
+	/*
 	@PostMapping("login")
 	public String loginAsesor(@ModelAttribute("usuario") Usuario usuario, SessionStatus status)
 	{
@@ -83,12 +86,11 @@ public class AlumnoController {
 		
 		return "redirect:/alumnos/ingreso-alumnos";
 	}
-	
+	*/
 	@GetMapping("perfil-alumno")
-	public String editarPerfil(Model model) {
-
+	public String perfilAlumno(Model model, Authentication authentication) {
 		try {
-			Optional<Alumno> optional = alumnoService.findById(1);
+			Optional<Alumno> optional = alumnoService.findByUsername(authentication.getName());
 			if (optional.isPresent()) {
 				model.addAttribute("alumno", optional.get());
 			}
@@ -98,7 +100,20 @@ public class AlumnoController {
 		}
 		return "/alumnos/perfil-alumno";
 	}
+	@GetMapping("editar-perfil-alumno")
+	public String editarPerfil(Model model, Authentication authentication) {
 
+		try {
+			Optional<Alumno> optional = alumnoService.findByUsername(authentication.getName());
+			if (optional.isPresent()) {
+				model.addAttribute("alumno", optional.get());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/alumnos/editar-perfil-alumno";
+	}
 	@PostMapping("update")
 	public String updatePerfil(@ModelAttribute("alumno") Alumno alumno, SessionStatus status) {
 		try {
@@ -114,10 +129,9 @@ public class AlumnoController {
 	}
 
 	@GetMapping("password-alumno")
-	public String editarContra(Model model) {
-
+	public String editarContra(Model model, Authentication authentication) {
 		try {
-			Optional<Alumno> optional = alumnoService.findById(1);
+			Optional<Alumno> optional = alumnoService.findByUsername(authentication.getName());
 			if (optional.isPresent()) {
 				model.addAttribute("alumno", optional.get());
 			}
@@ -128,11 +142,9 @@ public class AlumnoController {
 		return "/alumnos/password-alumno";
 
 	}
-
 	@PostMapping("password")
 	public String updateContra(@ModelAttribute("alumno") Alumno alumno, SessionStatus status) {
 		try {
-
 			alumnoService.update(alumno);
 			status.setComplete();
 		} catch (Exception e) {
@@ -144,11 +156,9 @@ public class AlumnoController {
 	}
 
 	@GetMapping
-	public String menuAlumno(Model model) {
-		//Alumno alumno = new Alumno();
-		try {
-			//model.addAttribute("alumno", alumno);
-			Optional<Alumno> optional = alumnoService.findById(1);			
+	public String menuAlumno(Model model, Authentication authentication) {
+		try {			
+			Optional<Alumno> optional = alumnoService.findByUsername(authentication.getName());			
 			model.addAttribute("alumno", optional.get());	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -158,10 +168,10 @@ public class AlumnoController {
 	}	
 
 	@GetMapping("cursos-alumno")
-	public String cursosAlumno(Model model)
+	public String cursosAlumno(Model model, Authentication authentication)
 	{
 		try {
-			Optional<Alumno> optional = alumnoService.findById(1);			
+			Optional<Alumno> optional = alumnoService.findByUsername(authentication.getName());		
 			model.addAttribute("alumno", optional.get());			
 			
 		} catch (Exception e) {
