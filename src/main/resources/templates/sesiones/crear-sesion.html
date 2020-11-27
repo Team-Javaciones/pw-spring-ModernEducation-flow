@@ -18,16 +18,16 @@
 					<div class="form-row">
 						<div class="form-group col-md-12">					
 							<label>Tema de la sesión: </label> <input
-								type="text" class="form-control" th:field="*{tema}"	required>
+								type="text" class="form-control" th:field="*{tema}" maxlength="100"	required>
 						</div>
 						<div class="form-group col-md-12">
 							<label>Enlace de la reunión en zoom:</label> <input
-								type="text" class="form-control" th:field="*{linkZoom}"	required>
+								type="text" class="form-control" th:field="*{linkZoom}" maxlength="250"	required>
 						</div>
 					</div>
 					<div class="text-center pt-5">
-						<button type="submit" class="btn btn-dark mr-4">Crear sesión</button>
-						<a class="btn btn btn-outline-dark" th:href="@{'/unidades/unidad-view-asesor-' + ${sesion.unidad.id}}"><i class="fas fa-chevron-left"></i> Volver</a>
+						<button type="submit" class="btn btn-dark mr-4"><i class="fas fa-check"></i> Crear sesión</button>
+						<a class="btn btn btn-outline-dark" th:href="@{'/unidades/unidad-view-asesor-' + ${sesion.unidad.id}}"><i class="fas fa-times"></i> Cancelar</a>
 					</div>
 				</form>
 			</div>

@@ -41,6 +41,10 @@
 							</div>	
 							<div class="col-md-1"></div>					
 						</div>	
+					</div>	
+					
+					<div th:if="${unidad.sesiones.isEmpty()}" class="text-center pb-3">
+						<h6>Este curso no posee sesiones registradas.</h6>
 					</div>			
 				</div>	
 				
@@ -48,7 +52,7 @@
 					<div class="col-md-1"></div>
 					<div class="col-md-10">
 						<a class="btn btn-dark mr-4"
-							th:href="@{'/sesiones/crear-sesion-' + ${unidad.id}}"> Crear sesión</a>
+							th:href="@{'/sesiones/crear-sesion-' + ${unidad.id}}"><i class="fas fa-plus-circle"></i> Crear sesión</a>
 						<a class="btn btn-outline-dark" 
 							th:href="@{'/cursos/curso-view-asesor-' + ${unidad.curso.id}}"><i class="fas fa-chevron-left"></i> Volver</a>						
 					</div>					
