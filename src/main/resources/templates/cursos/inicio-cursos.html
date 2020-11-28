@@ -4,7 +4,38 @@
 
 <head th:replace="layout/layout-curso :: curso-inicio-head"></head>
 <body>
-	<header th:replace="layout/layout-curso :: curso-inicio-header"> </header>
+	<header id="header" class="alt">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+			<div class="d-flex flex-grow-1">
+				<span class="w-100 d-lg-none d-block"> <!-- hidden spacer to center brand on mobile --></span>
+				<a class="navbar-brand px-3" th:href="@{/}"><img th:src="@{/images/pc.png}" width="30" height="30" class="d-inline-block align-top"><b> Modern</b>
+				Education</a>
+				<div class="w-100 text-right">
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#myNavbar7">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
+			</div>
+			<div class="collapse navbar-collapse flex-grow-1 text-right pr-3"
+				id="myNavbar7">
+				<ul class="navbar-nav ml-auto flex-nowrap">
+					<li class="nav-item ml-2"><a href="#" class="nav-link nav">Inicio</a></li>
+					<li class="nav-item ml-2"><a href="#beneficios"
+						class="nav-link">Beneficios</a></li>
+					<li class="nav-item ml-2"><a href="#about-us" class="nav-link">Acerca
+							de</a></li>
+					<li class="nav-item ml-2"><a class="nav-link" th:href="@{/cursos/inicio}" >Cursos</a></li>
+					<li>
+						<div class="btn-nav">
+							<a class="btn btn-outline-light navbar-btn ml-3"
+								th:href="@{/inicio-asesores}">Enseña</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
 	<div id="banner-text" class="container">
 		<div class="row">
 			<div class="col">
