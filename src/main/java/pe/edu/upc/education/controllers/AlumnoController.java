@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Alumno;
+import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.models.entities.Usuario;
 import pe.edu.upc.education.services.AlumnoService;
 import pe.edu.upc.education.services.AsesorService;
@@ -191,7 +192,7 @@ public class AlumnoController {
 	
 	
 	
-	@GetMapping("asesores")  
+	@GetMapping("asesores")  //esta relacionado a cambiarContra
 	public String olvidoContra(Model model) {
 		Alumno alumno = new Alumno();
 		model.addAttribute("alumno", alumno);
@@ -207,14 +208,23 @@ public class AlumnoController {
 		//System.out.println("nombre de la cuenta:" + alumno.getCorreo());
 		try {
 			Optional<Alumno> optionalA = alumnoService.findByCorreo(alumno.getCorreo());
+			Optional<Asesor> optionalASE= asesorService.findByCorreo(alumno.getCorreo());
 			if (optionalA.isPresent()) {
 
 				Optional<Usuario> optionalU = usuarioService.findByUsername(optionalA.get().getUsername());
 
-				optionalA.get().setNombreCompleto("PODER SUPREMO");
 				optionalU.get().setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
 
 				alumnoService.update(optionalA.get());
+				usuarioService.update(optionalU.get());
+			}
+			if(optionalASE.isPresent())
+			{
+				Optional<Usuario> optionalU = usuarioService.findByUsername(optionalASE.get().getUsername());
+
+				optionalU.get().setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+				
+				asesorService.update(optionalASE.get());
 				usuarioService.update(optionalU.get());
 			}
 
