@@ -1,8 +1,8 @@
 package pe.edu.upc.education.controllers;
 
-
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -92,24 +92,7 @@ public class CursoController {
 		}
 		// Devuelve la URL mapping 
 		return "redirect:/asesores/cursos-asesor";
-	}
-	
-	@GetMapping("buscar-curso")
-	public String buscarCurso(Model model) {
-		Curso curso = new Curso();
-		Curso cursoSearch = new Curso();
-		try {
-			List<Curso> cursos = cursoService.findAll();
-
-			model.addAttribute("cursoSearch", cursoSearch);
-			model.addAttribute("cursos", cursos);
-			model.addAttribute("curso", curso);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		return "/cursos/buscador-curso";
-	}
+	}	
 	
 	@GetMapping("view-{id}")
 	public String view(@PathVariable("id") Integer id, Model model) {
@@ -124,9 +107,7 @@ public class CursoController {
 			System.err.println(e.getMessage());
 		}
 		return "redirect:/cursos";		
-	}
-	
-	
+	}	
 	
 	@GetMapping("calificar-curso-{cursoID}")
 	public String calificarCurso(@PathVariable("cursoID") Integer id, Model model, Authentication authentication) {
@@ -210,37 +191,80 @@ public class CursoController {
 		return "/cursos/curso-view-asesor";
 	}
 	
+	@GetMapping("buscar-curso")
+	public String buscarCurso(Model model, Authentication authentication) {
+		Curso cursoSearch = new Curso();
+		Alumno alumno = new Alumno();
+		try {
+			List<Curso> cursos = cursoService.findAll();
+			Optional<Alumno> optionalAlumno = alumnoService.findByUsername(authentication.getName());
+			alumno = optionalAlumno.get();
+			List<AlumnoCurso>alumnoCurso= alumno.getAlumnoCursos();
+			List<Curso>cursosAlumno = alumnoCurso.stream().map(AlumnoCurso::getCurso).collect(Collectors.toList());			
+			for (Curso curso : cursosAlumno) {
+				cursos.remove(curso);
+			}						
+			model.addAttribute("cursoSearch", cursoSearch);
+			model.addAttribute("cursos", cursos);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "/cursos/buscador-curso";
+	}	
 	@PostMapping("search-curso")
-	public String search(@ModelAttribute("cursoSearch") Curso cursoSearch, Model model) {
+	public String search(@ModelAttribute("cursoSearch") Curso cursoSearch, Model model, Authentication authentication) {
 		model.addAttribute("cursoSearch", cursoSearch);
+		Alumno alumno = new Alumno();
 		try {
 			List<Curso> cursos = cursoService.findByNombre(cursoSearch.getNombre());
+			Optional<Alumno> optionalAlumno = alumnoService.findByUsername(authentication.getName());			
+			alumno = optionalAlumno.get();
+			List<AlumnoCurso>alumnoCurso= alumno.getAlumnoCursos();
+			List<Curso>cursosAlumno = alumnoCurso.stream().map(AlumnoCurso::getCurso).collect(Collectors.toList());
+			for (Curso curso : cursosAlumno) {
+				cursos.remove(curso);
+			}
 			model.addAttribute("cursos", cursos);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
 		return "/cursos/buscador-curso";
-	}
-	
+	}	
 	@PostMapping("search-precio")
-	public String searchPrecio(@ModelAttribute("cursoSearch") Curso cursoSearch, Model model) {
+	public String searchPrecio(@ModelAttribute("cursoSearch") Curso cursoSearch, Model model, Authentication authentication) {
 		model.addAttribute("cursoSearch", cursoSearch);
+		Alumno alumno = new Alumno();
 		try {
 			List<Curso> cursos = cursoService.findByPrecio(cursoSearch.getPrecio());
+			Optional<Alumno> optionalAlumno = alumnoService.findByUsername(authentication.getName());			
+			alumno = optionalAlumno.get();
+			List<AlumnoCurso>alumnoCurso= alumno.getAlumnoCursos();
+			List<Curso>cursosAlumno = alumnoCurso.stream().map(AlumnoCurso::getCurso).collect(Collectors.toList());
+			for (Curso curso : cursosAlumno) {
+				cursos.remove(curso);
+			}
 			model.addAttribute("cursos", cursos);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
 		return "/cursos/buscador-curso";
-	}
-	
+	}	
 	@PostMapping("search-valoracion")
-	public String searchValoracion(@ModelAttribute("cursoSearch") Curso cursoSearch, Model model) {
+	public String searchValoracion(@ModelAttribute("cursoSearch") Curso cursoSearch, Model model, Authentication authentication) {
 		model.addAttribute("cursoSearch", cursoSearch);
+		Alumno alumno = new Alumno();
 		try {
 			List<Curso> cursos = cursoService.findByPopularidad(cursoSearch.getPopularidad());
+			Optional<Alumno> optionalAlumno = alumnoService.findByUsername(authentication.getName());			
+			alumno = optionalAlumno.get();
+			List<AlumnoCurso>alumnoCurso= alumno.getAlumnoCursos();
+			List<Curso>cursosAlumno = alumnoCurso.stream().map(AlumnoCurso::getCurso).collect(Collectors.toList());
+			for (Curso curso : cursosAlumno) {
+				cursos.remove(curso);
+			}
 			model.addAttribute("cursos", cursos);
 		} catch (Exception e) {
 			e.printStackTrace();
