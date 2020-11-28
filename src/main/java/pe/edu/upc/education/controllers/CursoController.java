@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.education.models.entities.Alumno;
+import pe.edu.upc.education.models.entities.AlumnoCurso;
 import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.models.entities.Categoria;
 import pe.edu.upc.education.models.entities.Curso;
+import pe.edu.upc.education.services.AlumnoService;
 import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.CategoriaService;
 import pe.edu.upc.education.services.CursoService;
@@ -36,6 +39,9 @@ public class CursoController {
 	
 	@Autowired
 	private AsesorService asesorService;
+
+	@Autowired
+	private AlumnoService alumnoService;
 	
 	@GetMapping
 	public String inicio(Model model) {
@@ -117,10 +123,39 @@ public class CursoController {
 	
 	
 	
-	@GetMapping("calificar-curso")
-	public String registroAsesor() {		
-		return "/cursos/calificar-curso";
+	@GetMapping("calificar-curso-{cursoID}")
+	public String calificarCurso(@PathVariable("cursoID") Integer id, Model model, Authentication authentication) {
+
+		try
+		{	
+			Optional<Alumno> alumno = alumnoService.findByUsername(authentication.getName());
+			Optional<Curso> curso = cursoService.findById(id);
+		
+			AlumnoCurso alumno_curso = new AlumnoCurso();
+			alumno_curso.setAlumno(alumno.get());
+			alumno_curso.setCurso(curso.get());
+
+			model.addAttribute("alumno_curso", alumno_curso);
+			model.addAttribute("alumno", alumno.get());
+			model.addAttribute("curso", curso.get());
+			
+			System.out.println(curso.get().getNombre());
+		
+			return "/cursos/calificar-curso";
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}		
+		return "/inicio-asesores";
 	}
+	@PostMapping()
+	public String calificar(@ModelAttribute("alumno_curso") AlumnoCurso alumno_curso, Model model)
+	{
+
+		return "/inicio-asesores";
+	}
+	
 	
 	@GetMapping("recomendaciones-curso-alumno-{id}")
 	public String recomendacionesViewAlumno(@PathVariable("id") Integer id, Model model) {		

@@ -13,70 +13,22 @@
 				<div class="row">
 					<div class="col">
 						<h1>Califica el curso</h1>
+						<h2 th:text="${curso.nombre}"></h2>
 					</div>
 				</div>
 			</div>
 			<div class="container">
-				<form class="row">
+				<form class="row" th:action="@{/cursos/search-curso}" >
 					<div class="col">
-						<input class="form-check-input" type="radio" name="rb1" id="rb1"
-							value="1"> <label class="form-check-label" for="rb1">
-							1 </label>
-					</div>
-					<div class="col">
-						<input class="form-check-input" type="radio" name="rb2" id="rb2"
-							value="2"> <label class="form-check-label" for="rb2">
-							2 </label>
-					</div>
-					<div class="col">
-						<input class="form-check-input" type="radio" name="rb3" id="rb3"
-							value="3"> <label class="form-check-label" for="rb3">
-							3 </label>
-					</div>
-					<div class="col">
-						<input class="form-check-input" type="radio" name="rb4" id="rb4"
-							value="4"> <label class="form-check-label" for="rb4">
-							4 </label>
-					</div>
-					<div class="col">
-						<input class="form-check-input" type="radio" name="rb5" id="rb5"
-							value="5" checked> <label class="form-check-label"
-							for="rb5"> 5 </label>
-					</div>
-					<div class="col">
-						<input class="form-check-input" type="radio" name="rb6" id="rb6"
-							value="6"> <label class="form-check-label" for="rb6">
-							6 </label>
-					</div>
-					<div class="col">
-						<input class="form-check-input" type="radio" name="rb7" id="rb7"
-							value="7"> <label class="form-check-label" for="rb7">
-							7 </label>
-					</div>
-					<div class="col">
-						<input class="form-check-input" type="radio" name="rb8" id="rb8"
-							value="8"> <label class="form-check-label" for="rb8">
-							8 </label>
-					</div>
-					<div class="col">
-						<input class="form-check-input" type="radio" name="rb9" id="rb9"
-							value="9"> <label class="form-check-label" for="rb9">
-							9 </label>
-					</div>
-					<div class="col">
-						<input class="form-check-input" type="radio" name="rb10" id="rb10"
-							value="10"> <label class="form-check-label" for="rb10">
-							10 </label>
-					</div>
-					<div class="col">
-						<input class="form-check-input" type="radio" name="rb11" id="rb11"
-							value="11"> <label class="form-check-label" for="rb11">
-							11 </label>
-					</div>
-					<div class="col">
-						<input class="form-check-input" type="radio" name="rb12" id="rb12"
-							value="12"> <label class="form-check-label" for="rb12">
-							12 </label>
+                    	<div class="form-group col-md-12">
+                        	<label for="inputCorreoElectronico">Calificación: </label>
+                        	<input th:field="${alumno_curso.valoracion}" type="number" class="form-control form-control-sm" required>
+                    	</div>
+                    	<div class="form-group col-md-12">
+                        	<label for="inputCorreoElectronico">Comentario: </label>
+                        	<textarea th:field="${alumno_curso.comentario}" type="number" class="form-control form-control-sm" required>
+                        	</textarea>
+                    	</div>
 					</div>
 				</form>
 				<div class="row pt-5">
