@@ -76,7 +76,7 @@
 					<div class="col-md-10">
 						<a class="btn btn-dark mr-4 mt-1" 
 							th:href="@{'/cursos/recomendaciones-curso-alumno-' + ${curso.id}}"><i class="fas fa-eye"></i> Ver recomendaciones</a>				
-						<a class="btn btn-dark mt-1"><i class="fas fa-star"></i> Calificar curso</a>	
+						<a class="btn btn-dark mt-1" th:href="@{'/cursos/calificar-curso-' + ${curso.id}}"><i class="fas fa-star"></i> Calificar curso</a>	
 					</div>
 					<div class="col-md-1"></div>					
 				</div>	
