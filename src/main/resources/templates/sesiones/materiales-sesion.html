@@ -37,6 +37,11 @@
 					</div>
 					<div class="col-md-2"></div>
 				</div>
+				
+				<div th:if="${sesion.materiales.isEmpty()}" class="text-center pb-5">
+					<h6>Esta sesión no posee materiales registrados hasta el momento.</h6>
+				</div>
+				
 				<div class="text-center">
 					<a class="btn btn-outline-dark" th:href="@{'/sesiones/sesion-alumno-' + ${sesion.id}}">
 						<i class="fas fa-chevron-left"></i>  Volver</a>

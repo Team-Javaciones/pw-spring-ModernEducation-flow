@@ -18,11 +18,11 @@
 				</div>
 			</div>
 			<div class="container">
-				<form class="row" th:action="@{'/cursos/calificar-' + ${curso.id}}" method="post">
-					<div class="col">
+				<form th:action="@{'/cursos/calificar-' + ${curso.id}}" method="post">
+					<div class="form-row">
                     	<div class="form-group col-md-12">
-                        	<label for="inputCorreoElectronico">Calificación: </label>
-                        	<input th:field="${alumno_curso.valoracion}" type="number" class="form-control form-control-sm" required>
+                        	<label for="inputCorreoElectronico">Calificación: (0 - 5)</label>
+                        	<input th:field="${alumno_curso.valoracion}" type="number" class="form-control form-control-sm" min="0" max="5"  required>
                     	</div>
                     	<div class="form-group col-md-12">
                         	<label for="inputCorreoElectronico">Comentario: </label>
@@ -30,12 +30,13 @@
                         	</textarea>
                     	</div>
 					</div>
-				<div class="row pt-5">
-					<div class="col text-center">
-						<button class="btn btn-primary">Enviar</button>
-						<button class="btn btn-danger">Cancelar</button>
+					<div class="pt-5">
+						<div class="col text-center">
+							<button class="btn btn-dark mr-3"><i class="fas fa-check"></i> Enviar</button>
+							<a class="btn btn-outline-dark"
+								th:href="@{'/cursos/curso-view-alumno-' + ${curso.id}}"><i class="fas fa-times"></i> Cancelar</a>
+						</div>
 					</div>
-				</div>
 				</form>
 			</div>
 		</section>
