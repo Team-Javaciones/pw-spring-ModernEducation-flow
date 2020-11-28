@@ -21,12 +21,12 @@
 				<form class="row" th:action="@{'/cursos/calificar-' + ${curso.id}}" method="post">
 					<div class="col">
                     	<div class="form-group col-md-12">
-                        	<label for="inputCorreoElectronico">Calificaci�n: </label>
+                        	<label for="inputCorreoElectronico">Calificación: </label>
                         	<input th:field="${alumno_curso.valoracion}" type="number" class="form-control form-control-sm" required>
                     	</div>
                     	<div class="form-group col-md-12">
                         	<label for="inputCorreoElectronico">Comentario: </label>
-                        	<textarea th:field="${alumno_curso.comentario}" type="number" class="form-control form-control-sm" required>
+                        	<textarea th:field="${alumno_curso.comentario}" type="number" class="form-control form-control-sm" maxlength="300" required>
                         	</textarea>
                     	</div>
 					</div>

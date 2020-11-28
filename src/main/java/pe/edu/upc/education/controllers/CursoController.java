@@ -153,14 +153,34 @@ public class CursoController {
 			alumno_curso.setComentario(alumno_cu.getComentario());
 
 			alumnoCursoService.update(alumno_curso);
-			model.addAttribute("cursoSearch", alumno_curso.getCurso());
+			
+			// ACTUALIZAR VALORACION DEL CURSO
+			Curso curso1 = curso.get();
+			Float val = 0F;
+			Integer cont = 0;
+			List<AlumnoCurso> alumnoCurso = curso1.getAlumnoCursos();			
+			for (AlumnoCurso alumnoCurso1 : alumnoCurso) {
+				if(alumnoCurso1.getValoracion() != null) {
+					val += alumnoCurso1.getValoracion();
+					cont++;
+				}
+			}
+			if(cont != 0) {
+				curso1.setPopularidad(Math.round(val/cont * 10F) / 10.0F);	
+				cursoService.update(curso1);
+			}						
+			else { 
+				curso1.setPopularidad(null);	
+				cursoService.update(curso1);
+			}
+			
 			System.out.println("CORRECTO");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}		
-		return "/cursos/buscador-curso";
+		return "redirect:/cursos/recomendaciones-curso-alumno-" + id;
 	}
 	
 	
