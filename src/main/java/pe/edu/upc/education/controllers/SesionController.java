@@ -19,7 +19,6 @@ import pe.edu.upc.education.models.entities.Sesion;
 import pe.edu.upc.education.models.entities.Unidad;
 import pe.edu.upc.education.services.AlumnoAsesorService;
 import pe.edu.upc.education.services.AlumnoService;
-import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.SesionService;
 import pe.edu.upc.education.services.UnidadService;
 
@@ -33,9 +32,6 @@ public class SesionController {
 
 	@Autowired
 	private AlumnoService alumnoService;
-	
-	@Autowired
-	private AsesorService asesorService;
 	
 	@Autowired
 	private UnidadService unidadService;
