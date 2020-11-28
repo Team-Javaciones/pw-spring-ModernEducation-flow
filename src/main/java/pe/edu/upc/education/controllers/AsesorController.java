@@ -133,9 +133,14 @@ public class AsesorController {
 	public String editarContra(Model model, Authentication authentication) {			
 		try {
 			Optional<Asesor> optional = asesorService.findByUsername(authentication.getName());
+			Usuario usuario = new Usuario();
 			if(optional.isPresent()) {
 			model.addAttribute("asesor", optional.get());
+			model.addAttribute("usuario", usuario);
 			}
+			
+			
+			
 			} 
 			catch (Exception e) {
 			e.printStackTrace();
@@ -145,9 +150,21 @@ public class AsesorController {
 	
 	}
 	@PostMapping("password")	
-	public String updateContra(@ModelAttribute("asesor") Asesor asesor, SessionStatus status) {
-		try {			
-			asesorService.update(asesor);
+	public String updateContra(@ModelAttribute("asesor") Asesor asesor, @ModelAttribute("usuario") Usuario usuario, SessionStatus status) {
+		try {
+			
+			Optional<Asesor> optionalASE= asesorService.findByCorreo(asesor.getCorreo());
+			
+			if(optionalASE.isPresent())
+			{
+				Optional<Usuario> optionalU = usuarioService.findByUsername(optionalASE.get().getUsername());
+
+				optionalU.get().setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+				
+				asesorService.update(optionalASE.get());
+				usuarioService.update(optionalU.get());
+			}
+
 			status.setComplete();
 		} catch (Exception e) {
 			e.printStackTrace();

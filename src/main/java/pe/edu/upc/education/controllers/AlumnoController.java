@@ -159,7 +159,7 @@ public class AlumnoController {
 	public String updateContra(@ModelAttribute("alumno") Alumno alumno, @ModelAttribute("usuario") Usuario usuario, SessionStatus status) {
 		try {
 			Optional<Alumno> optionalA = alumnoService.findByCorreo(alumno.getCorreo());
-			Optional<Asesor> optionalASE= asesorService.findByCorreo(alumno.getCorreo());
+			
 			if (optionalA.isPresent()) {
 
 				Optional<Usuario> optionalU = usuarioService.findByUsername(optionalA.get().getUsername());
@@ -169,15 +169,7 @@ public class AlumnoController {
 				alumnoService.update(optionalA.get());
 				usuarioService.update(optionalU.get());
 			}
-			if(optionalASE.isPresent())
-			{
-				Optional<Usuario> optionalU = usuarioService.findByUsername(optionalASE.get().getUsername());
-
-				optionalU.get().setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
-				
-				asesorService.update(optionalASE.get());
-				usuarioService.update(optionalU.get());
-			}
+			
 
 			status.setComplete();
 		} catch (Exception e) {
