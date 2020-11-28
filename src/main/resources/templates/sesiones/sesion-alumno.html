@@ -18,12 +18,13 @@
 					<h4 class="card-title">
 						Usuario: <span th:text="${alumno.username}"></span>
 					</h4>
-					<a type="button" class="btn btn-dark btn-lg btn-block" th:href="@{${sesion.linkZoom}}" target="_blanck"> 
-						<i class="fas fa-video"></i> Ingresar a reunión Zoom
-					</a> 
-					<a type="button" class="btn btn-dark btn-lg btn-block" th:href="@{${sesion.linkGrabacion}}" target="_blanck">
+					<a type="button" class="btn btn-dark btn-lg btn-block"
+						th:href="@{'https://'+${sesion.linkZoom}}" target="_blanck"> <i
+						class="fas fa-video"></i> Ingresar a reunión Zoom
+					</a> <br></br> <a type="button" class="btn btn-dark btn-lg btn-block"
+						th:href="@{'https://'+${sesion.linkGrabacion}}" target="_blanck">
 						<i class="fas fa-file-video"></i> Ver Grabación
-					</a>
+					</a> <br></br>
 
 					<div class="row">
 						<div class="col">

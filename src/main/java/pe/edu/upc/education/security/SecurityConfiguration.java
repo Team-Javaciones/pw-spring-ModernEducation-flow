@@ -32,9 +32,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		 http
 			.authorizeRequests()
 				.antMatchers("/").permitAll()
-				/*
-				.antMatchers("/alumnos/menu-alumnos/").hasRole("ALUMNO")
-				.antMatchers("/asesores/menu-asesores/").hasRole("ASESORES")*/
+				.antMatchers("/asesores").hasRole("ASESOR")
+				.antMatchers("/asesores/cursos-asesor").hasRole("ASESOR")
+				.antMatchers("/asesores/perfil-asesor").hasRole("ASESOR")
+				.antMatchers("/asesores/editar-perfil-asesor").hasRole("ASESOR")
+				.antMatchers("/cursos/crear-curso").hasRole("ASESOR")
+				
+				
+				.antMatchers("/").permitAll()
+				.antMatchers("/alumnos").hasRole("ALUMNO")
+				.antMatchers("/asesores/cursos-alumno").hasRole("ALUMNO")
+				.antMatchers("/asesores/perfil-alumno").hasRole("ALUMNO")
+				.antMatchers("/asesores/editar-perfil-alumno").hasRole("ALUMNO")
+				.antMatchers("/cursos/buscar-curso").hasRole("ALUMNO")
+				.antMatchers("/asesores/buscar-asesor").hasRole("ALUMNO")
+				.antMatchers("/cursos/**").authenticated()
+				
+				
 			.and()
 			.formLogin()				
 				.loginProcessingUrl("/signin")
