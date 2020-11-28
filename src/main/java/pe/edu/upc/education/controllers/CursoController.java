@@ -124,8 +124,9 @@ public class CursoController {
 			model.addAttribute("alumno_curso", alumno_curso);
 			model.addAttribute("alumno", alumno.get());
 			model.addAttribute("curso", curso.get());
-			
-			System.out.println(curso.get().getNombre());
+
+			System.out.println("Curso:  " + curso.get().getNombre());
+			System.out.println("Alumno: " + alumno.get().getNombreCompleto());
 		
 			return "/cursos/calificar-curso";
 		}
@@ -135,11 +136,30 @@ public class CursoController {
 		}		
 		return "/inicio-asesores";
 	}
-	@PostMapping()
-	public String calificar(@ModelAttribute("alumno_curso") AlumnoCurso alumno_curso, Model model)
+	@PostMapping("calificar-{cursoID}")
+	public String calificar(@PathVariable("cursoID") Integer id, @ModelAttribute("alumno_curso") AlumnoCurso alumno_cu, Model model, Authentication authentication)
 	{
+		try
+		{	
+			Optional<Alumno> alumno = alumnoService.findByUsername(authentication.getName());
+			Optional<Curso> curso = cursoService.findById(id);
+		
+			AlumnoCurso alumno_curso = new AlumnoCurso();
+			alumno_curso.setAlumno(alumno.get());
+			alumno_curso.setCurso(curso.get());
+			alumno_curso.setBloqueado(false);
+			alumno_curso.setValoracion(alumno_cu.getValoracion());
+			alumno_curso.setComentario(alumno_cu.getComentario());
 
-		return "/inicio-asesores";
+			alumnoCursoService.update(alumno_curso);
+			model.addAttribute("cursoSearch", alumno_curso.getCurso());
+			System.out.println("CORRECTO");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}		
+		return "/cursos/buscador-curso";
 	}
 	
 	

@@ -18,10 +18,10 @@
 				</div>
 			</div>
 			<div class="container">
-				<form class="row" th:action="@{/cursos/search-curso}" >
+				<form class="row" th:action="@{'/cursos/calificar-' + ${curso.id}}" method="post">
 					<div class="col">
                     	<div class="form-group col-md-12">
-                        	<label for="inputCorreoElectronico">Calificación: </label>
+                        	<label for="inputCorreoElectronico">Calificaciï¿½n: </label>
                         	<input th:field="${alumno_curso.valoracion}" type="number" class="form-control form-control-sm" required>
                     	</div>
                     	<div class="form-group col-md-12">
@@ -30,13 +30,13 @@
                         	</textarea>
                     	</div>
 					</div>
-				</form>
 				<div class="row pt-5">
 					<div class="col text-center">
 						<button class="btn btn-primary">Enviar</button>
 						<button class="btn btn-danger">Cancelar</button>
 					</div>
 				</div>
+				</form>
 			</div>
 		</section>
 	</main>
