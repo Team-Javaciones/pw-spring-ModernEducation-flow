@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout-asesor :: head">
 </head>
-<body>
 
+<body class="teacher-body">
+	<header th:replace="layout/layout-asesor :: header"> </header>
+
+	<main>
+		<section id="bloquear-mal-comportamiento">
+			<div class="container jumbotron">
+				<div class="text-center">
+					<img th:src="@{/images/bloquear-mal.png}" height="100">
+					<h3 class="card-title">Bloquear Mal Comportamiento</h3>
+				</div>
+				<form th:action="@{/alumno/save}" th:object="${alumno}" method="post">
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label>Codigo del alumno : </label> <input type="text"
+								class="form-control" th:field="*{codigo}" required>
+						</div>			
+					</div>
+					<div class="text-center pt-5">
+						<button type="submit" class="btn btn-dark mr-4">Bloquear</button>
+						<a class="btn btn btn-outline-dark" th:href="@{'/sesion-asesor-' + ${alumno.sesion.id}}">Cancelar</a>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-asesor :: footer"></footer>
 </body>
 </html>

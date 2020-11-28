@@ -197,8 +197,6 @@ public class SesionController {
 		// Devuelve la URL mapping
 		return "redirect:/sesion/editar-sesion";
 	}
-
-	
 	
 }
 
