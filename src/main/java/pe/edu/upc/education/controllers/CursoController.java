@@ -49,7 +49,7 @@ public class CursoController {
 	@Autowired
 	private AlumnoCursoService alumnoCursoService;
 	
-	@GetMapping
+	@GetMapping("inicio")
 	public String inicio(Model model) {
 		Curso curso = new Curso();
 		
