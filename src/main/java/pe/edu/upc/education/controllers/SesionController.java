@@ -63,21 +63,8 @@ public class SesionController {
 	public String menuSesionAlumno(@PathVariable("id") Integer id, Model model) {
 		AlumnoAsesor alumnoAsesor = new AlumnoAsesor();
 		try {
-			/*
-			Optional<Alumno> optional_alumno = alumnoService.findByUsername(authentication.getName());
-			model.addAttribute("alumno", optional_alumno.get());
-			
-			Optional<Sesion> sesion = sesionService.findById(id);	
-			
-			model.addAttribute("asesor", sesion.get().getUnidad().getCurso().getAsesor());*/
-			
-			
 			Optional<Alumno> optional_alumno = alumnoService.findById(id);
 			model.addAttribute("alumno", optional_alumno.get());
-			Optional<Asesor> optional_asesor = asesorService.findById(id);
-			model.addAttribute("asesor", optional_asesor.get());
-			Optional<AlumnoAsesor> optional_alumnoAsesor = alumnoAsesorService.findById(id);
-			model.addAttribute("alumnoAsesor", optional_alumnoAsesor.get());
 			Optional<Sesion> optional = sesionService.findById(id);			
 			alumnoAsesor.setAlumno(optional_alumno.get());
 			
@@ -91,7 +78,7 @@ public class SesionController {
 	}
 
 	@PostMapping("saveAlumnoAsesor")
-	public String saveAlumnoAsesor(@ModelAttribute("alumnoAsesor") AlumnoAsesor alumnoAsesor, @ModelAttribute("alumno") Alumno alumno, @ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
+	public String saveAlumnoAsesor(@ModelAttribute("alumnoAsesor") AlumnoAsesor alumnoAsesor, @ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
 		try {
 			alumnoAsesor.setAsesor(sesion.getUnidad().getCurso().getAsesor());
 			alumnoAsesorService.save(alumnoAsesor);
@@ -178,10 +165,11 @@ public class SesionController {
 		return "/sesiones/ejercicios-sesion-asesor";
 	}
 	
-	@GetMapping("editar-sesion-{id}")
-	public String editarSesion(@PathVariable("id") Integer id, Model model) {
+	@GetMapping("editar-sesion")
+	public String editarSesion(Model model) {
+
 		try {
-			Optional<Sesion> optional = sesionService.findById(id);
+			Optional<Sesion> optional = sesionService.findById(1);
 			if (optional.isPresent()) {
 				model.addAttribute("sesion", optional.get());
 			}
@@ -189,12 +177,13 @@ public class SesionController {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-		return "/sesiones/editar-sesion";
+		return "/sesion/editar-sesion";
 	}
 
 	@PostMapping("update")
 	public String updateSesion(@ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
 		try {
+
 			sesionService.update(sesion);
 			status.setComplete();
 		} catch (Exception e) {
@@ -202,7 +191,7 @@ public class SesionController {
 			System.err.println(e.getMessage());
 		}
 		// Devuelve la URL mapping
-		return "redirect:/unidades/unidad-view-asesor-" + sesion.getUnidad().getId();
+		return "redirect:/sesion/editar-sesion";
 	}
 
 	
