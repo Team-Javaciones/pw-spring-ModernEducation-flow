@@ -14,12 +14,12 @@
 					<img th:src="@{/images/sesion.png}" height="100"><br></br>
 					<h3 class="card-title">Sesión de: <span th:text="${sesion.tema}"></span></h3>
 	
-					<a type="button" class="btn btn-dark btn-lg btn-block" th:href="@{${sesion.linkZoom}}" target="_blanck">
+					<a type="button" class="btn btn-dark btn-lg btn-block" th:href="@{'https://'+${sesion.linkZoom}}" target="_blanck">
 						<i class="fas fa-video"></i> Ingresar a reunión Zoom </a>
 						
 					<br></br> 
 					
-					<a type="button" class="btn btn-dark btn-lg btn-block" th:href="@{${sesion.linkGrabacion}}" target="_blanck">
+					<a type="button" class="btn btn-dark btn-lg btn-block" th:href="@{'https://'+${sesion.linkGrabacion}}" target="_blanck">
 						<i class="fas fa-file-video"></i> Ver Grabación </a>
 					
 					<br></br>

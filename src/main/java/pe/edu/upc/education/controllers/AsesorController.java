@@ -10,12 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Asesor;
+import pe.edu.upc.education.models.entities.Curso;
 import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.UsuarioService;
 import pe.edu.upc.education.models.entities.Usuario;
@@ -230,6 +232,19 @@ public class AsesorController {
 		return "/asesores/buscador-asesor";
 	}
 	
-	
-
+	@GetMapping("info-busqueda-asesor-{id}")
+	public String infobusqueda(@PathVariable("id") Integer id, Model model)
+	{
+		try {
+			Optional<Asesor> optional = asesorService.findById(id);
+			if(optional.isPresent()) {
+				model.addAttribute("asesor", optional.get());
+				return "asesores/info-busqueda-asesor";
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "redirect:/cursos";		
+	}
 }

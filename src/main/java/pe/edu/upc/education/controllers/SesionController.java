@@ -1,5 +1,6 @@
 package pe.edu.upc.education.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,14 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Alumno;
 import pe.edu.upc.education.models.entities.AlumnoAsesor;
+import pe.edu.upc.education.models.entities.AlumnoCurso;
+import pe.edu.upc.education.models.entities.Asesor;
+import pe.edu.upc.education.models.entities.Curso;
 import pe.edu.upc.education.models.entities.Sesion;
 import pe.edu.upc.education.models.entities.Unidad;
 import pe.edu.upc.education.services.AlumnoAsesorService;
 import pe.edu.upc.education.services.AlumnoService;
+import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.SesionService;
 import pe.edu.upc.education.services.UnidadService;
 
@@ -36,6 +41,9 @@ public class SesionController {
 	
 	@Autowired
 	private UnidadService unidadService;
+	
+	@Autowired
+	private AsesorService asesorService;
 	
 	@Autowired
 	private AlumnoAsesorService alumnoAsesorService;
@@ -81,11 +89,6 @@ public class SesionController {
 			model.addAttribute("alumnoAsesor", alumnoAsesor);
 			model.addAttribute("alumno", alumno.get());
 			model.addAttribute("sesion", sesion.get());
-			
-			
-			System.out.println("Sesion:  " + sesion.get().getTema());
-			System.out.println("Alumno: " + alumno.get().getNombreCompleto());
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
@@ -101,6 +104,26 @@ public class SesionController {
 			alumnoAsesor.setAlumno(alumno.get());
 			alumnoAsesorService.save(alumnoAsesor);
 			status.setComplete();
+			
+			Asesor asesor = sesion.getUnidad().getCurso().getAsesor();
+			Float val = 0F;
+			Integer cont = 0;
+			List<AlumnoAsesor> alumnoAsesor1 = asesor.getAlumnoAsesor();			
+			for (AlumnoAsesor alumnoAsesor2 : alumnoAsesor1) {
+				if(alumnoAsesor2.getValoracion() != null) {
+					val += alumnoAsesor2.getValoracion();
+					cont++;
+				}
+			}
+			if(cont != 0) {
+				asesor.setValoracion(Math.round(val/cont * 10F) / 10.0F);
+				asesorService.update(asesor);
+			}						
+			else { 
+				asesor.setValoracion(null);;	
+				asesorService.update(asesor);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());

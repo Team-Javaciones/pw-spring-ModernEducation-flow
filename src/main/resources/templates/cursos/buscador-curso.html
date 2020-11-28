@@ -75,7 +75,7 @@
 									<div class="col-sm-8">
 										<input th:field="*{popularidad}"
 											class="form-control form-control-lg" type="search"
-											placeholder="Elige la valoración..." required>
+											placeholder="Elige la valoraciÃ³n..." required>
 									</div>
 									<div class="col-sm-4">
 										<button type="submit" class="btn btn-primary btn-lg">
@@ -112,8 +112,8 @@
 											<div class="Cap-buscador">
 												<br>
 												<h5 th:text="${curso.nombre}"></h5>
-												<p
-													th:text="${'Descripción del curso: ' + curso.descripcion}"></p>
+												<p>
+													<b>Descripción del curso: </b><span th:text="${curso.descripcion}"></span></p>
 												<p
 													th:text="${'Docente del curso: ' + curso.asesor.nombreCompleto }"></p>
 												<p th:text="${'Precio: S/' + curso.precio}"></p>
