@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,12 +37,12 @@ public class SolucionController {
 	private AlumnoService alumnoService;
 	
 	@GetMapping("enviar-solucion-{id}")
-	public String enviarSolucion(@PathVariable("id") Integer id, Model model) {
+	public String enviarSolucion(@PathVariable("id") Integer id, Model model,  Authentication authentication) {
 		Solucion solucion = new Solucion();
 		Date fechaActual = new Date();
 		solucion.setFecha(fechaActual);		
 		try {
-			Optional<Alumno> optional1 = alumnoService.findById(1); 
+			Optional<Alumno> optional1 = alumnoService.findByUsername(authentication.getName());
 			solucion.setAlumno(optional1.get());
 			Optional<Ejercicio> optional2 = ejercicioService.findById(id); 
 			solucion.setEjercicio(optional2.get());
@@ -62,6 +63,6 @@ public class SolucionController {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-		return "redirect:/soluciones/enviar-solucion-" + solucion.getEjercicio().getId();
+		return "redirect:/ejercicios/ejercicio-view-alumno-" + solucion.getEjercicio().getId();
 	}
 }
