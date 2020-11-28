@@ -2,9 +2,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/modernEducationdb
+    url: jdbc:postgresql://localhost:5432/moderneducationdb
     username: postgres
-    password: postgres
+    password: tigrillogato
   jpa:
     database: postgresql
     hibernate:
