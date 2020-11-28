@@ -17,9 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Alumno;
 import pe.edu.upc.education.models.entities.AlumnoAsesor;
-import pe.edu.upc.education.models.entities.AlumnoCurso;
 import pe.edu.upc.education.models.entities.Asesor;
-import pe.edu.upc.education.models.entities.Curso;
 import pe.edu.upc.education.models.entities.Sesion;
 import pe.edu.upc.education.models.entities.Unidad;
 import pe.edu.upc.education.services.AlumnoAsesorService;

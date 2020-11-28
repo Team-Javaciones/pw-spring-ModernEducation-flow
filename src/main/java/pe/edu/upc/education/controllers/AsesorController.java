@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Asesor;
-import pe.edu.upc.education.models.entities.Curso;
 import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.UsuarioService;
 import pe.edu.upc.education.models.entities.Usuario;
