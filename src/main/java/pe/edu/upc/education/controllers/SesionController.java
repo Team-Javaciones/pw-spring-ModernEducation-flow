@@ -178,11 +178,10 @@ public class SesionController {
 		return "/sesiones/ejercicios-sesion-asesor";
 	}
 	
-	@GetMapping("editar-sesion")
-	public String editarSesion(Model model) {
-
+	@GetMapping("editar-sesion-{id}")
+	public String editarSesion(@PathVariable("id") Integer id, Model model) {
 		try {
-			Optional<Sesion> optional = sesionService.findById(1);
+			Optional<Sesion> optional = sesionService.findById(id);
 			if (optional.isPresent()) {
 				model.addAttribute("sesion", optional.get());
 			}
@@ -190,13 +189,12 @@ public class SesionController {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-		return "/sesion/editar-sesion";
+		return "/sesiones/editar-sesion";
 	}
 
 	@PostMapping("update")
 	public String updateSesion(@ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
 		try {
-
 			sesionService.update(sesion);
 			status.setComplete();
 		} catch (Exception e) {
@@ -204,7 +202,7 @@ public class SesionController {
 			System.err.println(e.getMessage());
 		}
 		// Devuelve la URL mapping
-		return "redirect:/sesion/editar-sesion";
+		return "redirect:/unidades/unidad-view-asesor-" + sesion.getUnidad().getId();
 	}
 
 	
