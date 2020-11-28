@@ -36,20 +36,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/asesores/cursos-asesor").hasRole("ASESOR")
 				.antMatchers("/asesores/perfil-asesor").hasRole("ASESOR")
 				.antMatchers("/asesores/editar-perfil-asesor").hasRole("ASESOR")
+				.antMatchers("/asesores/password-asesor").hasRole("ASESOR")
+				
 				.antMatchers("/cursos/crear-curso").hasRole("ASESOR")
 				/*.antMatchers("/sesiones/editar-sesion").hasRole("ASESOR")*/
 				
 				
 				.antMatchers("/").permitAll()
 				.antMatchers("/alumnos").hasRole("ALUMNO")
-				.antMatchers("/asesores/cursos-alumno").hasRole("ALUMNO")
-				.antMatchers("/asesores/perfil-alumno").hasRole("ALUMNO")
-				.antMatchers("/asesores/editar-perfil-alumno").hasRole("ALUMNO")
+				.antMatchers("/alumnos/cursos-alumno").hasRole("ALUMNO")
+				.antMatchers("/alumnos/perfil-alumno").hasRole("ALUMNO")
+				.antMatchers("/alumnos/editar-perfil-alumno").hasRole("ALUMNO")
+				.antMatchers("/alumnos/password-alumno").hasRole("ALUMNO")
+				
 				.antMatchers("/cursos/buscar-curso").hasRole("ALUMNO")
 				.antMatchers("/asesores/buscar-asesor").hasRole("ALUMNO")
-				.antMatchers("/cursos/inicio").permitAll()
-				.antMatchers("/cursos/**").authenticated()
 				
+				
+				.antMatchers("/cursos/inicio").permitAll()
+				.antMatchers("/cursos/view-{id}").permitAll()
+				.antMatchers("/cursos/**").authenticated()
+				//"view-{id}
 				
 			.and()
 			.formLogin()				
