@@ -33,9 +33,9 @@
 			<div class="collapse navbar-collapse flex-grow-1 text-right pr-3"
 				id="myNavbar7">
 				<ul class="navbar-nav ml-auto flex-nowrap">
-					<li class="nav-item ml-2"><a th:href="@{/asesores}" class="nav-link nav">Inicio</a></li>
-					<li class="nav-item ml-2"><a th:href="@{/asesores/cursos-asesor}" class="nav-link">Mis cursos</a></li>
-					<li class="nav-item ml-2"><a th:href="@{/asesores/perfil-asesor}" class="nav-link">Mi perfil</a></li>
+					<li class="nav-item ml-2" sec:authorize="hasRole('ROLE_ASESOR')"><a th:href="@{/asesores}" class="nav-link nav">Inicio</a></li>
+					<li class="nav-item ml-2"sec:authorize="hasRole('ROLE_ASESOR')"><a th:href="@{/asesores/cursos-asesor}" class="nav-link">Mis cursos</a></li>
+					<li class="nav-item ml-2"sec:authorize="hasRole('ROLE_ASESOR')"><a th:href="@{/asesores/perfil-asesor}" class="nav-link">Mi perfil</a></li>
 					<li>
 						<div class="btn-nav">
 							<a class="btn btn-outline-light navbar-btn ml-3"
