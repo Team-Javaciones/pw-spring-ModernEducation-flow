@@ -58,7 +58,19 @@ public class SesionController {
 		}
 		return "/sesiones/crear-sesion";
 	}
-
+	@PostMapping("save")
+	public String save(@ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
+		try {
+			sesionService.save(sesion);
+			status.setComplete();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		// Devuelve la URL mapping
+		return "redirect:/unidades/unidad-view-asesor-" + sesion.getUnidad().getId();
+	}
+	
 	@GetMapping("sesion-alumno-{id}")
 	public String menuSesionAlumno(@PathVariable("id") Integer id, Model model) {
 		AlumnoAsesor alumnoAsesor = new AlumnoAsesor();
@@ -115,19 +127,6 @@ public class SesionController {
 			System.err.println(e.getMessage());
 		}
 		return "/sesiones/sesion-asesor";
-	}
-
-	@PostMapping("save")
-	public String save(@ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
-		try {
-			sesionService.save(sesion);
-			status.setComplete();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		// Devuelve la URL mapping
-		return "redirect:/unidades/unidad-view-asesor-" + sesion.getUnidad().getId();
 	}
 
 	@GetMapping("materiales-sesion-alumno-{id}")

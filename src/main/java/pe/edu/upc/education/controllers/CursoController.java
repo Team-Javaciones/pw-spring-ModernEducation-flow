@@ -16,9 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.education.models.entities.Alumno;
+import pe.edu.upc.education.models.entities.AlumnoCurso;
 import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.models.entities.Categoria;
 import pe.edu.upc.education.models.entities.Curso;
+import pe.edu.upc.education.services.AlumnoCursoService;
+import pe.edu.upc.education.services.AlumnoService;
 import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.CategoriaService;
 import pe.edu.upc.education.services.CursoService;
@@ -36,6 +40,12 @@ public class CursoController {
 	
 	@Autowired
 	private AsesorService asesorService;
+	
+	@Autowired
+	private AlumnoService alumnoService;
+	
+	@Autowired
+	private AlumnoCursoService alumnoCursoService;
 	
 	@GetMapping
 	public String inicio(Model model) {
@@ -209,4 +219,31 @@ public class CursoController {
 		return "/cursos/buscador-curso";
 	}
 	
+	@GetMapping("inscribir-curso-{id}")
+	public String inscribirCurso(@PathVariable("id") Integer id, Model model) {
+		try {
+			Optional<Curso> optional = cursoService.findById(id);			
+			model.addAttribute("curso", optional.get());				
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}	
+		return "/cursos/inscribir-curso";
+	}		
+	@GetMapping("inscribirse-{id}")
+	public String inscribirseCurso(@PathVariable("id") Integer id, Model model, Authentication authentication) {
+		AlumnoCurso alumnoCurso = new AlumnoCurso();		
+		try {
+			Optional<Curso> optionalCurso = cursoService.findById(id);
+			alumnoCurso.setCurso(optionalCurso.get());
+			Optional<Alumno> optionalAlumno = alumnoService.findByUsername(authentication.getName());
+			alumnoCurso.setAlumno(optionalAlumno.get());
+			alumnoCurso.setBloqueado(false);			
+			alumnoCursoService.save(alumnoCurso);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}	
+		return "redirect:/alumnos/cursos-alumno";
+	}	
 }
