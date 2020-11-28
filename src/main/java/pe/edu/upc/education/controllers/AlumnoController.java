@@ -2,6 +2,7 @@ package pe.edu.upc.education.controllers;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Alumno;
+import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.models.entities.Usuario;
 import pe.edu.upc.education.services.AlumnoService;
+import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.UsuarioService;
 
 @Controller
@@ -29,6 +32,11 @@ public class AlumnoController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private AsesorService asesorService;
+	
+	
 	
 	@GetMapping("registro-alumnos")
 	public String registroAlumno(Model model) {
@@ -49,6 +57,7 @@ public class AlumnoController {
 			usuario.addAuthority("ROLE_ALUMNO");
 			alumnoService.save(alumno);
 			usuarioService.save(usuario);
+			
 			status.setComplete();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,9 +141,13 @@ public class AlumnoController {
 	public String editarContra(Model model, Authentication authentication) {
 		try {
 			Optional<Alumno> optional = alumnoService.findByUsername(authentication.getName());
+			Usuario usuario = new Usuario();
 			if (optional.isPresent()) {
 				model.addAttribute("alumno", optional.get());
+				model.addAttribute("usuario", usuario);
 			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
@@ -143,9 +156,29 @@ public class AlumnoController {
 
 	}
 	@PostMapping("password")
-	public String updateContra(@ModelAttribute("alumno") Alumno alumno, SessionStatus status) {
+	public String updateContra(@ModelAttribute("alumno") Alumno alumno, @ModelAttribute("usuario") Usuario usuario, SessionStatus status) {
 		try {
-			alumnoService.update(alumno);
+			Optional<Alumno> optionalA = alumnoService.findByCorreo(alumno.getCorreo());
+			Optional<Asesor> optionalASE= asesorService.findByCorreo(alumno.getCorreo());
+			if (optionalA.isPresent()) {
+
+				Optional<Usuario> optionalU = usuarioService.findByUsername(optionalA.get().getUsername());
+
+				optionalU.get().setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+
+				alumnoService.update(optionalA.get());
+				usuarioService.update(optionalU.get());
+			}
+			if(optionalASE.isPresent())
+			{
+				Optional<Usuario> optionalU = usuarioService.findByUsername(optionalASE.get().getUsername());
+
+				optionalU.get().setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+				
+				asesorService.update(optionalASE.get());
+				usuarioService.update(optionalU.get());
+			}
+
 			status.setComplete();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -181,15 +214,52 @@ public class AlumnoController {
 		return "/alumnos/cursos-alumno";
 	}
 	
-	@GetMapping("olvida-contra")
+	
+	
+	@GetMapping("asesores")  //esta relacionado a cambiarContra
 	public String olvidoContra(Model model) {
 		Alumno alumno = new Alumno();
+		model.addAttribute("alumno", alumno);
+		Usuario usuario = new Usuario();
+		model.addAttribute("usuario", usuario);
+
+		return "/olvida-contra";
+	}
+	
+	@PostMapping("cambiarContra")
+	public String cambiarContra(@ModelAttribute("alumno") Alumno alumno, @ModelAttribute("usuario") Usuario usuario, SessionStatus status) {
+		
+		//System.out.println("nombre de la cuenta:" + alumno.getCorreo());
 		try {
-			model.addAttribute("alumno", alumno);
+			Optional<Alumno> optionalA = alumnoService.findByCorreo(alumno.getCorreo());
+			Optional<Asesor> optionalASE= asesorService.findByCorreo(alumno.getCorreo());
+			if (optionalA.isPresent()) {
+
+				Optional<Usuario> optionalU = usuarioService.findByUsername(optionalA.get().getUsername());
+
+				optionalU.get().setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+
+				alumnoService.update(optionalA.get());
+				usuarioService.update(optionalU.get());
+			}
+			if(optionalASE.isPresent())
+			{
+				Optional<Usuario> optionalU = usuarioService.findByUsername(optionalASE.get().getUsername());
+
+				optionalU.get().setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+				
+				asesorService.update(optionalASE.get());
+				usuarioService.update(optionalU.get());
+			}
+
+			status.setComplete();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
-		return "/alumnos/olvida-contra";
+		
+		
+		return "redirect:/login";
 	}
+
 }

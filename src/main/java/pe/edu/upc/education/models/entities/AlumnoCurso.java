@@ -13,12 +13,13 @@ import javax.persistence.Table;
 @Table(name = "alumno_cursos")
 @IdClass(AlumnoCursoId.class )
 public class AlumnoCurso {
-	@Id
+	
+	@Id	
 	@ManyToOne
 	@JoinColumn(name = "alumno_id")	
 	private Alumno alumno;
 		
-	@Id
+	@Id	
 	@ManyToOne
 	@JoinColumn(name = "curso_id")
 	private Curso curso;

@@ -42,7 +42,10 @@
 							</div>	
 							<div class="col-md-1"></div>					
 						</div>	
-					</div>			
+					</div>		
+					<div th:if="${unidad.sesiones.isEmpty()}" class="text-center pb-3">
+						<h6>Este curso no posee sesiones registradas.</h6>
+					</div>		
 				</div>	
 				
 				<div class="btn-toolbar text-center">								

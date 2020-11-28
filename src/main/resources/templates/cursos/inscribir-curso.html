@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout/layout-alumno :: head">
+</head>
+
+<body class="student-body">
+	<header th:replace="layout/layout-alumno :: header"> </header>
+
+	<main>
+		<section id="recomendaciones-curso" class="container">
+			<div class="jumbotron">
+				<h3 class="text-center">Inscripción al curso</h3>
+
+				<div class="row card-without">
+					<div class="col-md-2"></div>
+					<div class="card col-md-8" style="max-height: 250px;">
+						<div class="row no-gutters align-items-center">
+							<div class="col-md-4 text-center">
+								<img th:src="@{${curso.categoria.urlImage}}" class="card-img" style="max-height: 120px; max-width: 120px;">
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<p>
+										<b>Curso: </b> <span th:text="${curso.nombre}"></span>
+										<br><b>Asesor: </b> <span th:text="${curso.asesor.nombreCompleto}"></span>
+										<br><b>Calificación: </b> <span th:text="${curso.popularidad}"></span><span th:if="${curso.popularidad} == null">No existen calificaciones</span>
+										<br><b>Precio: </b> <span th:text="${curso.precio}"></span>										
+									</p>
+								</div>
+							</div>
+						</div>						
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<h5>
+							<b>Descripción: </b> <span th:text="${curso.descripcion}"></span>						
+						</h5>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+				
+				<div class="row pt-2">
+					<div class="col-md-3"></div>
+					<div class="col-md-6">					
+						<div class="text-center">
+							<img th:src="@{/images/paypal.png}" style="max-height: 120px; max-width: 120px;">
+						</div>					
+						
+						<div class="form-row">
+							<div class="form-group col-md-12">					
+								<label>Ingrese cuenta de PayPal: </label> <input
+									type="text" class="form-control" maxlength="100" required>
+							</div>							
+						</div>
+						<div class="text-center pt-5">
+							<a class="btn btn-dark mr-4" th:href="@{'/cursos/inscribirse-' + ${curso.id}}"><i class="fas fa-check"></i> Inscribirse</a>
+							<a class="btn btn-outline-dark" th:href="@{/cursos/buscar-curso}"><i class="fas fa-chevron-left"></i>  Volver</a>
+						</div>
+						
+					</div>					
+					<div class="col-md-3"></div>
+				</div>						
+			</div>
+
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-alumno :: footer"></footer>
+</body>
+</html>

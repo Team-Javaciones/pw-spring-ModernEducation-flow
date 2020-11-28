@@ -18,16 +18,16 @@
 		    <div class="form form-row">					
 			  <div class="form-group col-md-12">
 			    <label>Nombre del material</label>
-				<input th:field="*{nombre}" type="text" class="form-control" placeholder="Ficha número 1" rows="8" required>
+				<input th:field="*{nombre}" type="text" class="form-control" placeholder="Ficha número 1"maxlength="50" required>
 			  </div>
 			  <div class="form-group col-md-12">
 			    <label>Enlace del material</label> 
-			    <input th:field="*{enlace}" type="text" class="form-control" placeholder="https://drive.google.com/drive/folders/1teiaL_foUiZy_5whefK" rows="2">
+			    <input th:field="*{enlace}" type="text" class="form-control" placeholder="https://drive.google.com/drive/folders/1teiaL_foUiZy_5whefK" maxlength="250" required>
 			  </div>
 		    </div>
 		    <div class="text-center pt-5">
-			  <button type="submit" class="btn btn-dark mr-4">Enviar material</button>
-			  <a class="btn btn btn-outline-dark" th:href="@{'/sesiones/materiales-sesion-asesor-' + ${material.sesion.id}}">Cancelar</a>
+			  <button type="submit" class="btn btn-dark mr-4"><i class="fas fa-check"></i>  Enviar material</button>
+			  <a class="btn btn btn-outline-dark" th:href="@{'/sesiones/materiales-sesion-asesor-' + ${material.sesion.id}}"><i class="fas fa-times"></i> Cancelar</a>
 			</div>
 		  </form>
 		</div>

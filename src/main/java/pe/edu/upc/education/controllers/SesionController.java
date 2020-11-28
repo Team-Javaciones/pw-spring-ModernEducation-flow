@@ -15,12 +15,10 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.education.models.entities.Alumno;
 import pe.edu.upc.education.models.entities.AlumnoAsesor;
-import pe.edu.upc.education.models.entities.Asesor;
 import pe.edu.upc.education.models.entities.Sesion;
 import pe.edu.upc.education.models.entities.Unidad;
 import pe.edu.upc.education.services.AlumnoAsesorService;
 import pe.edu.upc.education.services.AlumnoService;
-import pe.edu.upc.education.services.AsesorService;
 import pe.edu.upc.education.services.SesionService;
 import pe.edu.upc.education.services.UnidadService;
 
@@ -34,9 +32,6 @@ public class SesionController {
 
 	@Autowired
 	private AlumnoService alumnoService;
-	
-	@Autowired
-	private AsesorService asesorService;
 	
 	@Autowired
 	private UnidadService unidadService;
@@ -58,17 +53,25 @@ public class SesionController {
 		}
 		return "/sesiones/crear-sesion";
 	}
-
+	@PostMapping("save")
+	public String save(@ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
+		try {
+			sesionService.save(sesion);
+			status.setComplete();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		// Devuelve la URL mapping
+		return "redirect:/unidades/unidad-view-asesor-" + sesion.getUnidad().getId();
+	}
+	
 	@GetMapping("sesion-alumno-{id}")
 	public String menuSesionAlumno(@PathVariable("id") Integer id, Model model) {
 		AlumnoAsesor alumnoAsesor = new AlumnoAsesor();
 		try {
 			Optional<Alumno> optional_alumno = alumnoService.findById(id);
 			model.addAttribute("alumno", optional_alumno.get());
-			Optional<Asesor> optional_asesor = asesorService.findById(id);
-			model.addAttribute("asesor", optional_asesor.get());
-			Optional<AlumnoAsesor> optional_alumnoAsesor = alumnoAsesorService.findById(id);
-			model.addAttribute("alumnoAsesor", optional_alumnoAsesor.get());
 			Optional<Sesion> optional = sesionService.findById(id);			
 			alumnoAsesor.setAlumno(optional_alumno.get());
 			
@@ -82,7 +85,7 @@ public class SesionController {
 	}
 
 	@PostMapping("saveAlumnoAsesor")
-	public String saveAlumnoAsesor(@ModelAttribute("alumnoAsesor") AlumnoAsesor alumnoAsesor, @ModelAttribute("alumno") Alumno alumno, @ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
+	public String saveAlumnoAsesor(@ModelAttribute("alumnoAsesor") AlumnoAsesor alumnoAsesor, @ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
 		try {
 			alumnoAsesor.setAsesor(sesion.getUnidad().getCurso().getAsesor());
 			alumnoAsesorService.save(alumnoAsesor);
@@ -106,19 +109,6 @@ public class SesionController {
 			System.err.println(e.getMessage());
 		}
 		return "/sesiones/sesion-asesor";
-	}
-
-	@PostMapping("save")
-	public String save(@ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
-		try {
-			sesionService.save(sesion);
-			status.setComplete();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		// Devuelve la URL mapping
-		return "redirect:/unidades/unidad-view-asesor-" + sesion.getUnidad().getId();
 	}
 
 	@GetMapping("materiales-sesion-alumno-{id}")

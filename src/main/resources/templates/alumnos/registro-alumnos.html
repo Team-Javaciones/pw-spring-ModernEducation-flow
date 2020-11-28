@@ -108,7 +108,16 @@
         </div>
     </div>
 
-	<footer th:replace="layout/layout-alumno :: footer"></footer>
+	<nav id="footer" class="navbar sticky-bottom navbar-dark bg-dark justify-content-center">
+		<span class="navbar-text">
+			<small>©2020 Todos los derechos reservados. Creado por Modern
+				Education</small>
+		</span>
+	</nav>
+
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 
 </html>
