@@ -37,6 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/asesores/perfil-asesor").hasRole("ASESOR")
 				.antMatchers("/asesores/editar-perfil-asesor").hasRole("ASESOR")
 				.antMatchers("/cursos/crear-curso").hasRole("ASESOR")
+				/*.antMatchers("/sesiones/editar-sesion").hasRole("ASESOR")*/
 				
 				
 				.antMatchers("/").permitAll()
