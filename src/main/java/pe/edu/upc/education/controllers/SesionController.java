@@ -3,6 +3,7 @@ package pe.edu.upc.education.controllers;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,16 +68,24 @@ public class SesionController {
 	}
 	
 	@GetMapping("sesion-alumno-{id}")
-	public String menuSesionAlumno(@PathVariable("id") Integer id, Model model) {
-		AlumnoAsesor alumnoAsesor = new AlumnoAsesor();
+	public String menuSesionAlumno(@PathVariable("id") Integer id, Model model, Authentication authentication) {
+		
 		try {
-			Optional<Alumno> optional_alumno = alumnoService.findById(id);
-			model.addAttribute("alumno", optional_alumno.get());
-			Optional<Sesion> optional = sesionService.findById(id);			
-			alumnoAsesor.setAlumno(optional_alumno.get());
+			Optional<Alumno> alumno = alumnoService.findByUsername(authentication.getName());
+			Optional<Sesion> sesion = sesionService.findById(id);			
 			
-			model.addAttribute("sesion", optional.get());
+			AlumnoAsesor alumnoAsesor = new AlumnoAsesor();
+			alumnoAsesor.setAlumno(alumno.get());
+			alumnoAsesor.setAsesor(sesion.get().getUnidad().getCurso().getAsesor());
+			
 			model.addAttribute("alumnoAsesor", alumnoAsesor);
+			model.addAttribute("alumno", alumno.get());
+			model.addAttribute("sesion", sesion.get());
+			
+			
+			System.out.println("Sesion:  " + sesion.get().getTema());
+			System.out.println("Alumno: " + alumno.get().getNombreCompleto());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
@@ -85,9 +94,11 @@ public class SesionController {
 	}
 
 	@PostMapping("saveAlumnoAsesor")
-	public String saveAlumnoAsesor(@ModelAttribute("alumnoAsesor") AlumnoAsesor alumnoAsesor, @ModelAttribute("sesion") Sesion sesion, SessionStatus status) {
+	public String saveAlumnoAsesor(@ModelAttribute("alumnoAsesor") AlumnoAsesor alumnoAsesor, @ModelAttribute("sesion") Sesion sesion, SessionStatus status, Authentication authentication) {
 		try {
+			Optional<Alumno> alumno = alumnoService.findByUsername(authentication.getName());
 			alumnoAsesor.setAsesor(sesion.getUnidad().getCurso().getAsesor());
+			alumnoAsesor.setAlumno(alumno.get());
 			alumnoAsesorService.save(alumnoAsesor);
 			status.setComplete();
 		} catch (Exception e) {
