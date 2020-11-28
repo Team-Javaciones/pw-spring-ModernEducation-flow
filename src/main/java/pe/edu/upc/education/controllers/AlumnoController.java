@@ -66,36 +66,7 @@ public class AlumnoController {
 		
 		return "redirect:/login";
 	}
-	/*
-	@GetMapping("login-alumnos")
-	public String loginAlumno(Model model) {
-		Usuario usuario = new Usuario();
-		model.addAttribute("usuario", usuario);
-		
-		return "/alumnos/login-alumnos";
-	}*/
-	/*
-	@PostMapping("login")
-	public String loginAsesor(@ModelAttribute("usuario") Usuario usuario, SessionStatus status)
-	{
-		try {
-			//Valida solo en usuario
-			//Fata la contraseña
-			Optional<Alumno> alumno = alumnoService.findByUsername(usuario.getUsername());
-			
-			if (!alumno.isEmpty())
-			{
-				
-				return "redirect:/alumnos/perfil-alumno";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-		
-		return "redirect:/alumnos/ingreso-alumnos";
-	}
-	*/
+	
 	@GetMapping("perfil-alumno")
 	public String perfilAlumno(Model model, Authentication authentication) {
 		try {

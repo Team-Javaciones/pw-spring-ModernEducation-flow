@@ -107,8 +107,7 @@ public class Curso {
 	public void updatePopularidad() {
 		Float val = 0F;
 		Integer cont = 0;
-		
-		
+				
 		for (AlumnoCurso alumnoCurso : alumnoCursos) {	
 			if(alumnoCurso.getValoracion() != null) {
 				val += alumnoCurso.getValoracion();

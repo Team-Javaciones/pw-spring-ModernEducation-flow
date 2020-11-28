@@ -1,5 +1,6 @@
 package pe.edu.upc.education.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -164,10 +165,17 @@ public class CursoController {
 	
 	
 	@GetMapping("recomendaciones-curso-alumno-{id}")
-	public String recomendacionesViewAlumno(@PathVariable("id") Integer id, Model model) {		
+	public String recomendacionesViewAlumno(@PathVariable("id") Integer id, Model model) {	
 		try {
-			Optional<Curso> optional = cursoService.findById(id);
-			model.addAttribute("curso", optional.get());
+			Optional<Curso> optionalCurso = cursoService.findById(id);
+			List<AlumnoCurso> alumnoCursos= optionalCurso.get().getAlumnoCursos();
+			List<AlumnoCurso> alumnoCursosValoracion = new ArrayList<AlumnoCurso>();
+			for (AlumnoCurso alumnoCurso : alumnoCursos) {
+				if(alumnoCurso.getValoracion() != null)
+					alumnoCursosValoracion.add(alumnoCurso);					
+			}			
+			model.addAttribute("curso", optionalCurso.get());
+			model.addAttribute("alumnoCursos", alumnoCursosValoracion);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());

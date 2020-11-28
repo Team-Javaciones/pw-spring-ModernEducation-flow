@@ -44,8 +44,8 @@
 				</div>
 				
 				<div class="row">
-					<div class="col-sm-6" th:each="alumnoCurso : ${curso.alumnoCursos}">
-						<div id="cards-recom" class="card mb-3" style="max-height: 500px;" th:if="${alumnoCurso.valoracion} != null">
+					<div class="col-sm-6" th:each="alumnoCurso : ${alumnoCursos}">
+						<div id="cards-recom" class="card mb-3" style="max-height: 500px;">
 							<div class="row no-gutters align-items-center">
 								<div class="col-md-4 text-center">
 									<img th:src="@{/images/user.png}" class="card-img" style="max-height: 120px; max-width: 120px;">
