@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout-asesor :: head">
+</head>
+
+<body class="teacher-body">
+	<header th:replace="layout/layout-asesor :: header"> </header>
+	
+	<main>
+		<section id="crear-sesion">
+			<div class="container jumbotron">
+				<div class="text-center">
+					<img th:src="@{/images/crear-sesion.png}" height="60">
+					<h3 class="card-title">Actualizar sesión</h3>
+				</div>
+				<form th:action="@{/sesiones/save}" th:object="${sesion}" method="post">
+					<div class="form-row">
+						<div class="form-group col-md-12">					
+							<label>Tema de la sesión: </label> <input
+								type="text" class="form-control" th:field="*{tema}" maxlength="100"	required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Enlace de la reunión en zoom:</label> <input
+								type="text" class="form-control" th:field="*{linkZoom}" maxlength="250"	required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Enlace de la grabación:</label> <input
+								type="text" class="form-control" th:field="*{linkGrabacion}" maxlength="250">
+						</div>
+					</div>
+					<div class="text-center pt-4">
+						<button type="submit" class="btn btn-dark mr-4"><i class="fas fa-check"></i> Actualizar sesión</button>
+						<a class="btn btn btn-outline-dark" th:href="@{'/unidades/unidad-view-asesor-' + ${sesion.unidad.id}}"><i class="fas fa-times"></i> Cancelar</a>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<footer th:replace="layout/layout-asesor :: footer"></footer>
+</body>
+</html>
