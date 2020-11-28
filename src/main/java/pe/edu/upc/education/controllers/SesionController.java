@@ -63,6 +63,15 @@ public class SesionController {
 	public String menuSesionAlumno(@PathVariable("id") Integer id, Model model) {
 		AlumnoAsesor alumnoAsesor = new AlumnoAsesor();
 		try {
+			/*
+			Optional<Alumno> optional_alumno = alumnoService.findByUsername(authentication.getName());
+			model.addAttribute("alumno", optional_alumno.get());
+			
+			Optional<Sesion> sesion = sesionService.findById(id);	
+			
+			model.addAttribute("asesor", sesion.get().getUnidad().getCurso().getAsesor());*/
+			
+			
 			Optional<Alumno> optional_alumno = alumnoService.findById(id);
 			model.addAttribute("alumno", optional_alumno.get());
 			Optional<Asesor> optional_asesor = asesorService.findById(id);

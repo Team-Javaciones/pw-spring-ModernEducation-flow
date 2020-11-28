@@ -37,8 +37,13 @@
 					</div>
 					<div class="col-md-2"></div>
 				</div>
+				
+				<div th:if="${sesion.ejercicios.isEmpty()}" class="text-center pb-5">
+					<h6>Esta sesión no posee ejercicios registrados hasta el momento.</h6>
+				</div>
+				
 				<div class="text-center">
-					<a class="btn btn-dark" th:href="@{'/ejercicios/crear-ejercicio-' + ${sesion.id}}">Crear ejercicio</a>
+					<a class="btn btn-dark mr-3" th:href="@{'/ejercicios/crear-ejercicio-' + ${sesion.id}}"><i class="fas fa-plus-circle"></i> Crear ejercicio</a>
 					<a class="btn btn-outline-dark" th:href="@{'/sesiones/sesion-asesor-' + ${sesion.id}}">
 						<i class="fas fa-chevron-left"></i>  Volver</a>
 				</div>

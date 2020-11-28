@@ -37,8 +37,13 @@
 					</div>
 					<div class="col-md-2"></div>
 				</div>
+				
+				<div th:if="${sesion.materiales.isEmpty()}" class="text-center pb-5">
+					<h6>Esta sesión no posee materiales registrados hasta el momento.</h6>
+				</div>
+				
 				<div class="text-center">
-				<a class="btn btn-dark" th:href="@{'/materiales/subir-material-' + ${sesion.id}}">Subir Material</a>
+					<a class="btn btn-dark mr-3" th:href="@{'/materiales/subir-material-' + ${sesion.id}}"><i class="fas fa-upload"></i> Subir Material</a>
 					<a class="btn btn-outline-dark" th:href="@{'/sesiones/sesion-asesor-' + ${sesion.id}}">
 						<i class="fas fa-chevron-left"></i>  Volver</a>
 				</div>
